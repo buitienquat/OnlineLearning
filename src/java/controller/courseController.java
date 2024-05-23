@@ -5,20 +5,28 @@
 
 package controller;
 
+import controller.dal.implement.CategoryDAO;
+import controller.dal.implement.CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.Session;
+import java.util.List;
 import javax.management.remote.TargetedNotification;
+import model.Category;
+import model.Course;
 
 /**
  *
  * @author Admin
  */
 public class courseController extends HttpServlet {
-   
+    CourseDAO courseDAO = new CourseDAO();
+    CategoryDAO categoryDAO = new CategoryDAO();
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -43,17 +51,14 @@ public class courseController extends HttpServlet {
         }
     } 
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        List<Course> listCourse = findCourseDoGet(request);
+        List<Category> listCategory = categoryDAO.findAll(); 
+        session.setAttribute("course", listCourse);
+        session.setAttribute("category", listCategory);
         request.getRequestDispatcher("course.jsp").forward(request, response);
     } 
 
@@ -78,5 +83,30 @@ public class courseController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private List<Course> findCourseDoGet(HttpServletRequest request) {
+        String actionSearch = request.getParameter("action") == null
+                ? "default" : request.getParameter("action");
+        List<Course> listCourse = null;
+        switch (actionSearch) {
+            case "searchByName":
+                String searchName = request.getParameter("keyword");
+                listCourse = courseDAO.findCourseByName(searchName);
+                break;
+            case "searchCategory":
+                String categoryId = request.getParameter("categoryId");
+                int cateId;
+                try {
+                    cateId = Integer.parseInt(categoryId);
+                } catch (Exception e) {
+                    cateId = 1;
+                }
+                listCourse = courseDAO.findCourseByCategory(cateId);
+                break;
+            default:
+                listCourse = courseDAO.findAll();
+        }
+        return listCourse;
+    }
 
 }
