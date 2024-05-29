@@ -9,6 +9,8 @@ package model;
  * @author Admin
  */
 public class Course {
+
+    private int CouseraID;
     private String Name;
     private String Image;
     private String Description;
@@ -16,18 +18,18 @@ public class Course {
     private int UserID;
     private int Category_categoryID;
     private int Feestatus;
+    private String Introduce;
+    private int OriginalPrice;
 
     public Course() {
     }
 
-    public Course(String Name, String Image, String Description, int Status, int UserID, int Category_categoryID, int Feestatus) {
-        this.Name = Name;
-        this.Image = Image;
-        this.Description = Description;
-        this.Status = Status;
-        this.UserID = UserID;
-        this.Category_categoryID = Category_categoryID;
-        this.Feestatus = Feestatus;
+    public int getCouseraID() {
+        return CouseraID;
+    }
+
+    public void setCouseraID(int CouseraID) {
+        this.CouseraID = CouseraID;
     }
 
     public String getName() {
@@ -86,9 +88,38 @@ public class Course {
         this.Feestatus = Feestatus;
     }
 
+    public String getIntroduce() {
+        return Introduce;
+    }
+
+    public void setIntroduce(String Introduce) {
+        this.Introduce = Introduce;
+    }
+
+    public int getOriginalPrice() {
+        return OriginalPrice;
+    }
+
+    public void setOriginalPrice(int OriginalPrice) {
+        this.OriginalPrice = OriginalPrice;
+    }
+
+    public Course(int CouseraID, String Name, String Image, String Description, int Status, int UserID, int Category_categoryID, int Feestatus, String Introduce, int OriginalPrice) {
+        this.CouseraID = CouseraID;
+        this.Name = Name;
+        this.Image = Image;
+        this.Description = Description;
+        this.Status = Status;
+        this.UserID = UserID;
+        this.Category_categoryID = Category_categoryID;
+        this.Feestatus = Feestatus;
+        this.Introduce = Introduce;
+        this.OriginalPrice = OriginalPrice;
+    }
+
     @Override
     public String toString() {
-        return "Course{" + "Name=" + Name + ", Image=" + Image + ", Description=" + Description + ", Status=" + Status + ", UserID=" + UserID + ", Category_categoryID=" + Category_categoryID + ", Feestatus=" + Feestatus + '}';
+        return "Course{" + "CouseraID=" + CouseraID + ", Name=" + Name + ", Image=" + Image + ", Description=" + Description + ", Status=" + Status + ", UserID=" + UserID + ", Category_categoryID=" + Category_categoryID + ", Feestatus=" + Feestatus + ", Introduce=" + Introduce + ", OriginalPrice=" + OriginalPrice + '}';
     }
-           
+
 }

@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+package controller.Course;
 
-package controller;
-
-import controller.dal.implement.CategoryDAO;
-import controller.dal.implement.CourseDAO;
+import controller.constant.commonConstant;
+import dal.implement.CategoryDAO;
+import dal.implement.CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -19,64 +19,39 @@ import java.util.List;
 import javax.management.remote.TargetedNotification;
 import model.Category;
 import model.Course;
+import model.Page;
 
 /**
  *
  * @author Admin
  */
 public class courseController extends HttpServlet {
+
     CourseDAO courseDAO = new CourseDAO();
     CategoryDAO categoryDAO = new CategoryDAO();
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet courseController</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet courseController at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    } 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         HttpSession session = request.getSession();
-        List<Course> listCourse = findCourseDoGet(request);
-        List<Category> listCategory = categoryDAO.findAll(); 
-        session.setAttribute("course", listCourse);
-        session.setAttribute("category", listCategory);
-        request.getRequestDispatcher("course.jsp").forward(request, response);
-    } 
-
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
+        Page pageControl = new Page();
+        List<Course> listCourse = findCourseDoGet(request, pageControl);
+        List<Category> listCategory = categoryDAO.findAll();
+        session.setAttribute(commonConstant.SESSION_COURSE, listCourse);
+        session.setAttribute(commonConstant.SESSION_CATEGORY, listCategory);
+        request.setAttribute(commonConstant.REQUEST_PAGE_CONTROL, pageControl);
+        request.getRequestDispatcher("view/course/course.jsp").forward(request, response);
     }
 
-    /** 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    }
+
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override
@@ -84,28 +59,62 @@ public class courseController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private List<Course> findCourseDoGet(HttpServletRequest request) {
+    private List<Course> findCourseDoGet(HttpServletRequest request, Page pageControl) {
+        //get ve page
+        String pageRaw = request.getParameter("page");
+        //valid page
+        int page;
+        try {
+            page = Integer.parseInt(pageRaw);
+            if (page <= 0) {
+                page = 1;
+            }
+        } catch (Exception e) {
+            page = 1;
+        }
         String actionSearch = request.getParameter("action") == null
                 ? "default" : request.getParameter("action");
         List<Course> listCourse = null;
+        //get request url
+        String requestURL = request.getRequestURL().toString();
+        //total record
+        int totalRecord = 0;
         switch (actionSearch) {
             case "searchByName":
                 String searchName = request.getParameter("keyword");
-                listCourse = courseDAO.findCourseByName(searchName);
+                totalRecord = courseDAO.findTotalRecordByName(searchName);
+                listCourse = courseDAO.findCourseByName(searchName, page);
+                pageControl.setUrlPattern(requestURL + "?action=searchByName&keyword=" + searchName + "&");
                 break;
             case "searchCategory":
                 String categoryId = request.getParameter("categoryId");
                 int cateId;
                 try {
                     cateId = Integer.parseInt(categoryId);
+                    if (cateId < 0) {
+                        cateId = 1;
+                    }
+                    totalRecord = courseDAO.findTotalRecordByCategory(categoryId);
+                    listCourse = courseDAO.findCourseByCategory(cateId, page);
+                    pageControl.setUrlPattern(requestURL + "?action=searchCategory&categoryId=" + cateId + "&");
                 } catch (Exception e) {
-                    cateId = 1;
+                    listCourse = courseDAO.findAll();
                 }
-                listCourse = courseDAO.findCourseByCategory(cateId);
                 break;
             default:
-                listCourse = courseDAO.findAll();
+                totalRecord = courseDAO.findTotalRecord();
+                listCourse = courseDAO.findByPage(page);
+                pageControl.setUrlPattern(requestURL + "?");
         }
+        
+        // total page
+        int totalPage = (totalRecord % commonConstant.RECORD_PER_PAGE) == 0
+                ? (totalRecord / commonConstant.RECORD_PER_PAGE)
+                : (totalRecord / commonConstant.RECORD_PER_PAGE) + 1;
+        //set total record, total page, page vao pageControl
+        pageControl.setPage(page);
+        pageControl.setTotalPage(totalPage);
+        pageControl.setTotalRecord(totalRecord);
         return listCourse;
     }
 

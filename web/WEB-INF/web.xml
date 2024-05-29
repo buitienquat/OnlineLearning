@@ -2,10 +2,18 @@
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <servlet>
         <servlet-name>courseController</servlet-name>
-        <servlet-class>controller.courseController</servlet-class>
+        <servlet-class>controller.Course.courseController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>courseDetailController</servlet-name>
+        <servlet-class>controller.Course.courseDetailController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>courseController</servlet-name>
         <url-pattern>/course</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>courseDetailController</servlet-name>
+        <url-pattern>/coursedetail</url-pattern>
     </servlet-mapping>
 </web-app>
