@@ -19,12 +19,11 @@ import model.Category;
 import model.Course;
 import model.Lesson;
 
-
 /**
  *
  * @author Admin
  */
-public class courseDetailController extends HttpServlet {
+public class courseWatchControl extends HttpServlet {
 
     CourseDAO courseDAO = new CourseDAO();
     CategoryDAO categoryDAO = new CategoryDAO();
@@ -47,10 +46,10 @@ public class courseDetailController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet courseDetailController</title>");
+            out.println("<title>Servlet courseWatchControl</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet courseDetailController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet courseWatchControl at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,29 +67,23 @@ public class courseDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String idRaw = request.getParameter("id");
-        String categoryIdRaw = request.getParameter("categoryId");
-        int id, categoryId;
+        String courseraID = request.getParameter("id");
+        String numberLesson = request.getParameter("numberLesson");
+        int id = 0, num = 0;
         try {
-            id = Integer.parseInt(idRaw);
-            categoryId = Integer.parseInt(categoryIdRaw);
-            Course course = new Course();
-            Category category = new Category();
+            id = Integer.parseInt(courseraID);
+            num = Integer.parseInt(numberLesson);
             Lesson lesson = new Lesson();
-            
-            course.setCouseraID(id);
-            category.setCategoryID(categoryId);
             lesson.setCourse_courseID(id);
-            
-            Course findCourseId = courseDAO.findCourseId(course);
-            Category findCategoryId = categoryDAO.findCategoryId(category);
-            List<Lesson> findLesson = (List<Lesson>) lessonDAO.findLessonByCourseId(lesson);
-            
-            request.setAttribute(commonConstant.REQUEST_FINDCOURSEID, findCourseId);
-            request.setAttribute(commonConstant.REQUEST_FINDCATEGORYID, findCategoryId);
+            List<Lesson> findLesson = lessonDAO.findLessonByCourseId(lesson);
+            lesson.setNumberLesson(num);
+            Lesson totalrecord = lessonDAO.findTotalRecord(lesson);
+            Lesson autoFirstCourse = lessonDAO.autoFirstCourse(lesson);
+            request.setAttribute(commonConstant.REQUEST_TOTAL_RECORD_LESSON, totalrecord);
+            request.setAttribute(commonConstant.REQUEST_AUTO_FIRST_COURSE, autoFirstCourse);
             request.setAttribute(commonConstant.REQUEST_FINDLESSON, findLesson);
-            request.getRequestDispatcher("view/course/courseDetail.jsp").forward(request, response);
-        } catch (Exception e) {
+            request.getRequestDispatcher("view/course/courseWatch.jsp").forward(request, response);
+        } catch (NumberFormatException e) {
             response.sendRedirect("course");
         }
 

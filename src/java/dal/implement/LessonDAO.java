@@ -33,9 +33,29 @@ public class LessonDAO extends GenericDAO<Lesson> {
         return queryGenericDAO(Lesson.class, sql, parameterMap);
     }
 
+    public Lesson autoFirstCourse(Lesson lesson) {
+        String sql = "SELECT * FROM dbo.Lesson\n"
+                + "WHERE Course_courseID = ? AND NumberLesson = ?";
+        parameterMap = new LinkedHashMap<>();
+        parameterMap.put("id", lesson.getCourse_courseID());
+        parameterMap.put("numberlesson", lesson.getNumberLesson());
+        List<Lesson> list = queryGenericDAO(Lesson.class, sql, parameterMap);
+        return list.isEmpty() ? null : list.get(0);
+    }
+
     public static void main(String[] args) {
         Lesson lesson = new Lesson();
         lesson.setCourse_courseID(1);
-        System.out.println(new LessonDAO().findLessonByCourseId(lesson));
+        lesson.setNumberLesson(1);
+        System.out.println(new LessonDAO().autoFirstCourse(lesson));
+    }
+
+    public Lesson findTotalRecord(Lesson lesson) {
+        String sql = "SELECT COUNT(*) FROM dbo.Lesson\n"
+                + "WHERE Course_courseID = ?";
+        parameterMap = new LinkedHashMap<>();
+        parameterMap.put("totalrecord", lesson.getCourse_courseID());
+        List<Lesson> list = queryGenericDAO(Lesson.class, sql, parameterMap);
+        return list.isEmpty() ? null : list.get(0);
     }
 }

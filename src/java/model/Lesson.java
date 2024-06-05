@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
-
+import java.util.Date;
 /**
  *
  * @author Admin
@@ -11,16 +11,23 @@ package model;
 public class Lesson {
 
     private int LessonID;
-    private String Name;
+    private String Title;
     private  int Course_courseID;
-
+    private String Video;
+    private String Note;
+    private Date Time;
+    private int NumberLesson;
     public Lesson() {
     }
 
-    public Lesson(int LessonID, String Name, int Course_courseID) {
+    public Lesson(int LessonID, String Title, int Course_courseID, String Video, String Note, Date Time, int NumberLesson) {
         this.LessonID = LessonID;
-        this.Name = Name;
+        this.Title = Title;
         this.Course_courseID = Course_courseID;
+        this.Video = Video;
+        this.Note = Note;
+        this.Time = Time;
+        this.NumberLesson = NumberLesson;
     }
 
     public int getLessonID() {
@@ -31,12 +38,12 @@ public class Lesson {
         this.LessonID = LessonID;
     }
 
-    public String getName() {
-        return Name;
+    public String getTitle() {
+        return Title;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setTitle(String Title) {
+        this.Title = Title;
     }
 
     public int getCourse_courseID() {
@@ -47,10 +54,41 @@ public class Lesson {
         this.Course_courseID = Course_courseID;
     }
 
+    public String getVideo() {
+        return Video;
+    }
+
+    public void setVideo(String Video) {
+        this.Video = Video;
+    }
+
+    public String getNote() {
+        return Note;
+    }
+
+    public void setNote(String Note) {
+        this.Note = Note;
+    }
+
+    public Date getTime() {
+        return Time;
+    }
+
+    public void setTime(Date Time) {
+        this.Time = Time;
+    }
+
+    public int getNumberLesson() {
+        return NumberLesson;
+    }
+
+    public void setNumberLesson(int NumberLesson) {
+        this.NumberLesson = NumberLesson;
+    }
+
     @Override
     public String toString() {
-        return "Lesson{" + "LessonID=" + LessonID + ", Name=" + Name + ", Course_courseID=" + Course_courseID + '}';
+        return "Lesson{" + "LessonID=" + LessonID + ", Title=" + Title + ", Course_courseID=" + Course_courseID + ", Video=" + Video + ", Note=" + Note + ", Time=" + Time + ", NumberLesson=" + NumberLesson + '}';
     }
-    
-    
+
 }

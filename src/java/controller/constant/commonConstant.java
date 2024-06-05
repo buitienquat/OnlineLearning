@@ -17,4 +17,6 @@ public class commonConstant {
     public static final String REQUEST_FINDCATEGORYID = "findCategoryId";
     public static final String REQUEST_FINDLESSON = "findLesson";
     public static final String REQUEST_PAGE_CONTROL = "pageControl";
+    public static final String REQUEST_AUTO_FIRST_COURSE = "autoFirstCourse";
+    public static final String REQUEST_TOTAL_RECORD_LESSON = "totalrecord";
 }

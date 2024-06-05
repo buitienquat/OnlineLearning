@@ -2691,7 +2691,7 @@ button.back-to-top {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid rgba(0,0,0,0.1);
-    padding: 10px 20px;
+    padding: 1px 20px;
     font-size: 15px;
 }
 .curriculum-list > li{

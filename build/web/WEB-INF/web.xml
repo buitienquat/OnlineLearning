@@ -8,6 +8,10 @@
         <servlet-name>courseDetailController</servlet-name>
         <servlet-class>controller.Course.courseDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>courseWatchControl</servlet-name>
+        <servlet-class>controller.Course.courseWatchControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>courseController</servlet-name>
         <url-pattern>/course</url-pattern>
@@ -15,5 +19,9 @@
     <servlet-mapping>
         <servlet-name>courseDetailController</servlet-name>
         <url-pattern>/coursedetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>courseWatchControl</servlet-name>
+        <url-pattern>/coursewatch</url-pattern>
     </servlet-mapping>
 </web-app>
