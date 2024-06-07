@@ -11,15 +11,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.User;
-import dal.UserDBContext;
 
 /**
  *
  * @author vuduc
  */
-public class listuser extends HttpServlet {
+public class profile extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,10 +28,14 @@ public class listuser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-                  UserDBContext dbContext = new UserDBContext();
-    List<User> listUser = dbContext.getAllUser();
-    request.setAttribute("listUser", listUser);
-        request.getRequestDispatcher("admin/ManageUser.jsp").forward(request, response);  
+    int userid=Integer.parseInt(request.getParameter("userid"));
+    int status=Integer.parseInt(request.getParameter("status"));
+    String img=request.getParameter("img");
+    request.setAttribute("userid", userid);
+    request.setAttribute("status", status);
+       request.setAttribute("img", img);
+     request.getRequestDispatcher("admin/UserProfile.jsp").forward(request, response);  
+    
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

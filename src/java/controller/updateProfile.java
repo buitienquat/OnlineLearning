@@ -41,7 +41,7 @@ public class updateProfile extends HttpServlet {
                 userDBContext.updateAccount(userid,status);
             }
         } finally{
-            RequestDispatcher rd = request.getRequestDispatcher("admin/ManageUser.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("listuser");
             rd.forward(request, response);
         }
     } 

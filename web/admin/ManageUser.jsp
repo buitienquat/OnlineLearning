@@ -387,8 +387,7 @@
         // Tính chỉ số bắt đầu và chỉ số kết thúc của mục được hiển thị trên trang này
         int startIndex = (currentPage - 1) * itemsPerPage;
         // Tạo một đối tượng UserDBContext để lấy dữ liệu người dùng
-        UserDBContext dbContext = new UserDBContext();
-        List<User> listUser = dbContext.getAllUser();
+  List<User> listUser = (List<User>)request.getAttribute("listUser");
         if (request.getAttribute("USER_LIST") != null) {
             listUser = (List<User>) request.getAttribute("USER_LIST");
         }
@@ -406,6 +405,7 @@
             </tr>
         </thead>
         <tbody>
+             <form action="/swp-project/profile" method="POST">
             <%
                 // Hiển thị dữ liệu của trang hiện tại
                 for (int i = startIndex; i < Math.min(startIndex + itemsPerPage, listUser.size()); i++) {
@@ -423,6 +423,7 @@
                     int status = user.getStatusUserId();
             %>
             <tr>
+               
                 <td><img src="<%= img %>" alt="User Image" width="50" height="50"/></td>
                 <td><%= uf %></td>
                 <td><%= email %></td>
@@ -461,7 +462,7 @@
                     %>
                 </td>
                 <td>
-                    <form action="/swp-project/admin/UserProfile.jsp" method="POST">
+                    
                         <input type="hidden" name="tentk" value="" />
                         <input type="hidden" name="email" value="<%= email %>" />
                         <input type="hidden" name="userid" value="<%= userid %>" />
@@ -475,12 +476,14 @@
                         <input type="hidden" name="date" value="<%= date %>" />
                         <input type="hidden" name="status" value="<%= status %>" />
                         <button type="submit" class="btn">Manage</button>
-                    </form>
+                   
                 </td>
+                 
             </tr>
             <%
                 }
             %>
+            </form>
         </tbody>
     </table>
     
@@ -488,7 +491,7 @@
         // Hiển thị các liên kết phân trang
         int totalPages = (int) Math.ceil((double) listUser.size() / itemsPerPage);
         for (int i = 1; i <= totalPages; i++) {
-            out.println("<a href=\"ManageUser.jsp?page=" + i + "\"> " + i + "</a>&nbsp;&nbsp;");
+            out.println("<a href=\"listuser?page=" + i + "\"> " + i + "</a>&nbsp;&nbsp;");
         }
     %>
 </div>

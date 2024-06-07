@@ -12,6 +12,10 @@
         <servlet-name>listuser</servlet-name>
         <servlet-class>controller.listuser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>profile</servlet-name>
+        <servlet-class>controller.profile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>search</servlet-name>
         <url-pattern>/search</url-pattern>
@@ -23,5 +27,9 @@
     <servlet-mapping>
         <servlet-name>listuser</servlet-name>
         <url-pattern>/listuser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>profile</servlet-name>
+        <url-pattern>/profile</url-pattern>
     </servlet-mapping>
 </web-app>

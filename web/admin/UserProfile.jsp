@@ -371,16 +371,9 @@
                             </div>
                             <div class="widget-inner">
                                 <%
-String uf = request.getParameter("uf");
-String email = request.getParameter("email");
+
 int userid = Integer.parseInt(request.getParameter("userid"));
-String phone = request.getParameter("phone");
-String address = request.getParameter("address");
-String gmailId = request.getParameter("gmailId");
-int rollid = Integer.parseInt(request.getParameter("rollid"));
-String verify = request.getParameter("verify");
 String img = request.getParameter("img");
-String date=request.getParameter("date");
 int status=Integer.parseInt(request.getParameter("status"));
                                 %>                                
 
