@@ -18,6 +18,7 @@ import java.util.List;
 import model.Category;
 import model.Course;
 import model.Lesson;
+import model.Page;
 
 /**
  *
@@ -77,9 +78,11 @@ public class courseWatchControl extends HttpServlet {
             lesson.setCourse_courseID(id);
             List<Lesson> findLesson = lessonDAO.findLessonByCourseId(lesson);
             lesson.setNumberLesson(num);
-            Lesson totalrecord = lessonDAO.findTotalRecord(lesson);
+            int totalrecord = lessonDAO.findTotalRecord(lesson);
+            Page pageControl = new Page();
+            pageControl.setTotalRecord(totalrecord);
             Lesson autoFirstCourse = lessonDAO.autoFirstCourse(lesson);
-            request.setAttribute(commonConstant.REQUEST_TOTAL_RECORD_LESSON, totalrecord);
+            request.setAttribute(commonConstant.REQUEST_PAGE_CONTROL, pageControl );
             request.setAttribute(commonConstant.REQUEST_AUTO_FIRST_COURSE, autoFirstCourse);
             request.setAttribute(commonConstant.REQUEST_FINDLESSON, findLesson);
             request.getRequestDispatcher("view/course/courseWatch.jsp").forward(request, response);

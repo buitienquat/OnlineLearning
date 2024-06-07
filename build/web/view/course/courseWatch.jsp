@@ -233,9 +233,9 @@
                     <div class="container">
                         <ul class="list-inline">
                             <li><a href="/OnlineLearning/course">Home</a></li>
-                            
-                                <li>test</li>
-                            
+
+                            <li>test</li>
+
                         </ul>
                     </div>
                 </div>
@@ -256,8 +256,13 @@
                                             <c:if test="${autoFirstCourse.getNumberLesson() != 1}">
                                                 <button class="btn radius-xl text-uppercase"><a href="coursewatch?id=${autoFirstCourse.getCourse_courseID()}&numberLesson=${autoFirstCourse.getNumberLesson()- 1}" >back</a></button>
                                             </c:if>
-                                               
-                                             <button class="btn radius-xl text-uppercase"><a href="coursewatch?id=${autoFirstCourse.getCourse_courseID()}&numberLesson=${autoFirstCourse.getNumberLesson()+ 1}">next</a></button>
+                                            <c:if test="${autoFirstCourse.getNumberLesson() == pageControl.getTotalRecord()}">
+                                                <button class="btn radius-xl text-uppercase"><a href="coursewatch?id=${autoFirstCourse.getCourse_courseID()}&numberLesson=${pageControl.getTotalRecord()}">next</a></button>
+                                            </c:if>
+                                            <c:if test="${autoFirstCourse.getNumberLesson() != pageControl.getTotalRecord()}">
+                                                <button class="btn radius-xl text-uppercase"><a href="coursewatch?id=${autoFirstCourse.getCourse_courseID()}&numberLesson=${autoFirstCourse.getNumberLesson()+ 1}">next</a></button>
+                                            </c:if>
+                                            
                                         </div>
                                         <div class="teacher-bx">
                                             <div class="teacher-info">
