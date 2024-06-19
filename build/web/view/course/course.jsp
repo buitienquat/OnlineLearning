@@ -129,7 +129,7 @@
                     <div class="breadcrumb-row">
                         <div class="container">
                             <ul class="list-inline">
-                                <li><a href="assets/#">Home</a></li>
+                                <li><a href="/OnlineLearning/course">Home</a></li>
                                 <li>Our Courses</li>
                             </ul>
                         </div>
@@ -144,8 +144,15 @@
                                     <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
 
                                         <div class="widget widget_archive">
-                                            <h5 class="widget-title style-1">All Courses</h5>
+                                            <h5 class="widget-title style-1">Course Free</h5>
                                             <ul>
+                                            <c:forEach items="${category}" var="ca">
+                                                <li><a href="course?action=searchCategoryFree&categoryIdFree=${ca.getCategoryID()}">${ca.getName()}</a></li>
+                                                </c:forEach>
+                                        </ul>
+                                        <br>
+                                        <h5 class="widget-title style-1">Paid Course</h5>
+                                        <ul>
                                             <c:forEach items="${category}" var="ca">
                                                 <li><a href="course?action=searchCategory&categoryId=${ca.getCategoryID()}">${ca.getName()}</a></li>
                                                 </c:forEach>
@@ -199,8 +206,12 @@
                                             <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
                                                 <div class="cours-bx">
                                                     <div class="action-box">
-                                                        <img src="assets/images/courses/pic1.jpg" alt="">
-                                                        <a href="assets/coursedetail?id=${c.getCouseraID()}" class="btn">Read More</a>
+                                                        <img src="${c.getImage()}" alt="">
+                                                        <c:forEach items="${category}" var="ca">
+                                                            <c:if test="${c.getCategory_categoryID() == ca.getCategoryID()}">
+                                                                <a href="coursedetail?id=${c.getCouseraID()}&categoryId=${ca.getCategoryID()}" class="btn">Read More</a>
+                                                            </c:if>
+                                                        </c:forEach>
                                                     </div>
                                                     <div class="info-bx text-center">
                                                         <c:forEach items="${category}" var="ca">

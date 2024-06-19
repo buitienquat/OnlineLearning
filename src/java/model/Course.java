@@ -15,13 +15,26 @@ public class Course {
     private String Image;
     private String Description;
     private int Status;
-    private int UserID;
     private int Category_categoryID;
     private int Feestatus;
     private String Introduce;
     private int OriginalPrice;
+    private int  UserId_User;
 
     public Course() {
+    }
+
+    public Course(int CouseraID, String Name, String Image, String Description, int Status, int Category_categoryID, int Feestatus, String Introduce, int OriginalPrice, int UserId_User) {
+        this.CouseraID = CouseraID;
+        this.Name = Name;
+        this.Image = Image;
+        this.Description = Description;
+        this.Status = Status;
+        this.Category_categoryID = Category_categoryID;
+        this.Feestatus = Feestatus;
+        this.Introduce = Introduce;
+        this.OriginalPrice = OriginalPrice;
+        this.UserId_User = UserId_User;
     }
 
     public int getCouseraID() {
@@ -64,14 +77,6 @@ public class Course {
         this.Status = Status;
     }
 
-    public int getUserID() {
-        return UserID;
-    }
-
-    public void setUserID(int UserID) {
-        this.UserID = UserID;
-    }
-
     public int getCategory_categoryID() {
         return Category_categoryID;
     }
@@ -104,22 +109,18 @@ public class Course {
         this.OriginalPrice = OriginalPrice;
     }
 
-    public Course(int CouseraID, String Name, String Image, String Description, int Status, int UserID, int Category_categoryID, int Feestatus, String Introduce, int OriginalPrice) {
-        this.CouseraID = CouseraID;
-        this.Name = Name;
-        this.Image = Image;
-        this.Description = Description;
-        this.Status = Status;
-        this.UserID = UserID;
-        this.Category_categoryID = Category_categoryID;
-        this.Feestatus = Feestatus;
-        this.Introduce = Introduce;
-        this.OriginalPrice = OriginalPrice;
+    public int getUserId_User() {
+        return UserId_User;
+    }
+
+    public void setUserId_User(int UserId_User) {
+        this.UserId_User = UserId_User;
     }
 
     @Override
     public String toString() {
-        return "Course{" + "CouseraID=" + CouseraID + ", Name=" + Name + ", Image=" + Image + ", Description=" + Description + ", Status=" + Status + ", UserID=" + UserID + ", Category_categoryID=" + Category_categoryID + ", Feestatus=" + Feestatus + ", Introduce=" + Introduce + ", OriginalPrice=" + OriginalPrice + '}';
+        return "Course{" + "CouseraID=" + CouseraID + ", Name=" + Name + ", Image=" + Image + ", Description=" + Description + ", Status=" + Status + ", Category_categoryID=" + Category_categoryID + ", Feestatus=" + Feestatus + ", Introduce=" + Introduce + ", OriginalPrice=" + OriginalPrice + ", UserId_User=" + UserId_User + '}';
     }
 
+    
 }

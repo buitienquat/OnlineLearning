@@ -107,7 +107,9 @@
                                                 <a href="#" class="btn radius-xl text-uppercase">Buy Now This Courses</a>
                                             </c:if>
                                             <c:if test="${findCourseId.getFeestatus() == 0}">
-                                                <a href="coursewatch?id=${findCourseId.getCouseraID()}&numberLesson=1" class="btn radius-xl text-uppercase">Enroll Course</a>
+                                                <a id="enrollBtn" href="coursewatch?id=${findCourseId.getCouseraID()}&numberLesson=1&quizid=1" class="btn radius-xl text-uppercase">
+                                                    Enroll Course
+                                                </a>
                                             </c:if>
                                         </div>
                                         <div class="teacher-bx">
@@ -154,7 +156,7 @@
                                 <div class="col-lg-9 col-md-8 col-sm-12">
                                     <div class="courses-post">
                                         <div class="ttr-post-media media-effect">
-                                            <a href="#"><img src="${pageContext.request.contextPath}/assets/images/blog/default/thum1.jpg" alt=""></a>
+                                            <a href="#"><img src="${findCourseId.getImage()}" alt=""></a>
                                         </div>
                                         <div class="ttr-post-info">
                                             <div class="ttr-post-title ">
@@ -250,7 +252,11 @@
         <script src="${pageContext.request.contextPath}/assets/js/functions.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/contact.js"></script>
         <script src="${pageContext.request.contextPath}/assets/vendors/switcher/switcher.js"></script>
+        
     </body>
 
 </html>
+
+
+
 

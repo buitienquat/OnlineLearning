@@ -5,7 +5,9 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -251,18 +253,18 @@
                                     <div class="course-detail-bx">
                                         <div class="course-buy-now text-center">
                                             <c:if test="${autoFirstCourse.getNumberLesson() == 1}">
-                                                <button class="btn radius-xl text-uppercase"><a href="coursewatch?id=${autoFirstCourse.getCourse_courseID()}&numberLesson=1" >back</a></button>
+                                                <button class="btn radius-xl text-uppercase"><a href="coursewatch?id=${autoFirstCourse.getCourse_courseID()}&numberLesson=1&quizid=${autoFirstCourse.getQuizId_Quiz()}" >back</a></button>
                                             </c:if>
                                             <c:if test="${autoFirstCourse.getNumberLesson() != 1}">
-                                                <button class="btn radius-xl text-uppercase"><a href="coursewatch?id=${autoFirstCourse.getCourse_courseID()}&numberLesson=${autoFirstCourse.getNumberLesson()- 1}" >back</a></button>
+                                                <button class="btn radius-xl text-uppercase"><a href="coursewatch?id=${autoFirstCourse.getCourse_courseID()}&numberLesson=${autoFirstCourse.getNumberLesson()- 1}&quizid=${autoFirstCourse.getQuizId_Quiz()}" >back</a></button>
                                             </c:if>
                                             <c:if test="${autoFirstCourse.getNumberLesson() == pageControl.getTotalRecord()}">
-                                                <button class="btn radius-xl text-uppercase"><a href="coursewatch?id=${autoFirstCourse.getCourse_courseID()}&numberLesson=${pageControl.getTotalRecord()}">next</a></button>
+                                                <button class="btn radius-xl text-uppercase"><a href="coursewatch?id=${autoFirstCourse.getCourse_courseID()}&numberLesson=${pageControl.getTotalRecord()}&quizid=${autoFirstCourse.getQuizId_Quiz()}">next</a></button>
                                             </c:if>
                                             <c:if test="${autoFirstCourse.getNumberLesson() != pageControl.getTotalRecord()}">
-                                                <button class="btn radius-xl text-uppercase"><a href="coursewatch?id=${autoFirstCourse.getCourse_courseID()}&numberLesson=${autoFirstCourse.getNumberLesson()+ 1}">next</a></button>
+                                                <button class="btn radius-xl text-uppercase"><a href="coursewatch?id=${autoFirstCourse.getCourse_courseID()}&numberLesson=${autoFirstCourse.getNumberLesson()+ 1}&quizid=${autoFirstCourse.getQuizId_Quiz()}">next</a></button>
                                             </c:if>
-                                            
+
                                         </div>
                                         <div class="teacher-bx">
                                             <div class="teacher-info">
@@ -279,7 +281,9 @@
                                         <div class="course-info-list scroll-page">
                                             <ul class="navbar">
                                                 <c:forEach items="${findLesson}" var="les">
-                                                    <li><a class="nav-link" href="coursewatch?id=${les.getCourse_courseID()}&numberLesson=${les.getNumberLesson()}">${les.getNumberLesson()}:   ${les.getTitle()}</a></li>
+                                                    <li><a class="nav-link" href="coursewatch?id=${les.getCourse_courseID()}&numberLesson=${les.getNumberLesson()}&quizid=${les.getQuizId_Quiz()}">${les.getNumberLesson()}:   ${les.getTitle()}
+
+                                                        </a></li>
                                                     </c:forEach> 
                                             </ul>
                                         </div>
@@ -295,10 +299,18 @@
                                             <iframe width="847" height="508" src="${autoFirstCourse.getVideo()}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                                         </div>
                                         <div class="ttr-post-info">
+                                           
                                             <div class="ttr-post-text">
-
-                                                <p>${autoFirstCourse.getNote()}</p>
-
+                                                 <p>Video được đăng tải ${autoFirstCourse.getTime()}</p>
+                                                <b style="font-size: 20px">Describe:</b>  <br>
+                                                 <pre style="white-space: pre-wrap;">${autoFirstCourse.getNote()}</pre>
+                                                 
+                                                <c:if test="${quiztest.getQuizId() != 1}">
+                                                    <b style="font-size: 20px">Exercise:</b>
+                                                </c:if>
+                                                <c:if test="${autoFirstCourse.getQuizId_Quiz() == quiztest.getQuizId()}">
+                                                    <a href="coursequiz?quizid=${autoFirstCourse.getQuizId_Quiz()}&page=1">${quiztest.getTitle()}</a>
+                                                </c:if>
                                             </div>
                                         </div>
                                     </div>

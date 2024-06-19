@@ -101,12 +101,27 @@ public class courseController extends HttpServlet {
                     listCourse = courseDAO.findAll();
                 }
                 break;
+            case "searchCategoryFree":
+                String categoryIdFree = request.getParameter("categoryIdFree");
+                int cateIdFree;
+                try {
+                    cateIdFree = Integer.parseInt(categoryIdFree);
+                    if (cateIdFree < 0) {
+                        cateIdFree = 1;
+                    }
+                    totalRecord = courseDAO.findTotalRecordByCategoryFree(categoryIdFree);
+                    listCourse = courseDAO.findCourseByCategoryFree(cateIdFree, page);
+                    pageControl.setUrlPattern(requestURL + "?action=earchCategoryFree&categoryIdFree=" + categoryIdFree + "&");
+                } catch (Exception e) {
+                    listCourse = courseDAO.findAll();
+                }
+                break;
             default:
                 totalRecord = courseDAO.findTotalRecord();
                 listCourse = courseDAO.findByPage(page);
                 pageControl.setUrlPattern(requestURL + "?");
         }
-        
+
         // total page
         int totalPage = (totalRecord % commonConstant.RECORD_PER_PAGE) == 0
                 ? (totalRecord / commonConstant.RECORD_PER_PAGE)
