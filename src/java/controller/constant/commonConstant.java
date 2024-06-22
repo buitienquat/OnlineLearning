@@ -10,7 +10,7 @@ package controller.constant;
  */
 public class commonConstant {
 
-    public static final int RECORD_PER_PAGE_QUIZ = 1; // 1 trang quiz sẽ hiểu thị ra 2 question
+    public static final int RECORD_PER_PAGE_QUIZ = 5; // 1 trang quiz sẽ hiểu thị ra 2 question
     public static final int RECORD_PER_PAGE = 12; // 1 trang sẽ hiểu thị ra 12 sản phẩm
     public static final String SESSION_COURSE = "course";
     public static final String SESSION_CATEGORY = "category";

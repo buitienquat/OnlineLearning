@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-    
     <!-- Define JSP Configuration -->
     <servlet>
         <servlet-name>courseController</servlet-name>
@@ -18,6 +17,10 @@
         <servlet-name>courseQuizController</servlet-name>
         <servlet-class>controller.Course.courseQuizController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>courseQuizResult</servlet-name>
+        <servlet-class>controller.Course.courseQuizResult</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>courseController</servlet-name>
         <url-pattern>/course</url-pattern>
@@ -33,5 +36,9 @@
     <servlet-mapping>
         <servlet-name>courseQuizController</servlet-name>
         <url-pattern>/coursequiz</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>courseQuizResult</servlet-name>
+        <url-pattern>/course-quiz-result</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -43,24 +43,28 @@ public class QuestionDAO extends GenericDAO<Question> {
         return findTotalRecordGenericDAO(Question.class, sql, parameterMap);
     }
 
-    public List<Question> getQuestionByQuizId(Question question, int page) {
+    public List<Question> getQuestionByQuizId(Question question) {
         String sql = "SELECT *\n"
                 + "	FROM dbo.Question\n"
-                + "	WHERE QuizId_Quiz = ?\n"
-                + "	ORDER BY QuestionId\n"
-                + "	OFFSET ? ROWS        -- số sản phẩm bắt đầu\n"
-                + "	FETCH NEXT ? ROWS ONLY  ";
+                + "	WHERE QuizId_Quiz = ?";
         parameterMap = new LinkedHashMap<>();
         parameterMap.put("quizid", question.getQuizId_Quiz());
-        parameterMap.put("offset", (page - 1) * commonConstant.RECORD_PER_PAGE_QUIZ);
-        parameterMap.put("fetch", commonConstant.RECORD_PER_PAGE_QUIZ);
         return queryGenericDAO(Question.class, sql, parameterMap);
 
+    }
+
+    public Question getQuestionById(int questionId) {
+        String sql = "SELECT * FROM dbo.Question\n"
+                + "WHERE QuestionId = ?";
+        parameterMap = new LinkedHashMap<>();
+        parameterMap.put("questionId", questionId);
+        List<Question> list = queryGenericDAO(Question.class, sql, parameterMap);
+        return list.isEmpty() ? null : list.get(0);
     }
 
     public static void main(String[] args) {
         Question question = new Question();
         question.setQuizId_Quiz(2);
-        System.out.println(new QuestionDAO().getQuestionByQuizId(question, 1));
+        System.out.println(new QuestionDAO().getQuestionById(1));
     }
 }

@@ -4,38 +4,20 @@
  */
 package controller.Course;
 
-import controller.constant.commonConstant;
-import dal.implement.CategoryDAO;
-import dal.implement.CourseDAO;
-import dal.implement.LessonDAO;
-import dal.implement.QuizDAO;
-import dal.implement.ResultDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.List;
-import model.Category;
-import model.Course;
-import model.Lesson;
-import model.Page;
-import model.Quiz;
-import model.Result;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-public class courseWatchControl extends HttpServlet {
-    QuizDAO quizDAO = new QuizDAO();
-    CourseDAO courseDAO = new CourseDAO();
-    CategoryDAO categoryDAO = new CategoryDAO();
-    LessonDAO lessonDAO = new LessonDAO();
-    ResultDAO resultDAO = new ResultDAO();
+public class courseQuizResult extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -53,10 +35,10 @@ public class courseWatchControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet courseWatchControl</title>");
+            out.println("<title>Servlet courseQuizResult</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet courseWatchControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet courseQuizResult at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -74,41 +56,15 @@ public class courseWatchControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String courseraID = request.getParameter("id");
-        String numberLesson = request.getParameter("numberLesson");
+        HttpSession session = request.getSession();
+        int userid = 4;
         String Quizid = request.getParameter("quizid");
-        int id = 0, num = 0,quizid =0;
+        int quizid = 0;
         try {
-            id = Integer.parseInt(courseraID);
-            num = Integer.parseInt(numberLesson);
-            quizid =Integer.parseInt(Quizid);
-        } catch (NumberFormatException e) {
-            response.sendRedirect("course");
+            quizid = Integer.parseInt(Quizid);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        Lesson lesson = new Lesson();
-        lesson.setCourse_courseID(id);
-        lesson.setNumberLesson(num);
-        lesson.setTime(Timestamp.valueOf(LocalDateTime.now()));
-//        int quizid = lesson.getQuizId_Quiz();
-//        lesson.setQuizId_Quiz(quizid);
-        List<Lesson> findLesson = lessonDAO.findLessonByCourseId(lesson);
-        Lesson autoFirstCourse = lessonDAO.autoFirstCourse(lesson);
-        int totalrecord = lessonDAO.findTotalRecord(lesson);
-        Page pageControl = new Page();
-        pageControl.setTotalRecord(totalrecord);
-        Quiz quiz = new Quiz();
-        quiz.setQuizId(quizid);
-        Quiz checkquiz = quizDAO.findQuizId(quiz);
-   
-        int attemptCount = resultDAO.CheckCountQuizHref(quizid);
-
-        request.setAttribute("checkCountQuizHref", attemptCount);
-        request.setAttribute(commonConstant.REQUEST_QUIZ, checkquiz);
-        request.setAttribute(commonConstant.REQUEST_PAGE_CONTROL, pageControl);
-        request.setAttribute(commonConstant.REQUEST_AUTO_FIRST_COURSE, autoFirstCourse);
-        request.setAttribute(commonConstant.REQUEST_FINDLESSON, findLesson);
-
-        request.getRequestDispatcher("view/course/courseWatch.jsp").forward(request, response);
     }
 
     /**

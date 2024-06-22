@@ -299,17 +299,20 @@
                                             <iframe width="847" height="508" src="${autoFirstCourse.getVideo()}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                                         </div>
                                         <div class="ttr-post-info">
-                                           
+
                                             <div class="ttr-post-text">
-                                                 <p>Video được đăng tải ${autoFirstCourse.getTime()}</p>
+                                                <p>Video được đăng tải ${autoFirstCourse.getTime()}</p>
                                                 <b style="font-size: 20px">Describe:</b>  <br>
-                                                 <pre style="white-space: pre-wrap;">${autoFirstCourse.getNote()}</pre>
-                                                 
+                                                <pre style="white-space: pre-wrap;">${autoFirstCourse.getNote()}</pre>
+
                                                 <c:if test="${quiztest.getQuizId() != 1}">
                                                     <b style="font-size: 20px">Exercise:</b>
                                                 </c:if>
                                                 <c:if test="${autoFirstCourse.getQuizId_Quiz() == quiztest.getQuizId()}">
-                                                    <a href="coursequiz?quizid=${autoFirstCourse.getQuizId_Quiz()}&page=1">${quiztest.getTitle()}</a>
+                                                    <c:if test="${checkCountQuizHref < 3}">
+                                                        <a href="coursequiz?quizid=${autoFirstCourse.getQuizId_Quiz()}">${quiztest.getTitle()}</a>
+                                                    </c:if>
+
                                                 </c:if>
                                             </div>
                                         </div>

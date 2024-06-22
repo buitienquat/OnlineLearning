@@ -4,6 +4,9 @@
  */
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Admin
@@ -51,5 +54,5 @@ public class Question {
     public String toString() {
         return "Question{" + "QuestionId=" + QuestionId + ", QuestionText=" + QuestionText + ", QuizId_Quiz=" + QuizId_Quiz + '}';
     }
-    
+
 }

@@ -1,18 +1,21 @@
+<%-- 
+    Document   : check
+    Created on : Jun 19, 2024, 10:03:38 PM
+    Author     : Admin
+--%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Online Learning Quiz</title>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <title>Trắc nghiệm trực tuyến</title>
         <style>
             body {
-                font-family: 'Roboto', sans-serif;
-                background: linear-gradient(135deg, #2980b9, #6dd5fa, #ffffff);
-                background-size: 400% 400%;
-                animation: gradientAnimation 15s ease infinite;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f4f4f9;
                 color: #333;
                 margin: 0;
                 padding: 0;
@@ -20,210 +23,96 @@
                 justify-content: center;
                 align-items: center;
                 height: 100vh;
-                overflow-y: auto;
-            }
-            @keyframes gradientAnimation {
-                0% {
-                    background-position: 0% 50%;
-                }
-                50% {
-                    background-position: 100% 50%;
-                }
-                100% {
-                    background-position: 0% 50%;
-                }
+                overflow: hidden; /* Prevent body from scrolling */
             }
             .container {
-                max-width: 800px;
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                max-width: 600px;
                 width: 100%;
-                background: rgba(255, 255, 255, 0.9);
-                padding: 40px;
-                border-radius: 15px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-                text-align: center;
-                animation: fadeIn 0.5s ease-in-out;
-            }
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                }
-                to {
-                    opacity: 1;
-                }
+                max-height: 90vh; /* Limit the height of the container */
+                overflow-y: auto; /* Enable vertical scrolling */
             }
             h1 {
-                color: #2c3e50;
-                margin-bottom: 20px;
-                font-size: 36px;
+                text-align: center;
+                color: #4CAF50;
             }
             .question {
-                display: none;
-            }
-            .question.active {
-                display: block;
-            }
-            h3 {
                 margin-bottom: 20px;
-                font-size: 22px;
-                color: #34495e;
             }
-            label {
-                display: block;
-                margin-bottom: 15px;
+            .question p {
                 font-size: 18px;
-                background: #ecf0f1;
-                padding: 15px;
-                border-radius: 10px;
-                cursor: pointer;
-                transition: background 0.3s;
+                margin-bottom: 10px;
             }
-            label:hover {
-                background: #dcdde1;
-            }
-            input[type="radio"] {
+            .question input[type="radio"] {
                 margin-right: 10px;
-                transform: scale(1.3);
             }
-            .pagination {
-                display: flex;
-                justify-content: center;
-                margin-top: 30px;
-            }
-            .pagination button {
-                background-color: #3498db;
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                border-radius: 5px;
-                cursor: pointer;
-                font-size: 16px;
-                transition: background-color 0.3s, transform 0.3s;
-                margin: 0 5px;
-            }
-            .pagination button:hover {
-                background-color: #2980b9;
-                transform: scale(1.05);
-            }
-            .pagination button:disabled {
-                background-color: #bdc3c7;
-                cursor: not-allowed;
-            }
-            .submit {
-                margin-top: 30px;
-            }
-            .submit button {
-                background-color: #2ecc71;
-                color: white;
-                border: none;
-                padding: 15px 30px;
-                border-radius: 10px;
-                cursor: pointer;
-                font-size: 18px;
-                transition: background-color 0.3s, transform 0.3s;
-            }
-            .submit button:hover {
-                background-color: #27ae60;
-                transform: scale(1.05);
-            }
-            .pagination-bx {
-                display: flex;
-                justify-content: center;
-                padding: 10px 0;
-            }
-
-            .pagination {
-                list-style: none;
+            .answers {
+                list-style-type: none; /* Remove bullet points */
                 padding: 0;
-                margin: 0;
-                display: flex;
             }
-
-            .pagination li {
-                margin: 0 5px;
+            .answers li {
+                margin-bottom: 10px; /* Add margin between answers */
             }
-
-            .pagination li a {
+            button {
+                background-color: #4CAF50;
+                color: #fff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
                 display: block;
-                padding: 10px 15px;
-                text-decoration: none;
-                color: #007bff;
-                border: 1px solid #dee2e6;
-                border-radius: 4px;
-                transition: background-color 0.3s, color 0.3s;
+                width: 100%;
+                margin-top: 20px; /* Add margin top to separate button from last question */
             }
-
-            .pagination li a:hover {
-                background-color: #007bff;
-                color: #fff;
+            button:hover {
+                background-color: #45a049;
             }
-
-            .pagination li.active a {
-                background-color: #007bff;
-                color: #fff;
-                border-color: #007bff;
-            }
-
-            .pagination li.previous a,
-            .pagination li.next a {
-                font-weight: bold;
-            }
-
-            .pagination li.previous i,
-            .pagination li.next i {
-                margin-right: 5px;
+            .result {
+                margin-top: 20px;
+                font-size: 20px;
+                text-align: center;
             }
         </style>
     </head>
     <body>
         <div class="container">
-            <h1>Quiz</h1>
-
-            <form action="coursequiz" method="POST">
+            <h1>Trắc nghiệm trực tuyến</h1>
+            <form action="coursequiz" method="POST" onsubmit="return onSubmitForm();">
                 <c:forEach items="${listquestion}" var="question">
-
-                    <div class="question active" data-question="${question.getQuestionId()}">
-
-                        <h3>Câu hỏi ${question.getQuestionId()} : ${question.getQuestionText()}</h3>
+                    <div class="question">
+                        <p>Câu hỏi ${question.getQuestionId()}: ${question.getQuestionText()}</p>
                         <input type="hidden" name="questionid" value="${question.getQuestionId()}"/>
-                        <c:forEach items="${listanswer}" var="ans">
-                            <label>
-                                <input type="radio" name="radioANS" value="${ans.getAnswerID()}" 
-                                       <c:if test="${selectedAnswer == ans.getAnswerID()}">checked</c:if> />  
-                                ${ans.getAnswerText()} 
-                            </label>
-                        </c:forEach>                       
+                        <input type="hidden" name="idquiz" value="${question.getQuizId_Quiz()}"/>
+                        <ol style="list-style-type:upper-alpha;" class="answers">
+                            <c:forEach items="${questionAnswersMap[question.getQuestionId()]}" var="ans">
+                                <li>
+
+                                    <input type="radio" name="radioANS_${question.getQuestionId()}" value="${ans.getAnswerID()}"> ${ans.getAnswerText()}
+
+                                </li>
+
+                            </c:forEach>
+                        </ol>
                     </div>
 
                 </c:forEach>
-                <div class="pagination">
-                    <c:if test="${pageControl.getPage() > 1}">
-                        <button type="button" onclick="navigatePage('${pageControl.getUrlPattern()}page=${pageControl.getPage() - 1}')">Prev</button>
-                    </c:if>
-                    <!--                    <button type="button" id="prevBtn" onclick="changeQuestion(-1)">Prev</button>-->
-                    <c:forEach begin="1" end="${pageControl.totalPage}" var="pageNumber">
-                        <li class="${pageNumber == pageControl.page ? 'active' : ''}">
-                              <a href="#" onclick="navigatePage('${pageControl.urlPattern}page=${pageNumber}')">${pageNumber}</a>
-                        </li>
-                    </c:forEach>
-                    <c:if test="${pageControl.getPage() < pageControl.getTotalPage()}">
-                       <button type="button" onclick="navigatePage('${pageControl.getUrlPattern()}page=${pageControl.getPage() + 1}')">Next</button>
-                    </c:if>
-                    <!--                    <button type="button" id="nextBtn" onclick="changeQuestion(1)">Next</button>-->
-                </div>
-                <div class="submit">
-                    <button type="submit">Submit</button>
-                </div>
-                <input type="hidden" name="nextPage" id="nextPage" value=""/>
+                
+                <button type="submit">Nộp bài</button>
+            
             </form>
 
 
         </div>
-
     </body>
-    <script>
-        function navigatePage(url) {
-                document.getElementById("nextPage").value = url;
-                document.forms[0].submit();
-            }
-    </script>
 </html>
+<script>
+    function onSubmitForm() {
+        // Confirm submission
+        var confirmed = confirm("Bạn có chắc muốn nộp bài?");
+        return confirmed;
+    }
+</script>
