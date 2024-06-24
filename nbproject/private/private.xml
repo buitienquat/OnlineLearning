@@ -5,6 +5,7 @@
         <group name="PE PRJ301">
             <file>file:/G:/OnlineLearning/OnlineLearning/src/java/dal/implement/UserAnswerDAO.java</file>
             <file>file:/G:/OnlineLearning/OnlineLearning/web/view/course/courseWatch.jsp</file>
+            <file>file:/G:/OnlineLearning/OnlineLearning/web/view/course/courseQuizResult.jsp</file>
             <file>file:/G:/OnlineLearning/OnlineLearning/src/java/controller/Course/courseWatchControl.java</file>
         </group>
     </open-files>

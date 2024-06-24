@@ -309,10 +309,12 @@
                                                     <b style="font-size: 20px">Exercise:</b>
                                                 </c:if>
                                                 <c:if test="${autoFirstCourse.getQuizId_Quiz() == quiztest.getQuizId()}">
-                                                    <c:if test="${checkCountQuizHref < 3}">
-                                                        <a href="coursequiz?quizid=${autoFirstCourse.getQuizId_Quiz()}">${quiztest.getTitle()}</a>
+                                                    <c:if test="${checkCountQuizHref < 3}">                     
+                                                        <a href="coursequiz?quizid=${autoFirstCourse.getQuizId_Quiz()}" onclick="return confirmQuiz('${autoFirstCourse.getQuizId_Quiz()}');">${quiztest.getTitle()}</a>
                                                     </c:if>
-
+                                                    <c:if test="${checkCountQuizHref > 3}">
+                                                        <h6><p style="color: #289628">Bạn đã hoàn thành bài Test</p></h6>
+                                                    </c:if>
                                                 </c:if>
                                             </div>
                                         </div>
@@ -347,6 +349,17 @@
         <script src="${pageContext.request.contextPath}/assets/js/functions.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/contact.js"></script>
         <script src="${pageContext.request.contextPath}/assets/vendors/switcher/switcher.js"></script>
+        <script>
+                                                            function confirmQuiz(quizId) {
+                                                                var confirmAction = confirm("Bạn chắc chắn muốn làm bài Quiz chứ?");
+                                                                if (confirmAction) {
+                                                                    window.location.href = "coursequiz?quizid=" + quizId;
+                                                                    return true; // Chuyển hướng trang
+                                                                } else {
+                                                                    return false; // Không làm gì
+                                                                }
+                                                            }
+        </script>
     </body>
 
 </html>

@@ -79,9 +79,9 @@
 <body>
     <div class="container">
         <h1>Chi tiết bài làm</h1>
-        <c:forEach var="userAnswer" items="${listUserAnswers}">
+        <c:forEach var="userAnswer" items="${listUserAnswers}" varStatus="status">
             <div class="question">
-                <p><strong>Câu hỏi:</strong> ${questions[userAnswer.getQuestionId()].getQuestionText()}</p>
+                <p><strong>Câu hỏi ${status.index + 1}::</strong> ${questions[userAnswer.getQuestionId()].getQuestionText()}</p>
                 <div class="answers">
                     <c:forEach var="answer" items="${questionAnswersMap[userAnswer.getQuestionId()]}">
                         <p class="answer">

@@ -17,10 +17,6 @@
         <servlet-name>courseQuizController</servlet-name>
         <servlet-class>controller.Course.courseQuizController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>courseQuizResult</servlet-name>
-        <servlet-class>controller.Course.courseQuizResult</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>courseController</servlet-name>
         <url-pattern>/course</url-pattern>
@@ -36,9 +32,5 @@
     <servlet-mapping>
         <servlet-name>courseQuizController</servlet-name>
         <url-pattern>/coursequiz</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>courseQuizResult</servlet-name>
-        <url-pattern>/course-quiz-result</url-pattern>
     </servlet-mapping>
 </web-app>
