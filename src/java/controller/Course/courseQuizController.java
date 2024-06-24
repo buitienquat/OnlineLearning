@@ -255,19 +255,19 @@ public class courseQuizController extends HttpServlet {
         userAnswer.setQuizId(quizid);
 
         List<UserAnswer> listUserAnswers = userAnswerDAO.getUserAnswersByQuizAndUser(userAnswer);
+        List<Question> allQuestions = getAllQuestionsForQuiz(quizid);  // Lấy tất cả câu hỏi cho quiz
         Map<Integer, Question> questions = new HashMap<>();
         Map<Integer, Answer> correctAnswers = new HashMap<>();
         Map<Integer, List<Answer>> questionAnswersMap = new HashMap<>();
 
-        for (UserAnswer ua : listUserAnswers) {
-            Question question = questionDAO.getQuestionById(ua.getQuestionId());
-            questions.put(ua.getQuestionId(), question);
+        for (Question q : allQuestions) {
+            questions.put(q.getQuestionId(), q);
 
-            Answer correctAnswer = answerDAO.getCorrectAnswerQuestionId(question.getQuestionId());
-            correctAnswers.put(ua.getQuestionId(), correctAnswer);
+            Answer correctAnswer = answerDAO.getCorrectAnswerQuestionId(q.getQuestionId());
+            correctAnswers.put(q.getQuestionId(), correctAnswer);
 
-            List<Answer> answers = answerDAO.getAnswersByQuestionId(question.getQuestionId());
-            questionAnswersMap.put(ua.getQuestionId(), answers);
+            List<Answer> answers = answerDAO.getAnswersByQuestionId(q.getQuestionId());
+            questionAnswersMap.put(q.getQuestionId(), answers);
         }
 
         Map<Integer, Answer> selectedAnswers = new HashMap<>();
@@ -285,4 +285,9 @@ public class courseQuizController extends HttpServlet {
         request.getRequestDispatcher("view/course/courseQuizDetails.jsp").forward(request, response);
     }
 
+    private List<Question> getAllQuestionsForQuiz(int quizid) {
+        Question question = new Question();
+        question.setQuizId_Quiz(quizid);
+        return questionDAO.getQuestionByQuizId(question);
+    }
 }

@@ -53,6 +53,14 @@
             color: red;
             font-weight: bold;
         }
+        .selected-correct {
+            color: green;
+            font-weight: bold;
+        }
+        .not-selected {
+            color: orange;
+            font-weight: bold;
+        }
         .back-button {
             display: flex;
             justify-content: center;
@@ -79,21 +87,26 @@
 <body>
     <div class="container">
         <h1>Chi tiết bài làm</h1>
-        <c:forEach var="userAnswer" items="${listUserAnswers}" varStatus="status">
+        <c:forEach var="question" items="${questions.values()}" varStatus="status">
             <div class="question">
-                <p><strong>Câu hỏi ${status.index + 1}::</strong> ${questions[userAnswer.getQuestionId()].getQuestionText()}</p>
+                <p><strong>Câu hỏi ${status.index + 1}:</strong> ${question.getQuestionText()}</p>
                 <div class="answers">
-                    <c:forEach var="answer" items="${questionAnswersMap[userAnswer.getQuestionId()]}">
+                    <c:forEach var="answer" items="${questionAnswersMap[question.getQuestionId()]}">
                         <p class="answer">
                             <c:choose>
                                 <c:when test="${answer.isIsCorrect()}">
-                                    <span class="correct">${answer.getAnswerText()} (Đúng)</span>
+                                    <c:if test="${answer.getAnswerID() == selectedAnswers[question.getQuestionId()].getAnswerID()}">
+                                        <span class="selected-correct">${answer.getAnswerText()} (Đúng) (Bạn đã chọn)</span>
+                                    </c:if>
+                                    <c:if test="${answer.getAnswerID() != selectedAnswers[question.getQuestionId()].getAnswerID()}">
+                                        <span class="correct">${answer.getAnswerText()} (Đúng)</span>
+                                    </c:if>
                                 </c:when>
                                 <c:otherwise>
-                                    <c:if test="${answer.getAnswerID() == selectedAnswers[userAnswer.getQuestionId()].getAnswerID()}">
+                                    <c:if test="${answer.getAnswerID() == selectedAnswers[question.getQuestionId()].getAnswerID()}">
                                         <span class="selected-incorrect">${answer.getAnswerText()} (Bạn đã chọn)</span>
                                     </c:if>
-                                    <c:if test="${answer.getAnswerID() != selectedAnswers[userAnswer.getQuestionId()].getAnswerID()}">
+                                    <c:if test="${answer.getAnswerID() != selectedAnswers[question.getQuestionId()].getAnswerID()}">
                                         <span>${answer.getAnswerText()}</span>
                                     </c:if>
                                 </c:otherwise>
@@ -101,7 +114,10 @@
                         </p>
                     </c:forEach>
                 </div>
-                <p><strong>Đáp án đúng:</strong> ${correctAnswers[userAnswer.getQuestionId()].getAnswerText()}</p>
+                <p><strong>Đáp án đúng:</strong> ${correctAnswers[question.getQuestionId()].getAnswerText()}</p>
+                <c:if test="${selectedAnswers[question.getQuestionId()] == null}">
+                    <p class="not-selected">Bạn chưa chọn câu này</p>
+                </c:if>
             </div>
         </c:forEach>
         <div class="back-button">
