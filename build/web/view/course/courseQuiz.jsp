@@ -1,5 +1,5 @@
 <%-- 
-    Document   : check
+    Document   : courseQuiz
     Created on : Jun 19, 2024, 10:03:38 PM
     Author     : Admin
 --%>

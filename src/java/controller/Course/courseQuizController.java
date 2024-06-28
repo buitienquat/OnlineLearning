@@ -19,6 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.websocket.Session;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -122,7 +123,7 @@ public class courseQuizController extends HttpServlet {
         for (Question question : listquestion) {
             // Lấy giá trị của đáp án đã chọn cho câu hỏi hiện tại
             String answerIdStr = request.getParameter("radioANS_" + question.getQuestionId());
-            
+
             if (answerIdStr != null) {
                 try {
                     int answerId = Integer.parseInt(answerIdStr);
@@ -171,7 +172,7 @@ public class courseQuizController extends HttpServlet {
         result.setTotalQuestions(totalQuestions);
         result.setScore(score);
         resultDAO.insert(result);
-        
+
         request.setAttribute("countUserTick", countUserTick);
         request.setAttribute("attemptCount", attemptCount);
         request.setAttribute("correctAnswers", correctAnswers);
@@ -234,9 +235,13 @@ public class courseQuizController extends HttpServlet {
         for (Question q : listquestion) {
             // Lấy danh sách câu trả lời từ DAO dựa trên questionId của câu hỏi hiện tại
             List<Answer> answers = answerDAO.getAnswersByQuestionId(q.getQuestionId());
+
+            // Shuffle the answers : random thứ tự câu trả lời của từng câu hỏi
+            Collections.shuffle(answers);
+
             // Đưa danh sách câu trả lời vào map với key là questionId
             questionAnswersMap.put(q.getQuestionId(), answers);
-        
+
         }
         HttpSession session = request.getSession();
         session.setAttribute(commonConstant.REQUEST_LISTQUESTION, listquestion);
