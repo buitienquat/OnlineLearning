@@ -92,29 +92,38 @@
                 <p><strong>Câu hỏi ${status.index + 1}:</strong> ${question.getQuestionText()}</p>
                 <div class="answers">
                     <c:forEach var="answer" items="${questionAnswersMap[question.getQuestionId()]}">
-                        <p class="answer">
-                            <c:choose>
-                                <c:when test="${answer.isIsCorrect()}">
-                                    <c:if test="${answer.getAnswerID() == selectedAnswers[question.getQuestionId()].getAnswerID()}">
-                                        <span class="selected-correct">${answer.getAnswerText()} (Đúng) (Bạn đã chọn)</span>
-                                    </c:if>
-                                    <c:if test="${answer.getAnswerID() != selectedAnswers[question.getQuestionId()].getAnswerID()}">
-                                        <span class="correct">${answer.getAnswerText()} (Đúng)</span>
-                                    </c:if>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:if test="${answer.getAnswerID() == selectedAnswers[question.getQuestionId()].getAnswerID()}">
-                                        <span class="selected-incorrect">${answer.getAnswerText()} (Bạn đã chọn)</span>
-                                    </c:if>
-                                    <c:if test="${answer.getAnswerID() != selectedAnswers[question.getQuestionId()].getAnswerID()}">
-                                        <span>${answer.getAnswerText()}</span>
-                                    </c:if>
-                                </c:otherwise>
-                            </c:choose>
-                        </p>
+                        <c:choose>
+                            <c:when test="${selectedAnswers[question.getQuestionId()] != null}">
+                                <p class="answer">
+                                    <c:choose>
+                                        <c:when test="${answer.isIsCorrect()}">
+                                            <c:if test="${answer.getAnswerID() == selectedAnswers[question.getQuestionId()].getAnswerID()}">
+                                                <span class="selected-correct">${answer.getAnswerText()} (Đúng) (Bạn đã chọn)</span>
+                                            </c:if>
+                                            <c:if test="${answer.getAnswerID() != selectedAnswers[question.getQuestionId()].getAnswerID()}">
+                                                <span class="correct">${answer.getAnswerText()} (Đúng)</span>
+                                            </c:if>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:if test="${answer.getAnswerID() == selectedAnswers[question.getQuestionId()].getAnswerID()}">
+                                                <span class="selected-incorrect">${answer.getAnswerText()} (Bạn đã chọn)</span>
+                                            </c:if>
+                                            <c:if test="${answer.getAnswerID() != selectedAnswers[question.getQuestionId()].getAnswerID()}">
+                                                <span>${answer.getAnswerText()}</span>
+                                            </c:if>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </p>
+                            </c:when>
+                            <c:otherwise>
+                                <p class="answer">${answer.getAnswerText()}</p>
+                            </c:otherwise>
+                        </c:choose>
                     </c:forEach>
                 </div>
-                <p><strong>Đáp án đúng:</strong> ${correctAnswers[question.getQuestionId()].getAnswerText()}</p>
+                <c:if test="${selectedAnswers[question.getQuestionId()] != null}">
+                    <p><strong>Đáp án đúng:</strong> ${correctAnswers[question.getQuestionId()].getAnswerText()}</p>
+                </c:if>
                 <c:if test="${selectedAnswers[question.getQuestionId()] == null}">
                     <p class="not-selected">Bạn chưa chọn câu này</p>
                 </c:if>

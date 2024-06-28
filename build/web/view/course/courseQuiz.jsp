@@ -111,8 +111,11 @@
 </html>
 <script>
     function onSubmitForm() {
-        // Confirm submission
-        var confirmed = confirm("Bạn có chắc muốn nộp bài?");
+        var totalQuestions = document.querySelectorAll('.question').length;
+        var answeredQuestions = document.querySelectorAll('.question input[type="radio"]:checked').length;
+        var unansweredQuestions = totalQuestions - answeredQuestions;
+
+        var confirmed = confirm("Bạn đã hoàn thành: " + answeredQuestions + " câu\nBạn còn điền thiếu: " + unansweredQuestions + " câu\nBạn có chắc muốn nộp bài?");
         return confirmed;
     }
 </script>

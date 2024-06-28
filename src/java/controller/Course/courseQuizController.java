@@ -117,15 +117,17 @@ public class courseQuizController extends HttpServlet {
         List<Question> listquestion = (List<Question>) session.getAttribute(commonConstant.REQUEST_LISTQUESTION);
         // Tạo một map để lưu câu hỏi và đáp án được chọn
         Map<Integer, Integer> userAnswers = new HashMap<>();
-
+        int countUserTick = 0;
         // Lặp qua các câu hỏi
         for (Question question : listquestion) {
             // Lấy giá trị của đáp án đã chọn cho câu hỏi hiện tại
             String answerIdStr = request.getParameter("radioANS_" + question.getQuestionId());
+            
             if (answerIdStr != null) {
                 try {
                     int answerId = Integer.parseInt(answerIdStr);
                     userAnswers.put(question.getQuestionId(), answerId);
+                    countUserTick++;
                 } catch (NumberFormatException e) {
                     // Xử lý lỗi nếu giá trị không phải là số nguyên hợp lệ
                     e.printStackTrace();
@@ -169,7 +171,8 @@ public class courseQuizController extends HttpServlet {
         result.setTotalQuestions(totalQuestions);
         result.setScore(score);
         resultDAO.insert(result);
-
+        
+        request.setAttribute("countUserTick", countUserTick);
         request.setAttribute("attemptCount", attemptCount);
         request.setAttribute("correctAnswers", correctAnswers);
         request.setAttribute("totalQuestions", totalQuestions);
@@ -233,6 +236,7 @@ public class courseQuizController extends HttpServlet {
             List<Answer> answers = answerDAO.getAnswersByQuestionId(q.getQuestionId());
             // Đưa danh sách câu trả lời vào map với key là questionId
             questionAnswersMap.put(q.getQuestionId(), answers);
+        
         }
         HttpSession session = request.getSession();
         session.setAttribute(commonConstant.REQUEST_LISTQUESTION, listquestion);
