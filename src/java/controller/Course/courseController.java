@@ -86,6 +86,21 @@ public class courseController extends HttpServlet {
                 listCourse = courseDAO.findCourseByName(searchName, page);
                 pageControl.setUrlPattern(requestURL + "?action=searchByName&keyword=" + searchName + "&");
                 break;
+            case "searchCategoryAll":
+                String categoryIdAll = request.getParameter("categoryId");
+                int cateIdAll;
+                try {
+                    cateIdAll = Integer.parseInt(categoryIdAll);
+                    if (cateIdAll < 0) {
+                        cateIdAll = 1;
+                    }
+                    totalRecord = courseDAO.findTotalRecordByCategoryAll(categoryIdAll);
+                    listCourse = courseDAO.findCourseByCategoryAll(cateIdAll, page);
+                    pageControl.setUrlPattern(requestURL + "?action=searchCategoryAll&categoryId=" + cateIdAll + "&");
+                } catch (Exception e) {
+                    listCourse = courseDAO.findAll();
+                }
+                break;
             case "searchCategory":
                 String categoryId = request.getParameter("categoryId");
                 int cateId;

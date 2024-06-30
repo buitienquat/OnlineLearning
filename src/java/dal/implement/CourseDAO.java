@@ -27,7 +27,6 @@ public class CourseDAO extends GenericDAO<Course> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
- 
     public List<Course> findCourseByName(String searchName, int page) {
         String sql = "SELECT *\n"
                 + "FROM dbo.Course\n"
@@ -53,6 +52,20 @@ public class CourseDAO extends GenericDAO<Course> {
                 + "FETCH NEXT ? ROWS ONLY";
         parameterMap = new LinkedHashMap<>();
         parameterMap.put("cateId", cateId);
+        parameterMap.put("offset", (page - 1) * commonConstant.RECORD_PER_PAGE);
+        parameterMap.put("fetch", commonConstant.RECORD_PER_PAGE);
+        return queryGenericDAO(Course.class, sql, parameterMap);
+    }
+
+    public List<Course> findCourseByCategoryAll(int cateIdAll, int page) {
+        String sql = "SELECT *\n"
+                + "FROM dbo.Course\n"
+                + "WHERE Category_categoryID = ?\n"
+                + "ORDER BY CouseraID\n"
+                + "OFFSET ? ROWS\n"
+                + "FETCH NEXT ? ROWS ONLY";
+        parameterMap = new LinkedHashMap<>();
+        parameterMap.put("cateId", cateIdAll);
         parameterMap.put("offset", (page - 1) * commonConstant.RECORD_PER_PAGE);
         parameterMap.put("fetch", commonConstant.RECORD_PER_PAGE);
         return queryGenericDAO(Course.class, sql, parameterMap);
@@ -86,6 +99,15 @@ public class CourseDAO extends GenericDAO<Course> {
                 + "WHERE Category_categoryID = ? AND Feestatus > 0";
         parameterMap = new LinkedHashMap<>();
         parameterMap.put("categoryId", categoryId);
+        return findTotalRecordGenericDAO(Course.class, sql, parameterMap);
+    }
+
+    public int findTotalRecordByCategoryAll(String categoryIdAll) {
+        String sql = "SELECT COUNT(*) \n"
+                + "FROM dbo.Course\n"
+                + "WHERE Category_categoryID = ?";
+        parameterMap = new LinkedHashMap<>();
+        parameterMap.put("categoryId", categoryIdAll);
         return findTotalRecordGenericDAO(Course.class, sql, parameterMap);
     }
 
@@ -130,9 +152,10 @@ public class CourseDAO extends GenericDAO<Course> {
         parameterMap.put("fetch", commonConstant.RECORD_PER_PAGE);
         return queryGenericDAO(Course.class, sql, parameterMap);
     }
-      public static void main(String[] args) {
-          Course c = new Course();
-          c.setCategory_categoryID(1);
+
+    public static void main(String[] args) {
+        Course c = new Course();
+        c.setCategory_categoryID(1);
         System.out.println(new CourseDAO().findCourseByCategoryFree(1, 1));
     }
 

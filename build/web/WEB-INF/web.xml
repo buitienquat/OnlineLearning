@@ -17,6 +17,10 @@
         <servlet-name>courseQuizController</servlet-name>
         <servlet-class>controller.Course.courseQuizController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>homeControl</servlet-name>
+        <servlet-class>controller.Home.homeControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>courseController</servlet-name>
         <url-pattern>/course</url-pattern>
@@ -33,4 +37,11 @@
         <servlet-name>courseQuizController</servlet-name>
         <url-pattern>/coursequiz</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>homeControl</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>home</welcome-file>
+    </welcome-file-list>
 </web-app>

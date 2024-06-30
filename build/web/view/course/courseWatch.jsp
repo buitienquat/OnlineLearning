@@ -302,23 +302,26 @@
 
                                             <div class="ttr-post-text">
                                                 <p>Video được đăng tải ${autoFirstCourse.getTime()}</p>
-                                                <b style="font-size: 20px">Describe:</b>  <br>
-                                                <pre style="white-space: pre-wrap;">${autoFirstCourse.getNote()}</pre>
-
                                                 <c:if test="${quiztest.getQuizId() != 1}">
-                                                    <b style="font-size: 20px">Exercise:</b>
-                                                </c:if>
-                                                <c:if test="${autoFirstCourse.getQuizId_Quiz() == quiztest.getQuizId()}">
+                                                     <c:if test="${autoFirstCourse.getQuizId_Quiz() == quiztest.getQuizId()}">
                                                     <form action="coursequiz" method="GET">
                                                         <c:if test="${checkCountQuizHref < 3}"> 
                                                             <input type="hidden" name="action" value="resetquiz">
-                                                            <a href="coursequiz?quizid=${autoFirstCourse.getQuizId_Quiz()}" onclick="return confirmQuiz('${autoFirstCourse.getQuizId_Quiz()}');">${quiztest.getTitle()}</a>
+                                                            <button style="background-color: #4CAF50; color: #fff">
+                                                                <a href="coursequiz?quizid=${autoFirstCourse.getQuizId_Quiz()}" onclick="return confirmQuiz('${autoFirstCourse.getQuizId_Quiz()}');">Exercise: ${quiztest.getTitle()}</a>
+                                                            </button>
                                                         </c:if>
                                                     </form>
                                                     <c:if test="${checkCountQuizHref > 3}">
                                                         <h6><p style="color: #289628">Bạn đã hoàn thành bài Test</p></h6>
                                                     </c:if>
                                                 </c:if>
+                                                </c:if>
+                                               
+                                                <b style="font-size: 20px">Describe:</b>  <br>
+                                                <pre style="white-space: pre-wrap;">${autoFirstCourse.getNote()}</pre>
+
+                                                
                                             </div>
                                         </div>
                                     </div>

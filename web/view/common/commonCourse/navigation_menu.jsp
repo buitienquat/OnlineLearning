@@ -53,15 +53,13 @@
                 <li class="add-menu-left">
                     <h5 class="menu-adv-title">Our Courses</h5>
                     <ul>
-                        <li><a href="courses.html">Courses </a></li>
-                        <li><a href="courses-details.html">Courses Details</a></li>
-                        <li><a href="profile.html">Instructor Profile</a></li>
-                        <li><a href="event.html">Upcoming Event</a></li>
-                        <li><a href="membership.html">Membership</a></li>
+                        <c:forEach items="${category}" var="ca">
+                            <li><a href="course?action=searchCategory&categoryId=${ca.getCategoryID()}">${ca.getName()}</a></li>
+                        </c:forEach>
                     </ul>
                 </li>
                 <li class="add-menu-right">
-                    <img src="images/adv/adv.jpg" alt=""/>
+                    <img src="assets/images/adv/adv.jpg" alt=""/>
                 </li>
             </ul>
         </li>
