@@ -11,7 +11,14 @@
 <%@ page import="java.util.Date" %>
 <!DOCTYPE html>
 <html lang="en">
-
+<script type="text/javascript">
+        function showAlert1() {
+            alert("Update thành công!");
+        }
+          function showAlert2() {
+            alert("Delete thành công !");
+        }
+    </script>
     <!-- Mirrored from educhamp.themetrades.com/demo/admin/user-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:11:35 GMT -->
     <head>
 
@@ -33,7 +40,7 @@
 
         <!-- FAVICONS ICON ============================================= -->
         <link rel="icon" href="../error-404.html" type="image/x-icon" />
-        <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
+        <link rel="shortcut icon" type="image/x-icon" href="assets/assetsAdmin/images/favicon.png" />
 
         <!-- PAGE TITLE HERE ============================================= -->
         <title>EduChamp : Education HTML Template </title>
@@ -42,24 +49,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!--[if lt IE 9]>
-        <script src="assets/js/html5shiv.min.js"></script>
-        <script src="assets/js/respond.min.js"></script>
+        <script src="assets/assetsAdmin/js/html5shiv.min.js"></script>
+        <script src="assets/assetsAdmin/js/respond.min.js"></script>
         <![endif]-->
 
         <!-- All PLUGINS CSS ============================================= -->
-        <link rel="stylesheet" type="text/css" href="assets/css/assets.css">
-        <link rel="stylesheet" type="text/css" href="assets/vendors/calendar/fullcalendar.css">
+        <link rel="stylesheet" type="text/css" href="assets/assetsAdmin/css/assets.css">
+        <link rel="stylesheet" type="text/css" href="assets/assetsAdmin/vendors/calendar/fullcalendar.css">
 
         <!-- TYPOGRAPHY ============================================= -->
-        <link rel="stylesheet" type="text/css" href="assets/css/typography.css">
+        <link rel="stylesheet" type="text/css" href="assets/assetsAdmin/css/typography.css">
 
         <!-- SHORTCODES ============================================= -->
-        <link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
+        <link rel="stylesheet" type="text/css" href="assets/assetsAdmin/css/shortcodes/shortcodes.css">
 
         <!-- STYLESHEETS ============================================= -->
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/dashboard.css">
-        <link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
+        <link rel="stylesheet" type="text/css" href="assets/assetsAdmin/css/style.css">
+        <link rel="stylesheet" type="text/css" href="assets/assetsAdmin/css/dashboard.css">
+        <link class="skin" rel="stylesheet" type="text/css" href="assets/assetsAdmin/css/color/color-1.css">
 <style>
   /* Thiết lập style cho select */
   #dropdown {
@@ -70,9 +77,8 @@
 </style>
     </head>
     <body class="ttr-opened-sidebar ttr-pinned-sidebar">
-
-        <!-- header start -->
-        <header class="ttr-header">
+<!-- header start -->
+       <header class="ttr-header">
             <div class="ttr-header-wrapper">
                 <!--sidebar menu toggler start -->
                 <div class="ttr-toggle-sidebar ttr-material-button">
@@ -84,8 +90,8 @@
                 <div class="ttr-logo-box">
                     <div>
                         <a href="index.html" class="ttr-logo">
-                            <img alt="" class="ttr-logo-mobile" src="assets/images/logo-mobile.png" width="30" height="30">
-                            <img alt="" class="ttr-logo-desktop" src="assets/images/logo-white.png" width="160" height="27">
+                            <img alt="" class="ttr-logo-mobile" src="assets/assetsAdmin/images/logo-mobile.png" width="30" height="30">
+                            <img alt="" class="ttr-logo-desktop" src="assets/assetsAdmin/images/logo-white.png" width="160" height="27">
                         </a>
                     </div>
                 </div>
@@ -94,17 +100,7 @@
                     <!-- header left menu start -->
                     <ul class="ttr-header-navigation">
                         <li>
-                            <a href="../index.html" class="ttr-material-button ttr-submenu-toggle">HOME</a>
-                        </li>
-                        <li>
-                            <a href="#" class="ttr-material-button ttr-submenu-toggle">QUICK MENU <i class="fa fa-angle-down"></i></a>
-                            <div class="ttr-header-submenu">
-                                <ul>
-                                    <li><a href="../courses.html">Our Courses</a></li>
-                                    <li><a href="../event.html">New Event</a></li>
-                                    <li><a href="../membership.html">Membership</a></li>
-                                </ul>
-                            </div>
+                            <a href="admin/AdminHomepage.jsp" class="ttr-material-button ttr-submenu-toggle">HOME</a>
                         </li>
                     </ul>
                     <!-- header left menu end -->
@@ -112,9 +108,7 @@
                 <div class="ttr-header-right ttr-with-seperator">
                     <!-- header right menu start -->
                     <ul class="ttr-header-navigation">
-                        <li>
-                            <a href="#" class="ttr-material-button ttr-search-toggle"><i class="fa fa-search"></i></a>
-                        </li>
+
                         <li>
                             <a href="#" class="ttr-material-button ttr-submenu-toggle"><i class="fa fa-bell"></i></a>
                             <div class="ttr-header-submenu noti-menu">
@@ -189,45 +183,17 @@
                             </div>
                         </li>
                         <li>
-                            <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="assets/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
+                            <a href="updateAdmin" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="assets/assetsAdmin/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
                             <div class="ttr-header-submenu">
                                 <ul>
-                                    <li><a href="user-profile.html">My profile</a></li>
-                                    <li><a href="list-view-calendar.html">Activity</a></li>
+                                    <li><a href="adminprofile">My profile</a></li>
+                                    
                                     <li><a href="mailbox.html">Messages</a></li>
                                     <li><a href="../login.html">Logout</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="ttr-hide-on-mobile">
-                            <a href="#" class="ttr-material-button"><i class="ti-layout-grid3-alt"></i></a>
-                            <div class="ttr-header-submenu ttr-extra-menu">
-                                <a href="#">
-                                    <i class="fa fa-music"></i>
-                                    <span>Musics</span>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-youtube-play"></i>
-                                    <span>Videos</span>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-envelope"></i>
-                                    <span>Emails</span>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-book"></i>
-                                    <span>Reports</span>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-smile-o"></i>
-                                    <span>Persons</span>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-picture-o"></i>
-                                    <span>Pictures</span>
-                                </a>
-                            </div>
-                        </li>
+                        
                     </ul>
                     <!-- header right menu end -->
                 </div>
@@ -252,7 +218,7 @@
             <div class="ttr-sidebar-wrapper content-scroll">
                 <!-- side menu logo start -->
                 <div class="ttr-sidebar-logo">
-                    <a href="#"><img alt="" src="assets/images/logo.png" width="122" height="27"></a>
+                    <a href="#"><img alt="" src="assets/assetsAdmin/images/logo.png" width="122" height="27"></a>
                     <!-- <div class="ttr-sidebar-pin-button" title="Pin/Unpin Menu">
                             <i class="material-icons ttr-fixed-icon">gps_fixed</i>
                             <i class="material-icons ttr-not-fixed-icon">gps_not_fixed</i>
@@ -266,83 +232,33 @@
                 <nav class="ttr-sidebar-navi">
                     <ul>
                         <li>
-                            <a href="AdminHomepage.jsp" class="ttr-material-button">
+                            <a href="DashBoard" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-home"></i></span>
                                 <span class="ttr-label">Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="ttr-material-button">
+                            <a href="CourseList" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-book"></i></span>
-                                <span class="ttr-label">Courses</span>
+                                <span class="ttr-label">Courses list</span>
                             </a>
                         </li>
+                 
+                      
+                      
                         <li>
-                            <a href="#" class="ttr-material-button">
-                                <span class="ttr-icon"><i class="ti-email"></i></span>
-                                <span class="ttr-label">Mailbox</span>
-                                <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="mailbox.html" class="ttr-material-button"><span class="ttr-label">Mail Box</span></a>
-                                </li>
-                                <li>
-                                    <a href="mailbox-compose.html" class="ttr-material-button"><span class="ttr-label">Compose</span></a>
-                                </li>
-                                <li>
-                                    <a href="mailbox-read.html" class="ttr-material-button"><span class="ttr-label">Mail Read</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="ttr-material-button">
-                                <span class="ttr-icon"><i class="ti-calendar"></i></span>
-                                <span class="ttr-label">Calendar</span>
-                                <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="basic-calendar.html" class="ttr-material-button"><span class="ttr-label">Basic Calendar</span></a>
-                                </li>
-                                <li>
-                                    <a href="list-view-calendar.html" class="ttr-material-button"><span class="ttr-label">List View</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="ttr-material-button">
-                                <span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
-                                <span class="ttr-label">Bookmarks</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="ManageUser.jsp" class="ttr-material-button">
+                            <a href="listuser" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-comments"></i></span>
                                 <span class="ttr-label">ManageUser</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="ttr-material-button">
+                            <a href="BlogList" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
-                                <span class="ttr-label">Add listing</span>
+                                <span class="ttr-label">Blog listing</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="ttr-material-button">
-                                <span class="ttr-icon"><i class="ti-user"></i></span>
-                                <span class="ttr-label">My Profile</span>
-                                <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="user-profile.html" class="ttr-material-button"><span class="ttr-label">User Profile</span></a>
-                                </li>
-                                <li>
-                                    <a href="teacher-profile.html" class="ttr-material-button"><span class="ttr-label">Teacher Profile</span></a>
-                                </li>
-                            </ul>
-                        </li>
+                      
                         <li class="ttr-seperate"></li>
                     </ul>
                     <!-- sidebar menu end -->
@@ -369,6 +285,7 @@
                             <div class="wc-title">
                                 <h4>User Profile</h4>
                             </div>
+                            <form class="edit-profile m-b30" action="/swp-project/updateProfile" method="GET">
                             <div class="widget-inner">
                                 <%
 
@@ -377,7 +294,7 @@ String img = request.getParameter("img");
 int status=Integer.parseInt(request.getParameter("status"));
                                 %>                                
 
-                                <form class="edit-profile m-b30" action="/swp-project/updateProfile" method="GET">
+                                
                                     <div class="card-courses-user-pic">
                                         <img src="<%= img%>" alt=""/>
                                     </div>
@@ -386,12 +303,23 @@ int status=Integer.parseInt(request.getParameter("status"));
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">user Id</label>
                                             <div class="col-sm-7">
-                                                <input class="form-control" type="text" value="<%=userid%>" name="userid">
+                                                <input class="form-control" type="text" value="<%=userid%>" name="userid" readonly>
                                             </div>
                                         </div>
                                        
                                         </div>
+                                             <div class="">
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Reset password</label>
+                                            <div class="col-sm-7">
+                                                <input class="form-control" type="text" name="password" >
+                                            </div>
+                                        </div>
+                                       
+                                        </div>
+                                            
                                             <% if(status==1 || status==2){%>
+                                            <div>change status</div>
                                             <select id="dropdown" style="width: 50px;" name="status">
                                                     <option value="2">Active</option>
                                                     <option value="3">Banned</option>
@@ -412,8 +340,8 @@ int status=Integer.parseInt(request.getParameter("status"));
                                                 <div class="col-sm-2">
                                                 </div>
                                                 <div class="col-sm-7">
-                                                    <button type="submit" class="btn" name="btn" value="update">Update</button>
-                                                    <button type="submit" class="btn-secondry" name="btn" value="delete">Delete</button>
+                                                    <button onclick="showAlert1()" type="submit" class="btn" name="btn" value="update">Update</button>
+                                                    <button onclick="showAlert2()" type="submit" class="btn-secondry" name="btn" value="delete">Delete</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -430,23 +358,23 @@ int status=Integer.parseInt(request.getParameter("status"));
         <div class="ttr-overlay"></div>
 
         <!-- External JavaScripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/vendors/bootstrap/js/popper.min.js"></script>
-        <script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
-        <script src="assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
-        <script src="assets/vendors/magnific-popup/magnific-popup.js"></script>
-        <script src="assets/vendors/counter/waypoints-min.js"></script>
-        <script src="assets/vendors/counter/counterup.min.js"></script>
-        <script src="assets/vendors/imagesloaded/imagesloaded.js"></script>
-        <script src="assets/vendors/masonry/masonry.js"></script>
-        <script src="assets/vendors/masonry/filter.js"></script>
-        <script src="assets/vendors/owl-carousel/owl.carousel.js"></script>
-        <script src='assets/vendors/scroll/scrollbar.min.js'></script>
-        <script src="assets/js/functions.js"></script>
-        <script src="assets/vendors/chart/chart.min.js"></script>
-        <script src="assets/js/admin.js"></script>
-        <script src='assets/vendors/switcher/switcher.js'></script>
+        <script src="assets/assetsAdmin/js/jquery.min.js"></script>
+        <script src="assets/assetsAdmin/vendors/bootstrap/js/popper.min.js"></script>
+        <script src="assets/assetsAdmin/vendors/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/assetsAdmin/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+        <script src="assets/assetsAdmin/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+        <script src="assets/assetsAdmin/vendors/magnific-popup/magnific-popup.js"></script>
+        <script src="assets/assetsAdmin/vendors/counter/waypoints-min.js"></script>
+        <script src="assets/assetsAdmin/vendors/counter/counterup.min.js"></script>
+        <script src="assets/assetsAdmin/vendors/imagesloaded/imagesloaded.js"></script>
+        <script src="assets/assetsAdmin/vendors/masonry/masonry.js"></script>
+        <script src="assets/assetsAdmin/vendors/masonry/filter.js"></script>
+        <script src="assets/assetsAdmin/vendors/owl-carousel/owl.carousel.js"></script>
+        <script src='assets/assetsAdmin/vendors/scroll/scrollbar.min.js'></script>
+        <script src="assets/assetsAdmin/js/functions.js"></script>
+        <script src="assets/assetsAdmin/vendors/chart/chart.min.js"></script>
+        <script src="assets/assetsAdmin/js/admin.js"></script>
+        <script src='assets/assetsAdmin/vendors/switcher/switcher.js'></script>
         
     </body>
 

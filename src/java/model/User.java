@@ -22,7 +22,26 @@ public class User {
     private int RoleID;
     private String  CodeVerify;
     private int statusUserId;
+    private String Username;
+    private String Password;
 
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String Username) {
+        this.Username = Username;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String Password) {
+        this.Password = Password;
+    }
+
+    
     public int getUserID() {
         return UserID;
     }
@@ -110,9 +129,8 @@ public class User {
     public void setStatusUserId(int statusUserId) {
         this.statusUserId = statusUserId;
     }
-    
 
-    public User(int UserID, String Email, String Phone, String FullName, String Image, Date date, String Address, String GmailID, int RoleID, String CodeVerify,int statusUserId) {
+    public User(int UserID, String Email, String Phone, String FullName, String Image, Date date, String Address, String GmailID, int RoleID, String CodeVerify, int statusUserId, String Username, String Password) {
         this.UserID = UserID;
         this.Email = Email;
         this.Phone = Phone;
@@ -123,8 +141,13 @@ public class User {
         this.GmailID = GmailID;
         this.RoleID = RoleID;
         this.CodeVerify = CodeVerify;
-        this.statusUserId=statusUserId;
+        this.statusUserId = statusUserId;
+        this.Username = Username;
+        this.Password = Password;
     }
+    
+
+   
 
     public User() {
     }

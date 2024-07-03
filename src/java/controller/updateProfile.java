@@ -37,10 +37,21 @@ public class updateProfile extends HttpServlet {
             if(button.equals("update")){
                 int userid=Integer.parseInt(request.getParameter("userid"));
                 int status=Integer.parseInt(request.getParameter("status"));
+                String pass=request.getParameter("password");
                 UserDBContext userDBContext = new UserDBContext();
                 userDBContext.updateAccount(userid,status);
+                if(pass != null && !pass.trim().isEmpty()){
+                    userDBContext.ChangePassword(userid,pass);
+                }
+
             }
-        } finally{
+         else if(button.equals("delete")){
+               int userid=Integer.parseInt(request.getParameter("userid"));
+                UserDBContext accountDBContext = new UserDBContext();
+                accountDBContext.removeAccount(userid);
+            }
+      }
+      finally{
             RequestDispatcher rd = request.getRequestDispatcher("listuser");
             rd.forward(request, response);
         }

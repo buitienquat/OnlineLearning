@@ -38,12 +38,12 @@ public class search extends HttpServlet {
                 String roleid = request.getParameter("roleid");
                 UserDBContext userDBContext = new UserDBContext();
                 List<User> userList = userDBContext.getUserbyRollid(Integer.parseInt(roleid));
-                request.setAttribute("USER_LIST", userList);
+                request.setAttribute("listUser", userList);
             } else {
                 String key = request.getParameter("txtSearchValue");
                 UserDBContext userDBContext = new UserDBContext();
                 List<User> userList = userDBContext.search(key);
-                request.setAttribute("USER_LIST", userList);
+                request.setAttribute("listUser", userList);
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher("admin/ManageUser.jsp");

@@ -20,7 +20,7 @@ import dal.UserDBContext;
  * @author vuduc
  */
 public class listuser extends HttpServlet {
-   
+     private static final int ITEMS_PER_PAGE = 10; // Số mục trên mỗi trang
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -31,10 +31,30 @@ public class listuser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-                  UserDBContext dbContext = new UserDBContext();
-    List<User> listUser = dbContext.getAllUser();
-    request.setAttribute("listUser", listUser);
-        request.getRequestDispatcher("admin/ManageUser.jsp").forward(request, response);  
+  UserDBContext dbContext = new UserDBContext();
+
+        // Lấy trang hiện tại từ tham số yêu cầu (mặc định là 1)
+        int currentPage = 1;
+        if (request.getParameter("page") != null) {
+            currentPage = Integer.parseInt(request.getParameter("page"));
+        }
+
+        int offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
+        // Lấy danh sách users với phân trang
+        List<User> listUser = dbContext.getUsers(offset, ITEMS_PER_PAGE);
+
+        // Tính tổng số trang
+        int totalUsers = dbContext.getTotalUsers();
+        int totalPages = (int) Math.ceil((double) totalUsers / ITEMS_PER_PAGE);
+
+        // Đặt các thuộc tính request để sử dụng trong JSP
+        request.setAttribute("listUser", listUser);
+        request.setAttribute("currentPage", currentPage);
+        request.setAttribute("totalPages", totalPages);
+
+        // Chuyển tiếp yêu cầu tới trang JSP
+        request.getRequestDispatcher("admin/ManageUser.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

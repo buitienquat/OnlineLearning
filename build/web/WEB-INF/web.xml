@@ -16,6 +16,42 @@
         <servlet-name>profile</servlet-name>
         <servlet-class>controller.profile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BlogList</servlet-name>
+        <servlet-class>controller.BlogList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CourseList</servlet-name>
+        <servlet-class>controller.CourseList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DashBoard</servlet-name>
+        <servlet-class>controller.DashBoard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updatecourse</servlet-name>
+        <servlet-class>controller.updatecourse</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>lesson</servlet-name>
+        <servlet-class>controller.lesson</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateblog</servlet-name>
+        <servlet-class>controller.updateblog</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>controller.UploadServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminprofile</servlet-name>
+        <servlet-class>controller.adminprofile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateImage</servlet-name>
+        <servlet-class>controller.updateImage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>search</servlet-name>
         <url-pattern>/search</url-pattern>
@@ -31,5 +67,41 @@
     <servlet-mapping>
         <servlet-name>profile</servlet-name>
         <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlogList</servlet-name>
+        <url-pattern>/BlogList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseList</servlet-name>
+        <url-pattern>/CourseList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DashBoard</servlet-name>
+        <url-pattern>/DashBoard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updatecourse</servlet-name>
+        <url-pattern>/updatecourse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>lesson</servlet-name>
+        <url-pattern>/lesson</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateblog</servlet-name>
+        <url-pattern>/updateblog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/UploadServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminprofile</servlet-name>
+        <url-pattern>/adminprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateImage</servlet-name>
+        <url-pattern>/updateImage</url-pattern>
     </servlet-mapping>
 </web-app>
