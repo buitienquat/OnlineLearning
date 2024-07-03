@@ -41,7 +41,39 @@
         <servlet-name>homeControl</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Blog</servlet-name>
+        <servlet-class>controller.blog.Blog</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StorageIMG</servlet-name>
+        <servlet-class>controller.blog.StorageIMG</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WrittenBlog</servlet-name>
+        <servlet-class>controller.blog.WrittenBlog</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BlogList</servlet-name>
+        <servlet-class>controller.blog.BlogList</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Blog</servlet-name>
+        <url-pattern>/blog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StorageIMG</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WrittenBlog</servlet-name>
+        <url-pattern>/writtenblog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlogList</servlet-name>
+        <url-pattern>/bloglist</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>
-    </welcome-file-list>
+    </welcome-file-list>   
 </web-app>
