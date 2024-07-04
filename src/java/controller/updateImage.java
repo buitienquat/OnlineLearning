@@ -40,7 +40,7 @@ public class updateImage extends HttpServlet {
     String imagePath = ""; // Đường dẫn ảnh sau khi tải lên thành công
 
     // Lấy đường dẫn ảnh sau khi người dùng tải lên
-    Part filePart = request.getPart("image");
+    Part filePart = request.getPart("userImage");
     if (filePart != null && filePart.getSize() > 0) {
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         String uploadDir = getServletContext().getRealPath("/uploads");
@@ -51,9 +51,9 @@ public class updateImage extends HttpServlet {
 
     // Cập nhật đường dẫn ảnh trong cơ sở dữ liệu
     if (!imagePath.isEmpty()) {
-        dbContext.updateUserImage(userId, imagePath);
+        dbContext.updateUserImage(userId, imagePath); 
     }
-
+    
     List<User> listUser = dbContext.getUserbyUserId(userId);
     request.setAttribute("listUser", listUser);
     request.getRequestDispatcher("admin/Myprofile.jsp").forward(request, response);

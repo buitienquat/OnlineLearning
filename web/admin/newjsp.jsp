@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +13,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/zwsPND378OQ?si=4ahTd1ley_YW6gJR" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h1> ${meme}</h1>
     </body>
 </html>

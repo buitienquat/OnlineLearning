@@ -238,8 +238,8 @@ public class UserDBContext extends DBContext{
                 public void updateUserImage(int userId, String imagePath) {
     try {
         String sql = "UPDATE [User] "
-                   + "SET Image = ? "
-                   + "WHERE UserID = ?";
+                   + " SET Image = ? "
+                   + " WHERE UserID = ?";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1, imagePath);
         stm.setInt(2, userId);

@@ -268,119 +268,118 @@
                                 <h4>User Profile</h4>
                             </div>
                             <c:forEach var="user" items="${listUser}">
-                            <div class="widget-inner">
-                                <form class="edit-profile m-b30" enctype="multipart/form-data" action="updateImage" method="post">
-                                    <div class="">
-                                        <div class="form-group row">
-                                            <div class="col-sm-10  ml-auto">
-                                                <h3>1. Personal Details</h3>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Email</label>
-                                            <div class="col-sm-7">
-                                                <input class="form-control" type="text" value="${user.email}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Phone</label>
-                                            <div class="col-sm-7">
-                                                <input class="form-control" type="text" value="${user.phone}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Fullname</label>
-                                            <div class="col-sm-7">
-                                                <input class="form-control" type="text" value="${user.fullName}">
-                                                <span class="help">If you want your invoices addressed to a company. Leave blank to use your full name.</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Image</label>
-                                            <div class="col-sm-7">
-                                                  <img src="${user.image}" alt="User Image" width="150" height="150">
-                                         <input type="file" name="userImage" accept="image/*" onchange="previewImage(event)">
-                                            </div>
-                                        </div>
+    <div class="widget-inner">
+        <form class="edit-profile m-b30" enctype="multipart/form-data" action="updateImage" method="post">
+            <div class="">
+                <div class="form-group row">
+                    <div class="col-sm-10  ml-auto">
+                        <h3>1. Personal Details</h3>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" type="text" name="email" value="${user.email}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Phone</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" type="text" value="${user.phone}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Fullname</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" type="text" value="${user.fullName}">
+                        <span class="help">If you want your invoices addressed to a company. Leave blank to use your full name.</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Image</label>
+                    <div class="col-sm-7">
+                        <img id="currentImage" src="${user.image}" alt="User Image" width="150" height="150">
+                        <input type="file" name="userImage" accept="image/*" onchange="previewImage(event)">
+                    </div>
+                </div>
 
-                                        <div class="seperator"></div>
+                <div class="seperator"></div>
 
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Dob</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" type="text" value="${user.date}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" type="text" value="${user.address}">
+                    </div>
+                </div>
+                <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+            </div>
+            <div class="">
+                <div class="">
+                    <div class="row">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-7">
+                            <button type="submit" class="btn">Save changes</button>
+                            <button type="reset" class="btn-secondry">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <script>
+            function previewImage(event) {
+                const reader = new FileReader();
+                reader.onload = function(){
+                    const output = document.getElementById('currentImage');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        </script>
+        <form class="edit-profile">
+            <div class="">
+                <div class="form-group row">
+                    <div class="col-sm-10 ml-auto">
+                        <h3>2. Password</h3>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Current Password</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" type="text" value="${user.password}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">New Password</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" type="password" value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Re Type Password</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" type="password" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-7">
+                    <button type="reset" class="btn">Save changes</button>
+                    <button type="reset" class="btn-secondry">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</c:forEach>
 
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Dob</label>
-                                            <div class="col-sm-7">
-                                                <input class="form-control" type="text" value="${user.date}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Address</label>
-                                            <div class="col-sm-7">
-                                                <input class="form-control" type="text" value="${user.address}">
-                                            </div>
-                                        </div>
-                                        <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-                                    </div>
-                                    <div class="">
-                                        <div class="">
-                                            <div class="row">
-                                                <div class="col-sm-2">
-                                                </div>
-                                                <div class="col-sm-7">
-                                                    <button type="submit" class="btn">Save changes</button>
-                                                    <button type="reset" class="btn-secondry">Cancel</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                                            <script>
-function previewImage(event) {
-    const reader = new FileReader();
-    reader.onload = function(){
-        const output = document.getElementById('currentImage');
-        output.src = reader.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
-}
-</script>
-                                <form class="edit-profile">
-                                    <div class="">
-                                        <div class="form-group row">
-                                            <div class="col-sm-10 ml-auto">
-                                                <h3>2. Password</h3>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Current Password</label>
-                                            <div class="col-sm-7">
-                                                <input class="form-control" type="text" value="${user.password}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">New Password</label>
-                                            <div class="col-sm-7">
-                                                <input class="form-control" type="password" value="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Re Type Password</label>
-                                            <div class="col-sm-7">
-                                                <input class="form-control" type="password" value="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <button type="reset" class="btn">Save changes</button>
-                                            <button type="reset" class="btn-secondry">Cancel</button>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
-                            </c:forEach>
                         </div>
                     </div>
                     <!-- Your Profile Views Chart END-->
