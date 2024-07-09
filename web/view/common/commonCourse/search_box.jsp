@@ -1,10 +1,11 @@
 <%-- 
     Document   : search_box
-    Created on : May 22, 2024, 6:18:37 PM
+    Created on : Jul 9, 2024, 2:03:02 PM
     Author     : Admin
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <div class="nav-search-bar">
     <form action="course">
         <input type="hidden" name="action" value="searchByName"/>

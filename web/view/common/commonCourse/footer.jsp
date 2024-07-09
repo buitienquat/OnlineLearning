@@ -1,8 +1,9 @@
 <%-- 
     Document   : footer
-    Created on : May 22, 2024, 6:24:44 PM
+    Created on : Jul 9, 2024, 2:05:25 PM
     Author     : Admin
 --%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <footer>
@@ -109,3 +110,4 @@
         </div>
     </div>
 </footer>
+

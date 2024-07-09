@@ -303,25 +303,25 @@
                                             <div class="ttr-post-text">
                                                 <p>Video được đăng tải ${autoFirstCourse.getTime()}</p>
                                                 <c:if test="${quiztest.getQuizId() != 1}">
-                                                     <c:if test="${autoFirstCourse.getQuizId_Quiz() == quiztest.getQuizId()}">
-                                                    <form action="coursequiz" method="GET">
-                                                        <c:if test="${checkCountQuizHref < 3}"> 
-                                                            <input type="hidden" name="action" value="resetquiz">
-                                                            <button style="background-color: #4CAF50; color: #fff">
-                                                                <a href="coursequiz?quizid=${autoFirstCourse.getQuizId_Quiz()}" onclick="return confirmQuiz('${autoFirstCourse.getQuizId_Quiz()}');">Exercise: ${quiztest.getTitle()}</a>
-                                                            </button>
+                                                    <c:if test="${autoFirstCourse.getQuizId_Quiz() == quiztest.getQuizId()}">
+                                                        <form action="coursequiz" method="GET">
+                                                            <c:if test="${checkCountQuizHref <= 3}"> 
+                                                                <input type="hidden" name="action" value="resetquiz">
+                                                                <button style="background-color: #4CAF50; color: #fff">
+                                                                    <a href="coursequiz?quizid=${autoFirstCourse.getQuizId_Quiz()}" onclick="return confirmQuiz('${autoFirstCourse.getQuizId_Quiz()}');">Exercise: ${quiztest.getTitle()} (${checkCountQuizHref}/3)</a>
+                                                                </button>
+                                                            </c:if>
+                                                        </form>
+                                                        <c:if test="${checkCountQuizHref > 3}">
+                                                            <h6><p style="color: #289628">Bạn đã hoàn thành bài Test</p></h6>
                                                         </c:if>
-                                                    </form>
-                                                    <c:if test="${checkCountQuizHref > 3}">
-                                                        <h6><p style="color: #289628">Bạn đã hoàn thành bài Test</p></h6>
                                                     </c:if>
                                                 </c:if>
-                                                </c:if>
-                                               
+
                                                 <b style="font-size: 20px">Describe:</b>  <br>
                                                 <pre style="white-space: pre-wrap;">${autoFirstCourse.getNote()}</pre>
 
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -356,15 +356,15 @@
         <script src="${pageContext.request.contextPath}/assets/js/contact.js"></script>
         <script src="${pageContext.request.contextPath}/assets/vendors/switcher/switcher.js"></script>
         <script>
-                                                                function confirmQuiz(quizId) {
-                                                                    var confirmAction = confirm("Bạn chắc chắn muốn làm bài Quiz chứ?");
-                                                                    if (confirmAction) {
-                                                                        window.location.href = "coursequiz?quizid=" + quizId;
-                                                                        return true; // Chuyển hướng trang
-                                                                    } else {
-                                                                        return false; // Không làm gì
+                                                                    function confirmQuiz(quizId) {
+                                                                        var confirmAction = confirm("Bạn chắc chắn muốn làm bài Quiz chứ?");
+                                                                        if (confirmAction) {
+                                                                            window.location.href = "coursequiz?quizid=" + quizId;
+                                                                            return true; // Chuyển hướng trang
+                                                                        } else {
+                                                                            return false; // Không làm gì
+                                                                        }
                                                                     }
-                                                                }
         </script>
     </body>
 

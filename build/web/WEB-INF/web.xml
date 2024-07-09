@@ -21,6 +21,79 @@
         <servlet-name>homeControl</servlet-name>
         <servlet-class>controller.Home.homeControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>authenControl</servlet-name>
+        <servlet-class>controller.Authen.authenControl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Blog</servlet-name>
+        <servlet-class>controller.blog.Blog</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StorageIMG</servlet-name>
+        <servlet-class>controller.blog.StorageIMG</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WrittenBlog</servlet-name>
+        <servlet-class>controller.blog.WrittenBlog</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BlogList</servlet-name>
+        <servlet-class>controller.blog.BlogList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>search</servlet-name>
+        <servlet-class>controller.Admin.search</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateProfile</servlet-name>
+        <servlet-class>controller.Admin.updateProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listuser</servlet-name>
+        <servlet-class>controller.Admin.listuser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>profile</servlet-name>
+        <servlet-class>controller.Admin.profile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CourseList</servlet-name>
+        <servlet-class>controller.Admin.CourseList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updatecourse</servlet-name>
+        <servlet-class>controller.Admin.updatecourse</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>lesson</servlet-name>
+        <servlet-class>controller.Admin.lesson</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateblog</servlet-name>
+        <servlet-class>controller.Admin.updateblog</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>controller.Admin.UploadServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminprofile</servlet-name>
+        <servlet-class>controller.Admin.adminprofile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateImage</servlet-name>
+        <servlet-class>controller.Admin.updateImage</servlet-class>
+    </servlet>
+    <!-- Servlet Mappings -->
+    <servlet>
+        <servlet-name>BlogManager</servlet-name>
+        <servlet-class>controller.Admin.BlogManager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>dashboardmanager</servlet-name>
+        <servlet-class>controller.Admin.dashboardmanager</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>courseController</servlet-name>
         <url-pattern>/course</url-pattern>
@@ -40,6 +113,79 @@
     <servlet-mapping>
         <servlet-name>homeControl</servlet-name>
         <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>authenControl</servlet-name>
+        <url-pattern>/authen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Blog</servlet-name>
+        <url-pattern>/blog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StorageIMG</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WrittenBlog</servlet-name>
+        <url-pattern>/writtenblog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlogList</servlet-name>
+        <url-pattern>/bloglist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>search</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateProfile</servlet-name>
+        <url-pattern>/updateProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listuser</servlet-name>
+        <url-pattern>/listuser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>profile</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseList</servlet-name>
+        <url-pattern>/CourseList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updatecourse</servlet-name>
+        <url-pattern>/updatecourse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>lesson</servlet-name>
+        <url-pattern>/lesson</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateblog</servlet-name>
+        <url-pattern>/updateblog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/UploadServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminprofile</servlet-name>
+        <url-pattern>/adminprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateImage</servlet-name>
+        <url-pattern>/updateImage</url-pattern>
+    </servlet-mapping>
+    <!-- Welcome File List -->
+    <servlet-mapping>
+        <servlet-name>BlogManager</servlet-name>
+        <url-pattern>/blogmanager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>dashboardmanager</servlet-name>
+        <url-pattern>/dashboardmanager</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>

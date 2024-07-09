@@ -246,7 +246,7 @@
                                             </div>
                                         </c:forEach>
                                         <!-- pagination start -->
-                                        <jsp:include page="../common/commonCourse/pagination.jsp"></jsp:include>
+                                    <jsp:include page="../common/commonCourse/pagination.jsp"></jsp:include>
                                             <!-- pagination end-->
                                         </div>
                                     </div>
@@ -258,7 +258,7 @@
                 </div>
                 <!-- Content END-->
                 <!-- Footer ==== -->
-            <jsp:include page="../common/commonCourse/footer.jsp"></jsp:include>
+                                    <jsp:include page="../common/commonCourse/footer.jsp"></jsp:include>
             <!-- Footer END ==== -->
             <button class="back-to-top fa fa-chevron-up" ></button>
         </div>
