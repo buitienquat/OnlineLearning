@@ -183,9 +183,7 @@ public class CourseDAO extends GenericDAO<Course> {
     }
 
     public static void main(String[] args) {
-        Course c = new Course();
-        c.setCategory_categoryID(1);
-        System.out.println(new CourseDAO().findCourseByCategoryFree(1, 1));
+      
     }
 
 }

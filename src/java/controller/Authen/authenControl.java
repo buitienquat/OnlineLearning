@@ -4,6 +4,7 @@
  */
 package controller.Authen;
 
+import Utility.Encryption;
 import controller.constant.commonConstant;
 import dal.implement.UserDAO;
 import java.io.IOException;
@@ -129,7 +130,9 @@ public class authenControl extends HttpServlet {
         //get về các thong tin người dufg nhập
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
+        
+        password = Encryption.toSHA1(password);
+        
         //kiểm tra thông tin có tồn tại trong DB ko
         User user = new User();
         user.setUsername(username);
@@ -159,12 +162,17 @@ public class authenControl extends HttpServlet {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-
+        String fullname = request.getParameter("fullname");
+        
+        // mã hoá password
+        password = Encryption.toSHA1(password);
+        
         //kiem tra xem username da ton tai trong db
         User user = new User();
         user.setUsername(username);
         user.setEmail(email);
         user.setPassword(password);
+        user.setFullName(fullname);
         boolean isExistUsername = userDAO.checkUsernameExist(user);
         boolean isExistEmail = userDAO.checkEmailExist(user);
         //true => quay tro lai trang register (set thong bao loi )
