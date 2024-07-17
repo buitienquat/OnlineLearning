@@ -6,6 +6,7 @@ package controller.Authen;
 
 import Utility.Encryption;
 import controller.constant.commonConstant;
+
 import dal.implement.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import model.User;
 
 /**
@@ -77,6 +79,9 @@ public class authenControl extends HttpServlet {
             case "register":
                 url = "view/authen/register.jsp";
                 break;
+            case "logingoogle":
+                url = loginGoogle(request, response);
+                break;
             default:
                 url = "home";
         }
@@ -130,9 +135,9 @@ public class authenControl extends HttpServlet {
         //get về các thong tin người dufg nhập
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
+
         password = Encryption.toSHA1(password);
-        
+
         //kiểm tra thông tin có tồn tại trong DB ko
         User user = new User();
         user.setUsername(username);
@@ -156,35 +161,55 @@ public class authenControl extends HttpServlet {
         return "home";
     }
 
-    private String registerDoPost(HttpServletRequest request, HttpServletResponse response) {
-        String url;
-        //get ve cac thong tin nguoi dung nhpa
-        String username = request.getParameter("username");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String fullname = request.getParameter("fullname");
-        
-        // mã hoá password
-        password = Encryption.toSHA1(password);
-        
-        //kiem tra xem username da ton tai trong db
-        User user = new User();
-        user.setUsername(username);
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setFullName(fullname);
-        boolean isExistUsername = userDAO.checkUsernameExist(user);
-        boolean isExistEmail = userDAO.checkEmailExist(user);
-        //true => quay tro lai trang register (set thong bao loi )
-        if (isExistUsername) {
-            request.setAttribute("error", "Username exist !!");
-            url = "view/authen/register.jsp";
-        } else if (isExistEmail) {
-            request.setAttribute("error", "Email exist !!");
-            url = "view/authen/register.jsp";
-        } //false => quay tro lai trang home ( ghi tai khoan vao trong DB )
-        else {
-            userDAO.insert(user);
+//    private String registerDoPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+//        String url = null;
+//        //get ve cac thong tin nguoi dung nhpa
+//        String username = request.getParameter("username");
+//        String email = request.getParameter("email");
+//        String password = request.getParameter("password");
+//        String fullname = request.getParameter("fullname");
+//
+//        // mã hoá password
+//        password = Encryption.toSHA1(password);
+//
+//        //kiem tra xem username da ton tai trong db
+//        User user = new User();
+//        user.setUsername(username);
+//        user.setEmail(email);
+//        user.setPassword(password);
+//        user.setFullName(fullname);
+//        boolean isExistUsername = userDAO.checkUsernameExist(user);
+//        boolean isExistEmail = userDAO.checkEmailExist(user);
+//        //true => quay tro lai trang register (set thong bao loi )
+//        if (isExistUsername) {
+//            request.setAttribute("error", "Username exist !!");
+//            url = "view/authen/register.jsp";
+//        } else if (isExistEmail) {
+//            request.setAttribute("error", "Email exist !!");
+//            url = "view/authen/register.jsp";
+//        } //false => quay tro lai trang home ( ghi tai khoan vao trong DB )
+//        else {
+//            userDAO.insert(user);
+//            url = "home";
+//        }
+//        return url;
+//
+//    }
+
+
+    private String loginGoogle(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String url = null;
+        String code = request.getParameter("code");
+        GoogleLogin gg = new GoogleLogin();
+        String accessToken = gg.getToken(code);
+        User acc = gg.getUserInfo(accessToken);
+        boolean isExistEmail = userDAO.checkEmailExist(acc);
+        if (isExistEmail) {
+            request.getSession().setAttribute(commonConstant.SESSION_ACCOUNT, acc);
+            url = "home";
+        } else {
+            userDAO.insert(acc);
+            request.getSession().setAttribute(commonConstant.SESSION_ACCOUNT, acc);
             url = "home";
         }
         return url;

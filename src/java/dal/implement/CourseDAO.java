@@ -6,6 +6,7 @@ package dal.implement;
 
 import controller.constant.commonConstant;
 import dal.GenericDAO;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -19,21 +20,28 @@ import org.apache.catalina.util.ParameterMap;
  */
 public class CourseDAO extends GenericDAO<Course> {
 
+//    protected Connection connection;//kết nối giữa ứng dụng Java và cơ sở dữ liệu
+//    protected java.sql.PreparedStatement statement;//thực thi các câu lệnh SQL trước khi thực sự thực thi
+//    protected ResultSet resultSet;// giống như 1 cái bảng , như sql manager
+
     @Override
     public List<Course> findAll() {
         return queryGenericDAO(Course.class);
+//        List<Course> list = new ArrayList<>();
+//        connection = getConnection();
     }
 
     @Override
     public int insert(Course t) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
     public List<Course> getAllCourse() {
         List<Course> list = new ArrayList<>();
         try {
             String sql = "SELECT c.*, u.FullName "
-                    +"FROM Course c "
-                    +"INNER JOIN [User] u ON c.UserId_User = u.userID;";
+                    + "FROM Course c "
+                    + "INNER JOIN [User] u ON c.UserId_User = u.userID;";
             java.sql.PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
@@ -42,20 +50,21 @@ public class CourseDAO extends GenericDAO<Course> {
                 course.setName(rs.getString(2));
                 course.setImage(rs.getString(3));
                 course.setDescription(rs.getString(4));
-                course. setStatus(rs.getInt(5));
-                course. setCategory_categoryID(rs.getInt(6));
-                course. setFeestatus(rs.getInt(7));
-                course. setIntroduce(rs.getString(8));
-                course. setOriginalPrice(rs.getInt(9));
-                 course. setUserId_User(rs.getInt(10));     
-                 
+                course.setStatus(rs.getInt(5));
+                course.setCategory_categoryID(rs.getInt(6));
+                course.setFeestatus(rs.getInt(7));
+                course.setIntroduce(rs.getString(8));
+                course.setOriginalPrice(rs.getInt(9));
+                course.setUserId_User(rs.getInt(10));
+
                 list.add(course);
             }
         } catch (Exception ex) {
-       
+
         }
         return list;
     }
+
     public List<Course> findCourseByName(String searchName, int page) {
         String sql = "SELECT *\n"
                 + "FROM dbo.Course\n"
@@ -183,7 +192,7 @@ public class CourseDAO extends GenericDAO<Course> {
     }
 
     public static void main(String[] args) {
-      
+
     }
 
 }

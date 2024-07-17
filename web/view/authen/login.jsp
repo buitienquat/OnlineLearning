@@ -104,8 +104,7 @@
                                 <div class="col-lg-12">
                                     <h6>Login with Social media</h6>
                                     <div class="d-flex">
-                                        <a class="btn flex-fill m-r5 facebook" href="#"><i class="fa fa-facebook"></i>Facebook</a>
-                                        <a class="btn flex-fill m-l5 google-plus" href="#"><i class="fa fa-google-plus"></i>Google Plus</a>
+                                        <a class="btn flex-fill m-l5 google-plus" href="https://accounts.google.com/o/oauth2/auth?scope=email+profile&redirect_uri=http://localhost:9999/OnlineLearning/authen?action=logingoogle&response_type=code&client_id=10149831239-jp5a2uhorfqpaucmrejbpkk2rjnhrdqv.apps.googleusercontent.com&approval_prompt=force"><i class="fa fa-google-plus"></i>Google Plus</a>
                                     </div>
                                 </div>
                             </div>

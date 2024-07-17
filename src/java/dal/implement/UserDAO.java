@@ -118,4 +118,13 @@ public class UserDAO extends GenericDAO<User> {
         parameterMap.put("email", user.getEmail());
         return !queryGenericDAO(User.class, sql, parameterMap).isEmpty();
     }
+
+   public boolean checkGmailIDExist(User user) {
+        String sql = "SELECT * \n"
+                + "FROM dbo.[User]\n"
+                + "WHERE GmailID = ?";
+        parameterMap = new LinkedHashMap<>();
+        parameterMap.put("GmailID", user.getGmailID());
+        return !queryGenericDAO(User.class, sql, parameterMap).isEmpty();
+    }
 }

@@ -305,18 +305,16 @@
                                                 <c:if test="${quiztest.getQuizId() != 1}">
                                                     <c:if test="${autoFirstCourse.getQuizId_Quiz() == quiztest.getQuizId()}">
                                                         <form action="coursequiz" method="GET">
-                                                            <c:if test="${checkCountQuizHref <= 3}"> 
+                                                  
                                                                 <input type="hidden" name="action" value="resetquiz">
                                                                 <button style="background-color: #4CAF50; color: #fff">
-                                                                    <a href="coursequiz?quizid=${autoFirstCourse.getQuizId_Quiz()}" onclick="return confirmQuiz('${autoFirstCourse.getQuizId_Quiz()}');">Exercise: ${quiztest.getTitle()} (${checkCountQuizHref}/3)</a>
+                                                                    <a href="coursequiz?quizid=${autoFirstCourse.getQuizId_Quiz()}" onclick="return confirmQuiz('${autoFirstCourse.getQuizId_Quiz()}');">Exercise: ${quiztest.getTitle()} </a>
                                                                 </button>
                                                             </c:if>
                                                         </form>
-                                                        <c:if test="${checkCountQuizHref > 3}">
-                                                            <h6><p style="color: #289628">Bạn đã hoàn thành bài Test</p></h6>
-                                                        </c:if>
+                                                
                                                     </c:if>
-                                                </c:if>
+                                              
 
                                                 <b style="font-size: 20px">Describe:</b>  <br>
                                                 <pre style="white-space: pre-wrap;">${autoFirstCourse.getNote()}</pre>

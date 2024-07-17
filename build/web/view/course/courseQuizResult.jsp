@@ -86,13 +86,11 @@
             <div class="button-group">
                 <form id="resetForm" action="coursequiz" method="GET" style="margin: 0;">
                     <input type="hidden" name="quizid" value="${quizid}">
-                    <c:if test="${attemptCount <= 3 }">
+                    
                         <input type="hidden" name="action" value="resetquiz">
                         <button type="button" onclick="confirmReset()">Làm lại</button>
-                    </c:if>
-                    <c:if test="${attemptCount > 3}">
-                        <h3 style="color: red">Bạn đã làm lại quá 3 lần</h3>
-                    </c:if>
+
+                  
                 </form>
                 <form action="coursequiz" method="GET" style="margin: 0;">
                     <input type="hidden" name="quizid" value="${quizid}">

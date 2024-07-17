@@ -40,6 +40,6 @@ public class Encryption {
     }
 
     public static void main(String[] args) {
-        System.out.println(toSHA1("@A123456"));
+        System.out.println(toSHA1("1"));
     }
 }
