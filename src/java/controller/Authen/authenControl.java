@@ -161,40 +161,40 @@ public class authenControl extends HttpServlet {
         return "home";
     }
 
-//    private String registerDoPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-//        String url = null;
-//        //get ve cac thong tin nguoi dung nhpa
-//        String username = request.getParameter("username");
-//        String email = request.getParameter("email");
-//        String password = request.getParameter("password");
-//        String fullname = request.getParameter("fullname");
-//
-//        // mã hoá password
-//        password = Encryption.toSHA1(password);
-//
-//        //kiem tra xem username da ton tai trong db
-//        User user = new User();
-//        user.setUsername(username);
-//        user.setEmail(email);
-//        user.setPassword(password);
-//        user.setFullName(fullname);
-//        boolean isExistUsername = userDAO.checkUsernameExist(user);
-//        boolean isExistEmail = userDAO.checkEmailExist(user);
-//        //true => quay tro lai trang register (set thong bao loi )
-//        if (isExistUsername) {
-//            request.setAttribute("error", "Username exist !!");
-//            url = "view/authen/register.jsp";
-//        } else if (isExistEmail) {
-//            request.setAttribute("error", "Email exist !!");
-//            url = "view/authen/register.jsp";
-//        } //false => quay tro lai trang home ( ghi tai khoan vao trong DB )
-//        else {
-//            userDAO.insert(user);
-//            url = "home";
-//        }
-//        return url;
-//
-//    }
+    private String registerDoPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String url = null;
+        //get ve cac thong tin nguoi dung nhpa
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String fullname = request.getParameter("fullname");
+
+        // mã hoá password
+        password = Encryption.toSHA1(password);
+
+        //kiem tra xem username da ton tai trong db
+        User user = new User();
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setFullName(fullname);
+        boolean isExistUsername = userDAO.checkUsernameExist(user);
+        boolean isExistEmail = userDAO.checkEmailExist(user);
+        //true => quay tro lai trang register (set thong bao loi )
+        if (isExistUsername) {
+            request.setAttribute("error", "Username exist !!");
+            url = "view/authen/register.jsp";
+        } else if (isExistEmail) {
+            request.setAttribute("error", "Email exist !!");
+            url = "view/authen/register.jsp";
+        } //false => quay tro lai trang home ( ghi tai khoan vao trong DB )
+        else {
+            userDAO.insert(user);
+            url = "home";
+        }
+        return url;
+
+    }
 
 
     private String loginGoogle(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -214,5 +214,7 @@ public class authenControl extends HttpServlet {
         }
         return url;
     }
+
+    
 
 }
