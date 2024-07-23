@@ -29,6 +29,7 @@ import model.Page;
 import model.Question;
 import model.Quiz;
 import model.Result;
+import model.User;
 import model.UserAnswer;
 
 /**
@@ -113,7 +114,8 @@ public class courseQuizController extends HttpServlet {
         } catch (Exception e) {
 
         }
-        int userid = 4;
+//        int userid = 4;
+        User userid = (User) session.getAttribute(commonConstant.SESSION_ACCOUNT);
         // Lấy danh sách câu hỏi từ request attribute (được set trong doGet)
         List<Question> listquestion = (List<Question>) session.getAttribute(commonConstant.REQUEST_LISTQUESTION);
         // Tạo một map để lưu câu hỏi và đáp án được chọn
@@ -151,7 +153,7 @@ public class courseQuizController extends HttpServlet {
             }
             //save kết quả người dùng vào database
             UserAnswer userAnswer = new UserAnswer();
-            userAnswer.setUserId(userid);
+            userAnswer.setUserId(userid.getUserID());
             userAnswer.setQuizId(quizid);
             userAnswer.setQuestionId(questionId);
             userAnswer.setAnswerId(userAnswerId);
@@ -163,7 +165,7 @@ public class courseQuizController extends HttpServlet {
         float score = (float) correctAnswers / totalQuestions * 100;
 
         Result result = new Result();
-        result.setUserId(userid);
+        result.setUserId(userid.getUserID());
         result.setQuizId(quizid);
         int attemptCount = resultDAO.numberOfTest(result);
         attemptCount++;
@@ -201,6 +203,7 @@ public class courseQuizController extends HttpServlet {
     }// </editor-fold>
 
     private void handleRetry(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session = request.getSession();
         String Quizid = request.getParameter("quizid");
         int quizid = 0;
         try {
@@ -208,9 +211,10 @@ public class courseQuizController extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        int userid = 4;
+//        int userid = 4;
+        User userid = (User) session.getAttribute(commonConstant.SESSION_ACCOUNT);
         UserAnswer userAnswer = new UserAnswer();
-        userAnswer.setUserId(userid);
+        userAnswer.setUserId(userid.getUserID());
         userAnswer.setQuizId(quizid);
         userAnswerDAO.delete(userAnswer);
         handleQuiz(request, response);
@@ -251,6 +255,7 @@ public class courseQuizController extends HttpServlet {
     }
 
     private void handleViewDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String Quizid = request.getParameter("quizid");
         int quizid = 0;
         try {
@@ -258,9 +263,10 @@ public class courseQuizController extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        int userid = 4;
+//        int userid = 4;
+        User userid = (User) session.getAttribute(commonConstant.SESSION_ACCOUNT);
         UserAnswer userAnswer = new UserAnswer();
-        userAnswer.setUserId(userid);
+        userAnswer.setUserId(userid.getUserID());
         userAnswer.setQuizId(quizid);
 
         List<UserAnswer> listUserAnswers = userAnswerDAO.getUserAnswersByQuizAndUser(userAnswer);

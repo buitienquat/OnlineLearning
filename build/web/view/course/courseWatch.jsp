@@ -72,16 +72,43 @@
                                     <li><a href="javascript:;"><i class="fa fa-envelope-o"></i>Support@website.com</a></li>
                                 </ul>
                             </div>
-                            <div class="topbar-right">
+                           <div class="topbar-right">
                                 <ul>
-                                    <li>
-                                        <select class="header-lang-bx">
-                                            <option data-icon="flag flag-uk">English UK</option>
-                                            <option data-icon="flag flag-us">English US</option>
-                                        </select>
-                                    </li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
+                                    <c:if test="${account != null}">
+                                        <li>
+                                            <c:if test="${account.getFullName() != null}">
+                                                <span>Xin chào, ${account.getFullName()}</span>
+                                            </c:if>
+
+                                        </li>
+                                        <!--  Student-->
+                                        <c:if test="${account.getRoleID()== 3}">
+                                            <li>
+                                                <a href="#">My Account</a>                              
+                                            </li>
+                                        </c:if>
+                                        <!--  Teacher-->
+                                        <c:if test="${account.getRoleID() == 2}">
+                                            <li>
+                                                <a href="#">My Account</a>                              
+                                            </li>
+                                        </c:if>
+                                        <!--  Admin -->
+                                        <c:if test="${account.getRoleID() == 1}">
+                                            <li>
+                                                <a href="#">My Account</a>
+                                            </li>
+                                        </c:if>
+                                    </c:if>
+                                    <c:if test="${account == null}">
+                                        <li><a href="authen?action=login">Login</a></li>
+                                        <li><a href="authen?action=register">Register</a></li>
+                                        </c:if>
+                                        <c:if test="${account != null}">
+                                        <li>
+                                            <a href="${pageContext.request.contextPath}/authen?action=log-out">Sign Out</a>
+                                        </li>
+                                    </c:if>
                                 </ul>
                             </div>
                         </div>
