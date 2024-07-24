@@ -42,7 +42,7 @@ public class Blog extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/writtenblog");
         }
@@ -80,7 +80,7 @@ public class Blog extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String uploadFolder = request.getServletContext().getRealPath("assets/images/blog");
+        String uploadFolder = request.getServletContext().getRealPath("") + "../../web/assets/images/blog";
         Path uploadPath = Paths.get(uploadFolder);
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath); // nếu thư mục upload không tồn tại, tạo mới

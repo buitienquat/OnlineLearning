@@ -34,6 +34,7 @@ public class lesson extends HttpServlet {
          int courseid=Integer.parseInt(request.getParameter("courseid"));
          CourseDB coursedb = new CourseDB();
          List<Lesson> listLesson = coursedb.getLessonbyCourseID(courseid);
+         
          request.setAttribute("listLesson",listLesson);
     request.getRequestDispatcher("view/admin/Lesson.jsp").forward(request, response);
     } 

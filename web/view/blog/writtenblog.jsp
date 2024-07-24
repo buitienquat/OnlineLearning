@@ -1,5 +1,6 @@
 <%@ page import="Utility.Utility" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -297,13 +298,14 @@
                     <ul>
 
                         <li>
-                            <a href="blog" class="ttr-material-button">
-                                <span class="ttr-icon"><i class="ti-marker-alt"></i></span>
-                                <span class="ttr-label">Add Blog</span>
-                            </a>
+                            
                             <a href="writtenblog" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-save-alt"></i></span>
                                 <span class="ttr-label">Manage Blog</span>
+                            </a>
+                            <a href="coursemanage" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="ti-marker-alt"></i></span>
+                                <span class="ttr-label">Manage Course</span>
                             </a>
                         </li>			
                         <li class="ttr-seperate"></li>
@@ -382,13 +384,13 @@
 
                                                         <div class="col-md-12">
                                                             <a href="#" class="btn radius-xl" data-bs-toggle="modal" data-bs-target="#newblogadd"
-                                                               data-blog-id="${o.getBlogID()}"
+                                                               data-blog-id="${o.getBlogId()}"
                                                                data-blog-title="${o.getBlogTitle()}"
                                                                data-blog-image="${o.getBlogImage()}"
                                                                data-post-date="${o.getPostDate()}"
-                                                               data-blog-detail='${o.getBlogDetail()}'
-                                                               data-blog-tag-id="${o.getBlogTagID()}">Edit</a>
-                                                            <a href="writtenblog?type=0&id=${o.getBlogID()}&status=${statusValue}&page=${currentPage}" class="btn red outline radius-xl delete-button">Delete</a>
+                                                               data-blog-tag-id='${o.getBlogTagID()}'
+                                                               data-blog-detail='${fn:escapeXml(o.getBlogDetail())}'>Edit</a>
+                                                            <a href="writtenblog?type=0&id=${o.getBlogId()}&status=${statusValue}&page=${currentPage}" class="btn red outline radius-xl delete-button">Delete</a>
                                                         </div>
                                                     </div>
 
@@ -523,154 +525,130 @@
         <script src="assets/assets_admin/js/bootstrap.bundle.min.js"></script>
         <script src='assets/assets_admin/vendors/switcher/switcher.js'></script>
         <script>
-                                            document.addEventListener('DOMContentLoaded', (event) => {
-                                                const deleteButtons = document.querySelectorAll('.delete-button');
-                                                deleteButtons.forEach(button => {
-                                                    button.addEventListener('click', function (e) {
-                                                        e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ <a>
-                                                        const href = this.getAttribute('href');
+                                            document.addEventListener('DOMContentLoaded', function () {
+                                                const blogModal = document.getElementById('newblogadd');
+                                                const blogTitle = document.getElementById('blogTitle');
+                                                const blogImage = document.getElementById('blogImage');
+                                                const blogId = document.getElementById('blogid');
+                                                const tagSelect = document.getElementById('tagSelect');
+                                                const currentImageFilename = document.getElementById('current-image-filename');
+                                                let editorInitialized = false;
 
-                                                        Swal.fire({
-                                                            title: 'Are you sure?',
-                                                            text: "You won't be able to revert this!",
-                                                            icon: 'warning',
-                                                            showCancelButton: true,
-                                                            confirmButtonColor: '#3085d6',
-                                                            cancelButtonColor: '#d33',
-                                                            confirmButtonText: 'Yes, delete it!'
-                                                        }).then((result) => {
-                                                            if (result.isConfirmed) {
-                                                                window.location.href = href;
+                                                tinymce.init({
+                                                    selector: 'textarea#editor',
+                                                    width: '100%',
+                                                    height: 600,
+                                                    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+                                                    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+                                                    images_upload_url: '/OnlineLearning/upload',
+                                                    images_upload_handler: function (blobInfo, success, failure) {
+                                                        var xhr, formData;
+                                                        xhr = new XMLHttpRequest();
+                                                        xhr.withCredentials = false;
+                                                        xhr.open('POST', '/OnlineLearning/upload');
+                                                        xhr.onload = function () {
+                                                            var json;
+                                                            if (xhr.status != 200) {
+                                                                failure('HTTP Error: ' + xhr.status);
+                                                                return;
                                                             }
+                                                            json = JSON.parse(xhr.responseText);
+                                                            if (!json || typeof json.location != 'string') {
+                                                                failure('Invalid JSON: ' + xhr.responseText);
+                                                                return;
+                                                            }
+                                                            success(json.location);
+                                                        };
+                                                        formData = new FormData();
+                                                        formData.append('file', blobInfo.blob(), blobInfo.filename());
+                                                        xhr.send(formData);
+                                                    },
+                                                    setup: function (editor) {
+                                                        editor.on('init', function () {
+                                                            editorInitialized = true;
                                                         });
-                                                    });
+                                                    }
+                                                });
+
+                                                blogModal.addEventListener('show.bs.modal', function (event) {
+                                                    const button = event.relatedTarget;
+                                                    const blogTitleValue = button.getAttribute('data-blog-title');
+                                                    const blogImageValue = button.getAttribute('data-blog-image');
+                                                    const blogIdValue = button.getAttribute('data-blog-id');
+                                                    const blogDetailValue = decodeURIComponent(button.getAttribute('data-blog-detail'));
+                                                    const blogTagIdValue = button.getAttribute('data-blog-tag-id');
+
+                                                    blogTitle.value = blogTitleValue || '';
+                                                    blogImage.src = blogImageValue ? 'assets/images/blog/' + blogImageValue : 'assets/images/blog/default.jpg';
+                                                    blogId.value = blogIdValue || '';
+                                                    currentImageFilename.value = blogImageValue || '';
+
+                                                    if (editorInitialized) {
+                                                        tinymce.get('editor').setContent(blogDetailValue || '');
+                                                    }
+
+                                                    if (blogTagIdValue) {
+                                                        tagSelect.value = blogTagIdValue;
+                                                    } else {
+                                                        tagSelect.selectedIndex = 0;
+                                                    }
+                                                });
+
+                                                blogModal.addEventListener('hidden.bs.modal', function () {
+                                                    blogTitle.value = '';
+                                                    blogImage.src = 'assets/images/blog/default.jpg';
+                                                    blogId.value = '';
+                                                    currentImageFilename.value = '';
+                                                    if (editorInitialized) {
+                                                        tinymce.get('editor').setContent('');
+                                                    }
+                                                    tagSelect.selectedIndex = 0;
                                                 });
                                             });
-        </script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const blogModal = document.getElementById('newblogadd');
-                const blogTitle = document.getElementById('blogTitle');
-                const blogImage = document.getElementById('blogImage');
-                const blogId = document.getElementById('blogid');
-                const tagSelect = document.getElementById('tagSelect');
-                const currentImageFilename = document.getElementById('current-image-filename');
-                let editorInitialized = false;
 
-                tinymce.init({
-                    selector: 'textarea#editor',
-                    width: '100%',
-                    height: 600,
-                    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-                    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-                    images_upload_url: '/OnlineLearning/upload',
-                    images_upload_handler: function (blobInfo, success, failure) {
-                        var xhr, formData;
-                        xhr = new XMLHttpRequest();
-                        xhr.withCredentials = false;
-                        xhr.open('POST', '/OnlineLearning/upload');
-                        xhr.onload = function () {
-                            var json;
-                            if (xhr.status != 200) {
-                                failure('HTTP Error: ' + xhr.status);
-                                return;
-                            }
-                            json = JSON.parse(xhr.responseText);
-                            if (!json || typeof json.location != 'string') {
-                                failure('Invalid JSON: ' + xhr.responseText);
-                                return;
-                            }
-                            success(json.location);
-                        };
-                        formData = new FormData();
-                        formData.append('file', blobInfo.blob(), blobInfo.filename());
-                        xhr.send(formData);
-                    },
-                    setup: function (editor) {
-                        editor.on('init', function () {
-                            editorInitialized = true;
-                        });
-                    }
-                });
 
-                blogModal.addEventListener('show.bs.modal', function (event) {
-                    const button = event.relatedTarget;
-                    const blogTitleValue = button.getAttribute('data-blog-title');
-                    const blogImageValue = button.getAttribute('data-blog-image');
-                    const blogIdValue = button.getAttribute('data-blog-id');
-                    const blogDetailValue = button.getAttribute('data-blog-detail');
-                    const blogTagIdValue = button.getAttribute('data-blog-tag-id');
+                                            const handleChange = () => {
+                                                const fileUploader = document.querySelector('#input-file');
+                                                const getFile = fileUploader.files;
+                                                if (getFile.length !== 0) {
+                                                    const uploadedFile = getFile[0];
+                                                    readFile(uploadedFile);
+                                                }
+                                            };
 
-                    blogTitle.value = blogTitleValue || '';
-                    blogImage.src = blogImageValue ? 'assets/images/blog/' + blogImageValue : 'assets/images/blog/default.jpg';
-                    blogId.value = blogIdValue || '';
-                    currentImageFilename.value = blogImageValue || '';
+                                            const readFile = (uploadedFile) => {
+                                                if (uploadedFile) {
+                                                    const reader = new FileReader();
+                                                    reader.onload = () => {
+                                                        const parent = document.querySelector('.preview-box');
+                                                        const img = document.createElement('img');
+                                                        img.src = reader.result;
+                                                        img.classList.add('preview-content');
+                                                        img.onload = () => {
+                                                            const parentWidth = parent.offsetWidth;
+                                                            const imgWidth = img.width;
+                                                            const imgHeight = img.height;
 
-                    if (editorInitialized) {
-                        tinymce.get('editor').setContent(blogDetailValue || '');
-                    }
+                                                            const scaleFactor = parentWidth / imgWidth;
+                                                            const newWidth = imgWidth * scaleFactor;
+                                                            const newHeight = imgHeight * scaleFactor;
 
-                    if (blogTagIdValue) {
-                        tagSelect.value = blogTagIdValue;
-                    } else {
-                        tagSelect.selectedIndex = 0;
-                    }
-                });
+                                                            img.style.width = `${newWidth}px`;
+                                                            img.style.height = `${newHeight}px`;
+                                                        };
+                                                        parent.innerHTML = "";
+                                                        parent.appendChild(img);
+                                                    };
+                                                    reader.readAsDataURL(uploadedFile);
+                                                }
+                                            };
 
-                blogModal.addEventListener('hidden.bs.modal', function () {
-                    blogTitle.value = '';
-                    blogImage.src = 'assets/images/blog/default.jpg';
-                    blogId.value = '';
-                    currentImageFilename.value = '';
-                    if (editorInitialized) {
-                        tinymce.get('editor').setContent('');
-                    }
-                    tagSelect.selectedIndex = 0;
-                });
-            });
-
-            const handleChange = () => {
-                const fileUploader = document.querySelector('#input-file');
-                const getFile = fileUploader.files;
-                if (getFile.length !== 0) {
-                    const uploadedFile = getFile[0];
-                    readFile(uploadedFile);
-                }
-            };
-
-            const readFile = (uploadedFile) => {
-                if (uploadedFile) {
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                        const parent = document.querySelector('.preview-box');
-                        const img = document.createElement('img');
-                        img.src = reader.result;
-                        img.classList.add('preview-content');
-                        img.onload = () => {
-                            const parentWidth = parent.offsetWidth;
-                            const imgWidth = img.width;
-                            const imgHeight = img.height;
-
-                            const scaleFactor = parentWidth / imgWidth;
-                            const newWidth = imgWidth * scaleFactor;
-                            const newHeight = imgHeight * scaleFactor;
-
-                            img.style.width = `${newWidth}px`;
-                            img.style.height = `${newHeight}px`;
-                        };
-                        parent.innerHTML = "";
-                        parent.appendChild(img);
-                    };
-                    reader.readAsDataURL(uploadedFile);
-                }
-            };
-
-            document.addEventListener("DOMContentLoaded", function () {
-                const currentTimeInput = document.getElementById("currentTimeInput");
-                const now = new Date();
-                const formattedTime = now.toISOString().slice(0, 10);
-                currentTimeInput.value = formattedTime;
-            });
+                                            document.addEventListener("DOMContentLoaded", function () {
+                                                const currentTimeInput = document.getElementById("currentTimeInput");
+                                                const now = new Date();
+                                                const formattedTime = now.toISOString().slice(0, 10);
+                                                currentTimeInput.value = formattedTime;
+                                            });
         </script>
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {

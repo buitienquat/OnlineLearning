@@ -1,9 +1,11 @@
 package dal;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -84,6 +86,8 @@ public class CourseDB extends DBContext {
         }
         return list;
     }
+    
+    
 
     public List<Lesson> getLessonbyCourseID(int courseid) {
         List<Lesson> list = new ArrayList<>();
@@ -111,7 +115,17 @@ public class CourseDB extends DBContext {
         return list;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new CourseDB().getCoursebyStatuspage(1));
-    }
+//    public static void main(String[] args) {
+//        CourseDB dao = new CourseDB();
+//        String title = "Introduction to Java";
+//        String courseID = "1"; // Giả sử courseID là 1
+//        String video = "https://example.com/video.mp4";
+//        String note = "This is a sample note for the lesson.";
+//        String numberLesson = "1";
+//        dao.insertLesson(title, 1, video, note, numberLesson);
+//        System.out.println("Lesson inserted successfully!");
+//    }
+    
+
+
 }

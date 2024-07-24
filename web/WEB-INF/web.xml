@@ -94,6 +94,14 @@
         <servlet-name>dashboardmanager</servlet-name>
         <servlet-class>controller.Admin.dashboardmanager</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CourseManage</servlet-name>
+        <servlet-class>controller.Course.CourseManage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LessonManage</servlet-name>
+        <servlet-class>controller.Course.LessonManage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>courseController</servlet-name>
         <url-pattern>/course</url-pattern>
@@ -186,6 +194,14 @@
     <servlet-mapping>
         <servlet-name>dashboardmanager</servlet-name>
         <url-pattern>/dashboardmanager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseManage</servlet-name>
+        <url-pattern>/coursemanage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LessonManage</servlet-name>
+        <url-pattern>/lessonmanage</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>

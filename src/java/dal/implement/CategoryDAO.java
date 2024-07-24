@@ -4,10 +4,15 @@
  */
 package dal.implement;
 
+import dal.DBContext;
 import dal.GenericDAO;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import model.Category;
+import java.sql.SQLException;
 
 /**
  *
@@ -41,4 +46,8 @@ public class CategoryDAO extends GenericDAO<Category> {
         //          ko rỗng         =>  có sản phẩm => nằm ở vị trí đầu tiên => lấy ở vị trí 0
         return list.isEmpty() ? null : list.get(0);
     }
+    
+
+   
+
 }

@@ -279,7 +279,7 @@
                                                         </a></li>
                                                     <li><a href="#"><i class="fa fa-user"></i>By William</a></li>
                                                 </ul>
-                                                <h5 class="post-title"><a href="blogdetail?id=${o.getBlogID()}">${o.getBlogTitle()}</a></h5>
+                                                <h5 class="post-title"><a href="blogdetail?id=${o.getBlogId()}">${o.getBlogTitle()}</a></h5>
                                                 <c:out value="${Utility.shortenText(o.getBlogDetail(), 100)}"/>
                                                 <div class="post-extra">
                                                     <a href="#" class="btn-link">READ MORE</a>
@@ -343,7 +343,7 @@
                                                         <div class="ttr-post-media"> <img src="assets/images/blog/${b.blogImage != null && !b.blogImage.isEmpty() ? b.blogImage : 'default.jpg'}" alt=""/>  </div>
                                                         <div class="ttr-post-info">
                                                             <div class="ttr-post-header">
-                                                                <h6 class="post-title"><a href="blogdetail?id=${b.getBlogID()}">${b.getBlogTitle()}</a></h6>
+                                                                <h6 class="post-title"><a href="blogdetail?id=${b.getBlogId()}">${b.getBlogTitle()}</a></h6>
                                                             </div>
                                                             <ul class="media-post">
                                                                 <li><a href="#"><i class="fa fa-calendar"></i>

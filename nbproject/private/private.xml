@@ -6,5 +6,21 @@
             <file>file:/G:/OnlineLearning/OnlineLearning/web/view/course/course.jsp</file>
             <file>file:/G:/OnlineLearning/OnlineLearning/web/view/Common/commonCourse/search_box.jsp</file>
         </group>
+        <group>
+            <file>file:/D:/Project/Clone%20Project/OnlineLearning/src/java/dal/BlogDB.java</file>
+            <file>file:/D:/Project/Clone%20Project/OnlineLearning/src/java/controller/Course/LessonManage.java</file>
+            <file>file:/D:/Project/Clone%20Project/OnlineLearning/web/view/course/lessonmanage.jsp</file>
+            <file>file:/D:/Project/Clone%20Project/OnlineLearning/src/java/controller/blog/BlogDetail.java</file>
+            <file>file:/D:/Project/Clone%20Project/OnlineLearning/src/java/dal/implement/CourseDAO.java</file>
+            <file>file:/D:/Project/Clone%20Project/OnlineLearning/src/java/dal/CourseDB.java</file>
+            <file>file:/D:/Project/Clone%20Project/OnlineLearning/src/java/controller/Course/courseController.java</file>
+            <file>file:/D:/Project/Clone%20Project/OnlineLearning/src/java/dal/DBContext.java</file>
+            <file>file:/D:/Project/Clone%20Project/OnlineLearning/src/java/dal/implement/BlogDAO.java</file>
+            <file>file:/D:/Project/Clone%20Project/OnlineLearning/src/java/dal/implement/QuizDAO.java</file>
+            <file>file:/D:/Project/Clone%20Project/OnlineLearning/src/java/dal/implement/CategoryDAO.java</file>
+            <file>file:/D:/Project/Clone%20Project/OnlineLearning/web/view/admin/CourseList.jsp</file>
+            <file>file:/D:/Project/Clone%20Project/OnlineLearning/src/java/dal/implement/LessonDAO.java</file>
+            <file>file:/D:/Project/Clone%20Project/OnlineLearning/src/java/controller/Admin/lesson.java</file>
+        </group>
     </open-files>
 </project-private>

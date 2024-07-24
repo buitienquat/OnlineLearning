@@ -33,7 +33,7 @@ public class BlogDAO {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                int blogId = rs.getInt("BlogID");
+                int blogId = rs.getInt("BlogId");
                 String blogTitle = rs.getString("BlogTitle");
                 String blogImage = rs.getString("BlogImage");
                 String blogDetail = rs.getString("BlogDetail");
@@ -66,7 +66,7 @@ public class BlogDAO {
 
             while (rs.next()) {
                 Blog blog = new Blog();
-                blog.setBlogID(rs.getInt("blogID"));
+                blog.setBlogId(rs.getInt("blogID"));
                 blog.setBlogTitle(rs.getString("BlogTitle"));
                 blog.setBlogDetail(rs.getString("BlogDetail"));
                 blog.setBlogImage(rs.getString("BlogImage"));
@@ -278,7 +278,7 @@ public class BlogDAO {
             rs = ps.executeQuery();
             if (rs.next()) {
                 blog = new Blog(
-                        rs.getInt("BlogID"),
+                        rs.getInt("BlogId"),
                         rs.getString("BlogTitle"),
                         rs.getString("BlogImage"),
                         rs.getString("BlogDetail"),
