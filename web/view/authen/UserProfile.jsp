@@ -1,13 +1,25 @@
 <%-- 
-    Document   : Myprofile
-    Created on : Jun 26, 2024, 2:25:33 PM
+    Document   : UserProfile
+    Created on : May 25, 2024, 8:55:14 PM
     Author     : vuduc
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="java.util.List" %>
+<%@page import="model.User"%>
+<%@page import="dal.UserDBContext"%>
+<%@ page import="java.util.Date" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<script type="text/javascript">
+        function showAlert1() {
+            alert("Update thành công!");
+        }
+          function showAlert2() {
+            alert("Delete thành công !");
+        }
+    </script>
+    <!-- Mirrored from educhamp.themetrades.com/demo/admin/user-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:11:35 GMT -->
     <head>
 
         <!-- META ============================================= -->
@@ -55,12 +67,18 @@
         <link rel="stylesheet" type="text/css" href="assets/assets_admin/css/style.css">
         <link rel="stylesheet" type="text/css" href="assets/assets_admin/css/dashboard.css">
         <link class="skin" rel="stylesheet" type="text/css" href="assets/assets_admin/css/color/color-1.css">
-
+<style>
+  /* Thiết lập style cho select */
+  #dropdown {
+    min-width: 50px; /* Chiều rộng tối thiểu của dropdown */
+    width: 50px; /* Chiều rộng tự động điều chỉnh dựa trên nội dung */
+    float: left; /* Đặt về phía bên phải */
+  }
+</style>
     </head>
     <body class="ttr-opened-sidebar ttr-pinned-sidebar">
-
-        <!-- header start -->
-        <header class="ttr-header">
+<!-- header start -->
+       <header class="ttr-header">
             <div class="ttr-header-wrapper">
                 <!--sidebar menu toggler start -->
                 <div class="ttr-toggle-sidebar ttr-material-button">
@@ -169,13 +187,13 @@
                             <div class="ttr-header-submenu">
                                 <ul>
                                     <li><a href="adminprofile">My profile</a></li>
-
+                                    
                                     <li><a href="mailbox.html">Messages</a></li>
                                     <li><a href="../login.html">Logout</a></li>
                                 </ul>
                             </div>
                         </li>
-
+                        
                     </ul>
                     <!-- header right menu end -->
                 </div>
@@ -225,9 +243,9 @@
                                 <span class="ttr-label">Courses list</span>
                             </a>
                         </li>
-
-
-
+                 
+                      
+                      
                         <li>
                             <a href="listuser" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-comments"></i></span>
@@ -240,7 +258,7 @@
                                 <span class="ttr-label">Blog listing</span>
                             </a>
                         </li>
-
+                      
                         <li class="ttr-seperate"></li>
                     </ul>
                     <!-- sidebar menu end -->
@@ -267,119 +285,70 @@
                             <div class="wc-title">
                                 <h4>User Profile</h4>
                             </div>
-                            <c:forEach var="user" items="${listUser}">
-                                <div class="widget-inner">
-                                    <form class="edit-profile m-b30" enctype="multipart/form-data" action="adminprofile" method="post">
-                                        <div class="">
-                                            <div class="form-group row">
-                                                <div class="col-sm-10  ml-auto">
-                                                    <h3>1. Personal Details</h3>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Email</label>
-                                                <div class="col-sm-7">
-                                                    <input class="form-control" type="text" name="email" value="${user.getEmail()}">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Phone</label>
-                                                <div class="col-sm-7">
-                                                    <input class="form-control" type="text" value="${user.getPhone()}">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Fullname</label>
-                                                <div class="col-sm-7">
-                                                    <input class="form-control" type="text" value="${user.getFullName()}">
-                                                    <span class="help">If you want your invoices addressed to a company. Leave blank to use your full name.</span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Image</label>
-                                                <div class="col-sm-7">
-                                                    <img id="currentImage" src="${user.getImage()}" alt="User Image" width="150" height="150">
-                                                    <input type="file" name="userImage" accept="image/*" onchange="previewImage(event)">
-                                                </div>
-                                            </div>
+                            <form class="edit-profile m-b30" action="/OnlineLearning/updateProfile" method="GET">
+                            <div class="widget-inner">
+                                <%
 
-                                            <div class="seperator"></div>
+int userid = Integer.parseInt(request.getParameter("userid"));
+String img = request.getParameter("img");
+int status=Integer.parseInt(request.getParameter("status"));
+                                %>                                
 
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Dob</label>
-                                                <div class="col-sm-7">
-                                                    <input class="form-control" type="text" value="${user.getDob()}">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Address</label>
-                                                <div class="col-sm-7">
-                                                    <input class="form-control" type="text" value="${user.getAddress()}">
-                                                </div>
-                                            </div>
-                                            <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-                                        </div>
-                                        <div class="">
-                                            <div class="">
-                                                <div class="row">
-                                                    <div class="col-sm-2">
-                                                    </div>
-                                                    <div class="col-sm-7">
-                                                        <button type="submit" class="btn">Save changes</button>
-                                                        <button type="reset" class="btn-secondry">Cancel</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <script>
-                                        function previewImage(event) {
-                                            const reader = new FileReader();
-                                            reader.onload = function () {
-                                                const output = document.getElementById('currentImage');
-                                                output.src = reader.result;
-                                            };
-                                            reader.readAsDataURL(event.target.files[0]);
-                                        }
-                                    </script>
-                                    <form class="edit-profile">
-                                        <div class="">
-                                            <div class="form-group row">
-                                                <div class="col-sm-10 ml-auto">
-                                                    <h3>2. Password</h3>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Current Password</label>
-                                                <div class="col-sm-7">
-                                                    <input class="form-control" type="text" value="${user.password}" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">New Password</label>
-                                                <div class="col-sm-7">
-                                                    <input class="form-control" type="password" value="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Re Type Password</label>
-                                                <div class="col-sm-7">
-                                                    <input class="form-control" type="password" value="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-2">
-                                            </div>
+                                
+                                    <div class="card-courses-user-pic">
+                                        <img src="<%= img%>" alt=""/>
+                                    </div>
+                                    </br>
+                                    <div class="">
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">user Id</label>
                                             <div class="col-sm-7">
-                                                <button type="reset" class="btn">Save changes</button>
-                                                <button type="reset" class="btn-secondry">Cancel</button>
+                                                <input class="form-control" type="text" value="<%=userid%>" name="userid" readonly>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
-                            </c:forEach>
+                                       
+                                        </div>
+                                             <div class="">
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Reset password</label>
+                                            <div class="col-sm-7">
+                                                <input class="form-control" type="text" name="password" >
+                                            </div>
+                                        </div>
+                                       
+                                        </div>
+                                            
+                                            <% if(status==1 || status==2){%>
+                                            <div>change status</div>
+                                            <select id="dropdown" style="width: 50px;" name="status">
+                                                    <option value="2">Active</option>
+                                                    <option value="3">Banned</option>
+                                                  </select>
+                                                <%}  else if(status==3){%>
+                                                <div>change status</div>
+                                                <select id="dropdown" style="width: 50px;" name="status">
+                                                    <option value="3">Banned</option>
+                                                    <option value="2">Active</option>
+                                                    </select>
+                                                        <%}%>
 
+                                    </div>
+                                            </br>
+                                    <div class="">
+                                        <div class="">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <button onclick="showAlert1()" type="submit" class="btn" name="btn" value="update">Update</button>
+                                                    <button onclick="showAlert2()" type="submit" class="btn-secondry" name="btn" value="delete">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
                         </div>
                     </div>
                     <!-- Your Profile Views Chart END-->
@@ -406,8 +375,8 @@
         <script src="assets/assets_admin/vendors/chart/chart.min.js"></script>
         <script src="assets/assets_admin/js/admin.js"></script>
         <script src='assets/assets_admin/vendors/switcher/switcher.js'></script>
+        
     </body>
 
     <!-- Mirrored from educhamp.themetrades.com/demo/admin/user-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:11:35 GMT -->
-
 </html>

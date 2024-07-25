@@ -99,7 +99,7 @@
                                         <!--  Admin -->
                                         <c:if test="${account.getRoleID() == 1}">
                                             <li>
-                                                <a href="#">My Account</a>
+                                                <a href="/OnlineLearning/dashboardmanager">My Account</a>
                                             </li>
                                         </c:if>
                                     </c:if>

@@ -178,6 +178,7 @@ public class authenControl extends HttpServlet {
         user.setEmail(email);
         user.setPassword(password);
         user.setFullName(fullname);
+        user.setRoleID(3);
         boolean isExistUsername = userDAO.checkUsernameExist(user);
         boolean isExistEmail = userDAO.checkEmailExist(user);
         //true => quay tro lai trang register (set thong bao loi )

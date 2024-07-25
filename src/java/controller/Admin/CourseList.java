@@ -1,7 +1,7 @@
 package controller.Admin;
 
-import dal.CourseDB;
-import dal.UserDBContext;
+import dal.implement.CourseDB;
+import dal.implement.UserDBContext;
 import java.io.IOException;
 import java.util.List;
 import jakarta.servlet.ServletException;

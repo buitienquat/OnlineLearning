@@ -1,13 +1,12 @@
 <%-- 
-    Document   : login
-    Created on : Jul 1, 2024, 2:00:00 PM
-    Author     : Admin
+    Document   : forgotpassword
+    Created on : Jul 25, 2024, 3:44:32 PM
+    Author     : vuduc
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
 
     <head>
 
@@ -38,8 +37,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!--[if lt IE 9]>
-        <script src="${pageContext.request.contextPath}/assets/js/html5shiv.min.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/js/respond.min.js"></script>
+        <script src="assets/js/html5shiv.min.js"></script>
+        <script src="assets/js/respond.min.js"></script>
         <![endif]-->
 
         <!-- All PLUGINS CSS ============================================= -->
@@ -66,49 +65,27 @@
                 <div class="account-form-inner">
                     <div class="account-container">
                         <div class="heading-bx left">
-                            <h2 class="title-head">Login to your <span>Account</span></h2>
-                            <p>Don't have an account? <a href="authen?action=register">Create one here</a></p>
+                            <h2 class="title-head">Forget <span>Password</span></h2>
+                            <p>Login Your Account <a href="http://localhost:9999/OnlineLearning/authen?action=login">Click here</a></p>
                         </div>	
-                        <form action="authen?action=login" method="POST" class="contact-bx">
+                        <form class="contact-bx" action="<%=request.getContextPath()%>/RegisterServlet" method="post">
                             <div class="row placeani">
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <label>Your Name</label>
-                                            <input name="username" type="text" required="" class="form-control">
+                                            <label>Your Email Address</label>
+                                            <input name="email" type="email" required="" class="form-control">
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <div class="input-group"> 
-                                            <label>Your Password</label>
-                                            <input name="password" type="password" class="form-control" required="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group form-forget">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-                                            <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
-                                        </div>
-                                        <a href="view/authen/forgot_password.jsp" class="ml-auto">Forgot Password?</a>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 m-b30">
-                                    <button name="submit" type="submit" class="btn button-md">Login</button>
-
-                                </div>
-                                <span style="color:red">${error}</span>
-                                <div class="col-lg-12">
-                                    <h6>Login with Social media</h6>
-                                    <div class="d-flex">
-                                        <a class="btn flex-fill m-l5 google-plus" href="https://accounts.google.com/o/oauth2/auth?scope=email+profile&redirect_uri=http://localhost:9999/OnlineLearning/authen?action=logingoogle&response_type=code&client_id=10149831239-jp5a2uhorfqpaucmrejbpkk2rjnhrdqv.apps.googleusercontent.com&approval_prompt=force"><i class="fa fa-google-plus"></i>Google Plus</a>
-                                    </div>
+                                    <button name="submit" type="submit" value="Send Verification Code" class="btn button-md">Submit</button>
                                 </div>
                             </div>
                         </form>
+                        <c:if test="${not empty param.error}">
+                            <p style="color: red;">${param.error}</p>
+                        </c:if>
                     </div>
                 </div>
             </div>
@@ -128,7 +105,7 @@
         <script src="${pageContext.request.contextPath}/assets/vendors/owl-carousel/owl.carousel.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/functions.js"></script>
         <script src="${pageContext.request.contextPath}/assets/js/contact.js"></script>
-        <script src="${pageContext.request.contextPath}/assets/vendors/switcher/switcher.js'></script>
-                </body>
+        <script src='${pageContext.request.contextPath}/assets/vendors/switcher/switcher.js'></script>
+    </body>
 
-                </html>
+</html>

@@ -1,5 +1,6 @@
-package dal;
+package dal.implement;
 
+import dal.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

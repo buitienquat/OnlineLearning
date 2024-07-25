@@ -74,18 +74,9 @@
         <servlet-class>controller.Admin.updateblog</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UploadServlet</servlet-name>
-        <servlet-class>controller.Admin.UploadServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>adminprofile</servlet-name>
         <servlet-class>controller.Admin.adminprofile</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>updateImage</servlet-name>
-        <servlet-class>controller.Admin.updateImage</servlet-class>
-    </servlet>
-    <!-- Servlet Mappings -->
     <servlet>
         <servlet-name>BlogManager</servlet-name>
         <servlet-class>controller.Admin.BlogManager</servlet-class>
@@ -94,6 +85,20 @@
         <servlet-name>dashboardmanager</servlet-name>
         <servlet-class>controller.Admin.dashboardmanager</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>controller.Authen.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VerifyServlet</servlet-name>
+        <servlet-class>controller.Authen.VerifyServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>resetPasswordServlet</servlet-name>
+        <servlet-class>controller.Authen.resetPasswordServlet</servlet-class>
+    </servlet>
+
+    <!-- Servlet Mappings -->
     <servlet-mapping>
         <servlet-name>courseController</servlet-name>
         <url-pattern>/course</url-pattern>
@@ -167,18 +172,9 @@
         <url-pattern>/updateblog</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UploadServlet</servlet-name>
-        <url-pattern>/UploadServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>adminprofile</servlet-name>
         <url-pattern>/adminprofile</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>updateImage</servlet-name>
-        <url-pattern>/updateImage</url-pattern>
-    </servlet-mapping>
-    <!-- Welcome File List -->
     <servlet-mapping>
         <servlet-name>BlogManager</servlet-name>
         <url-pattern>/blogmanager</url-pattern>
@@ -187,6 +183,20 @@
         <servlet-name>dashboardmanager</servlet-name>
         <url-pattern>/dashboardmanager</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerifyServlet</servlet-name>
+        <url-pattern>/VerifyServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>resetPasswordServlet</servlet-name>
+        <url-pattern>/resetPasswordServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Welcome File List -->
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>

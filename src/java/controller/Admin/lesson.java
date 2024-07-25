@@ -5,7 +5,7 @@
 
 package controller.Admin;
 
-import dal.CourseDB;
+import dal.implement.CourseDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;

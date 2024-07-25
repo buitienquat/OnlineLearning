@@ -5,7 +5,7 @@
 
 package controller.Admin;
 
-import dal.BlogDB;
+import dal.implement.BlogDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;

@@ -113,8 +113,8 @@
                             <h2 class="title-head">Register <span>Now</span></h2>
                             <p>Login to your account <a href="authen?action=login">Click here</a></p>
                         </div>
-                        <form name="registerForm" action="authen?action=register" method="POST" class="contact-bx" onsubmit="return validateForm()">
-                            <div class="row placeani">
+                        <form action="RegisterServlet" method="POST" class="contact-bx" onsubmit="return validateForm()">
+                            <div class="row placeani">  
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="username">Username</label>
@@ -152,14 +152,12 @@
                                 <div class="col-lg-12">
                                     <h6>Register with social media</h6>
                                     <div class="d-flex">
-
-                                        <a class="btn flex-fill m-l5 google-plus" href="https://accounts.google.com/o/oauth2/auth?scope=email+profile&redirect_uri=http://localhost:9999/OnlineLearning/authen?action=logingoogle&response_type=code&client_id=10149831239-jp5a2uhorfqpaucmrejbpkk2rjnhrdqv.apps.googleusercontent.com&approval_prompt=force"><i class="fa fa-google-plus"></i>Google Plus</a>
+                                        <a class="btn flex-fill m-r5 facebook" href="#"><i class="fa fa-facebook"></i>Facebook</a>
+                                        <a class="btn flex-fill m-l5 google-plus" href="#"><i class="fa fa-google-plus"></i>Google Plus</a>
                                     </div>
                                 </div>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
             </div>

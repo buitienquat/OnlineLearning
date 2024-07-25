@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List" %>
 <%@page import="model.User"%>
-<%@page import="dal.UserDBContext"%>
+<%@page import="dal.implement.UserDBContext"%>
 <%@ page import="java.util.Date" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,7 +89,7 @@
                 <!--logo start -->
                 <div class="ttr-logo-box">
                     <div>
-                        <a href="index.html" class="ttr-logo">
+                        <a href="dashboardmanager" class="ttr-logo">
                             <img alt="" class="ttr-logo-mobile" src="assets/assets_admin/images/logo-mobile.png" width="30" height="30">
                             <img alt="" class="ttr-logo-desktop" src="assets/assets_admin/images/logo-white.png" width="160" height="27">
                         </a>
@@ -100,7 +100,7 @@
                     <!-- header left menu start -->
                     <ul class="ttr-header-navigation">
                         <li>
-                            <a href="admin/AdminHomepage.jsp" class="ttr-material-button ttr-submenu-toggle">HOME</a>
+                            <a href="home" class="ttr-material-button ttr-submenu-toggle">HOME</a>
                         </li>
                     </ul>
                     <!-- header left menu end -->
@@ -232,7 +232,7 @@
                 <nav class="ttr-sidebar-navi">
                     <ul>
                         <li>
-                            <a href="dashboard" class="ttr-material-button">
+                            <a href="dashboardmanager" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-home"></i></span>
                                 <span class="ttr-label">Dashboard</span>
                             </a>
@@ -292,6 +292,7 @@
 int userid = Integer.parseInt(request.getParameter("userid"));
 String img = request.getParameter("img");
 int status=Integer.parseInt(request.getParameter("status"));
+
                                 %>                                
 
                                 
@@ -308,15 +309,13 @@ int status=Integer.parseInt(request.getParameter("status"));
                                         </div>
                                        
                                         </div>
-                                             <div class="">
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Reset password</label>
-                                            <div class="col-sm-7">
-                                                <input class="form-control" type="text" name="password" >
-                                            </div>
-                                        </div>
-                                       
-                                        </div>
+                                               <div>change roll</div>
+                                            <select id="dropdown" style="width: 50px;" name="role">
+                                                    <option value="1">Admin</option>
+                                                    <option value="2">Teacher</option>
+                                                    <option value="3">User</option>
+                                                  </select>
+                                            
                                             
                                             <% if(status==1 || status==2){%>
                                             <div>change status</div>

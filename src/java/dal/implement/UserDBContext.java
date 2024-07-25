@@ -1,5 +1,6 @@
-package dal;
+package dal.implement;
 
+import dal.DBContext;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -116,12 +117,13 @@ public class UserDBContext extends DBContext {
         }
     }
 
-    public void updateAccount(int userid, int status) {
+  public void updateAccount(int userid, int status,int role) {
         try {
-            String sql = "UPDATE [User] SET statusUserId=? WHERE UserID = ?";
+            String sql = "UPDATE [User] SET statusUserId=?,RoleID=? WHERE UserID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, status);
-            stm.setInt(2, userid);
+            stm.setInt(2, role);
+            stm.setInt(3, userid);
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
@@ -246,5 +248,32 @@ public class UserDBContext extends DBContext {
     public static void main(String[] args) {
         
         System.out.println(new UserDBContext().getUserbyUserId(2));
+    }
+
+     public void addUser(String email,String username,String password) {
+        try {
+            String sql = "INSERT INTO [dbo].[User] (Email, Username, Password,RoleID,statusUserId) VALUES (?,?,?,3,2)";
+            PreparedStatement stm = connection.prepareStatement(sql);
+             stm.setString(1, email);
+            stm.setString(2, username);
+            stm.setString(3, password);
+            
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+     public void updateUserByEmail(String email, String newpass) {
+        try {
+            String sql = "UPDATE [User] SET Password = ? WHERE Email = ?;";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, newpass);
+            stm.setString(2, email);
+            
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

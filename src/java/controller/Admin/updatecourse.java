@@ -2,10 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller.Admin;
 
-import dal.CourseDB;
+import dal.implement.CourseDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,45 +12,47 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
 /**
  *
  * @author vuduc
  */
 public class updatecourse extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-                try{
+        try {
             String button = request.getParameter("btn");
-            if(button.equals("approve")){
+            if (button.equals("approve")) {
                 CourseDB coursedb = new CourseDB();
-                int status=1;
-                int courseid=Integer.parseInt(request.getParameter("courseID"));
-                coursedb.updateCourse(courseid,status);
+                int status = 1;
+                int courseid = Integer.parseInt(request.getParameter("courseID"));
+                coursedb.updateCourse(courseid, status);
+            } else if (button.equals("cancel")) {
+                CourseDB coursedb = new CourseDB();
+                int status = 0;
+                int courseid = Integer.parseInt(request.getParameter("courseID"));
+                coursedb.updateCourse(courseid, status);
             }
-            else if(button.equals("cancel")){
-                   CourseDB coursedb = new CourseDB();
-                int status=0;
-                int courseid=Integer.parseInt(request.getParameter("courseID"));
-                coursedb.updateCourse(courseid,status);
-            }
-        }finally{
- request.getRequestDispatcher("CourseList").forward(request, response);
+        } finally {
+            response.sendRedirect("/OnlineLearning/CourseList");
+
         }
-    } 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -59,12 +60,13 @@ public class updatecourse extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -72,12 +74,13 @@ public class updatecourse extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

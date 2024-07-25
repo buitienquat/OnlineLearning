@@ -45,6 +45,7 @@ public class Blog extends HttpServlet {
             
             String contextPath = request.getContextPath();
             response.sendRedirect(contextPath + "/writtenblog");
+            
         }
     }
 

@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.User;
-import dal.UserDBContext;
+import dal.implement.UserDBContext;
 
 /**
  *
@@ -37,12 +37,11 @@ public class updateProfile extends HttpServlet {
             if(button.equals("update")){
                 int userid=Integer.parseInt(request.getParameter("userid"));
                 int status=Integer.parseInt(request.getParameter("status"));
+                int role=Integer.parseInt(request.getParameter("role"));
                 String pass=request.getParameter("password");
                 UserDBContext userDBContext = new UserDBContext();
-                userDBContext.updateAccount(userid,status);
-                if(pass != null && !pass.trim().isEmpty()){
-                    userDBContext.ChangePassword(userid,pass);
-                }
+                userDBContext.updateAccount(userid,status,role);
+              
 
             }
          else if(button.equals("delete")){
