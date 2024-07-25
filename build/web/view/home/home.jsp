@@ -122,7 +122,7 @@
                         <div class="container clearfix">
                             <!-- Header Logo ==== -->
                             <div class="menu-logo">
-                                <a href="index.html"><img src="${pageContext.request.contextPath}/assets/images/logo.png" alt=""></a>
+                                <a href="/OnlineLearning/home"><img src="${pageContext.request.contextPath}/assets/images/logo.png" alt=""></a>
                             </div>
                             <!-- Mobile Nav Button ==== -->
                             <button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -153,43 +153,14 @@
                             <!-- Navigation Menu ==== -->
                             <div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
                                 <div class="menu-logo">
-                                    <a href="index.html"><img src="${pageContext.request.contextPath}/assets/images/logo.png" alt=""></a>
+                                    <a href="/OnlineLearning/home"><img src="${pageContext.request.contextPath}/assets/images/logo.png" alt=""></a>
                                 </div>
                                 <ul class="nav navbar-nav">	
                                     <li class="active"><a href="/OnlineLearning/home">Home</a>
 
                                     </li>
-                                    <li><a href="javascript:;">Pages <i class="fa fa-chevron-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="javascript:;">About<i class="fa fa-angle-right"></i></a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="about-1.html">About 1</a></li>
-                                                    <li><a href="about-2.html">About 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="javascript:;">Event<i class="fa fa-angle-right"></i></a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="event.html">Event</a></li>
-                                                    <li><a href="events-details.html">Events Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="javascript:;">FAQ's<i class="fa fa-angle-right"></i></a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="faq-1.html">FAQ's 1</a></li>
-                                                    <li><a href="faq-2.html">FAQ's 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="javascript:;">Contact Us<i class="fa fa-angle-right"></i></a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="contact-1.html">Contact Us 1</a></li>
-                                                    <li><a href="contact-2.html">Contact Us 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="portfolio.html">Portfolio</a></li>
-                                            <li><a href="profile.html">Profile</a></li>
-                                            <li><a href="membership.html">Membership</a></li>
-                                            <li><a href="error-404.html">404 Page</a></li>
-                                        </ul>
+                                    <li><a href="javascript:;">Pages </a>
+                                        
                                     </li>
                                     <li class="add-mega-menu"><a href="/OnlineLearning/course">Our Courses <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu add-menu">
@@ -206,39 +177,10 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a href="javascript:;">Blog <i class="fa fa-chevron-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog-classic-grid.html">Blog Classic</a></li>
-                                            <li><a href="blog-classic-sidebar.html">Blog Classic Sidebar</a></li>
-                                            <li><a href="blog-list-sidebar.html">Blog List Sidebar</a></li>
-                                            <li><a href="blog-standard-sidebar.html">Blog Standard Sidebar</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
-                                        </ul>
+                                    <li><a href="javascript:;">Blog</a>
+                                        
                                     </li>
-                                    <li class="nav-dashboard"><a href="javascript:;">Dashboard <i class="fa fa-chevron-down"></i></a>
-                                        <ul class="sub-menu">
-                                            <li><a href="admin/index.html">Dashboard</a></li>
-                                            <li><a href="admin/add-listing.html">Add Listing</a></li>
-                                            <li><a href="admin/bookmark.html">Bookmark</a></li>
-                                            <li><a href="admin/courses.html">Courses</a></li>
-                                            <li><a href="admin/review.html">Review</a></li>
-                                            <li><a href="admin/teacher-profile.html">Teacher Profile</a></li>
-                                            <li><a href="admin/user-profile.html">User Profile</a></li>
-                                            <li><a href="javascript:;">Calendar<i class="fa fa-angle-right"></i></a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="admin/basic-calendar.html">Basic Calendar</a></li>
-                                                    <li><a href="admin/list-view-calendar.html">List View Calendar</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="javascript:;">Mailbox<i class="fa fa-angle-right"></i></a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="admin/mailbox.html">Mailbox</a></li>
-                                                    <li><a href="admin/mailbox-compose.html">Compose</a></li>
-                                                    <li><a href="admin/mailbox-read.html">Mail Read</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    
                                 </ul>
                                 <div class="nav-social-link">
                                     <a href="javascript:;"><i class="fa fa-facebook"></i></a>
@@ -373,7 +315,7 @@
                                         <h2>Learn a new skill online on <br> your time</h2>
                                         <h4><span class="counter">57,000</span> Online Courses</h4>
                                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                        <a href="#" class="btn button-md">Join Now</a>
+                                        <a href="/OnlineLearning/course" class="btn button-md">Join Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -387,7 +329,7 @@
                                     <h2 class="title-head ">Learn a new skill online<br> <span class="text-primary"> on your time</span></h2>
                                     <h4><span class="counter">57,000</span> Online Courses</h4>
                                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p>
-                                    <a href="#" class="btn button-md">Join Now</a>
+                                    <a href="/OnlineLearning/course" class="btn button-md">Join Now</a>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="row">

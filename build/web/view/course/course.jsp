@@ -112,7 +112,7 @@
                         <div class="container clearfix">
                             <!-- Header Logo ==== -->
                             <div class="menu-logo">
-                                <a href="/OnlineLearning/course"><img src="assets/images/logo.png" alt=""></a>
+                                <a href="/OnlineLearning/home"><img src="assets/images/logo.png" alt=""></a>
                             </div>
                             <!-- Mobile Nav Button ==== -->
                             <button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -156,7 +156,7 @@
                     <div class="breadcrumb-row">
                         <div class="container">
                             <ul class="list-inline">
-                                <li><a href="/OnlineLearning/course">Home</a></li>
+                                <li><a href="/OnlineLearning/home">Home</a></li>
                                 <li>Our Courses</li>
                             </ul>
                         </div>

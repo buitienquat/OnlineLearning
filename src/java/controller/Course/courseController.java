@@ -20,6 +20,7 @@ import javax.management.remote.TargetedNotification;
 import model.Category;
 import model.Course;
 import model.Page;
+import model.User;
 
 /**
  *
@@ -35,8 +36,10 @@ public class courseController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Page pageControl = new Page();
+        User userid = (User) session.getAttribute(commonConstant.SESSION_ACCOUNT);
         List<Course> listCourse = findCourseDoGet(request, pageControl);
         List<Category> listCategory = categoryDAO.findAll();
+        session.setAttribute(commonConstant.SESSION_ACCOUNT, userid);
         session.setAttribute(commonConstant.SESSION_COURSE, listCourse);
         session.setAttribute(commonConstant.SESSION_CATEGORY, listCategory);
         request.setAttribute(commonConstant.REQUEST_PAGE_CONTROL, pageControl);

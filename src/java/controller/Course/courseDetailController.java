@@ -14,10 +14,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Category;
 import model.Course;
 import model.Lesson;
+import model.User;
 
 
 /**
@@ -68,7 +70,7 @@ public class courseDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String idRaw = request.getParameter("id");
+            String idRaw = request.getParameter("id");
         String categoryIdRaw = request.getParameter("categoryId");
         int id, categoryId;
         try {
@@ -85,7 +87,6 @@ public class courseDetailController extends HttpServlet {
             Course findCourseId = courseDAO.findCourseId(course);
             Category findCategoryId = categoryDAO.findCategoryId(category);
             List<Lesson> findLesson = (List<Lesson>) lessonDAO.findLessonByCourseId(lesson);
-            
             request.setAttribute(commonConstant.REQUEST_FINDCOURSEID, findCourseId);
             request.setAttribute(commonConstant.REQUEST_FINDCATEGORYID, findCategoryId);
             request.setAttribute(commonConstant.REQUEST_FINDLESSON, findLesson);
