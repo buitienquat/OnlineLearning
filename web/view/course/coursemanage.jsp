@@ -97,6 +97,17 @@
             .modal-xxl {
                 max-width: 1600px;
             }
+            textarea {
+                width: 100%;
+                height: 150px;
+                padding: 12px 20px;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+                background-color: #f8f8f8;
+                font-size: 16px;
+                resize: none;
+            }
 
         </style>
     </head>
@@ -128,7 +139,7 @@
                             <a href="../index.html" class="ttr-material-button ttr-submenu-toggle">HOME</a>
                         </li>
                         <li>
-                            <a href="#" class="ttr-material-button ttr-submenu-toggle">QUICK MENU<i class="fa fa-angle-down"></i></a>
+                            <a href="#" class="ttr-material-button ttr-submenu-toggle">QUICK MENU <i class="fa fa-angle-down"></i></a>
                             <div class="ttr-header-submenu">
                                 <ul>
                                     <li><a href="../courses.html">Our Courses</a></li>
@@ -142,14 +153,121 @@
                 </div>
                 <div class="ttr-header-right ttr-with-seperator">
                     <!-- header right menu start -->
-                    <ul class="ttr-header-navigation">                      
+                    <ul class="ttr-header-navigation">
+                        <li>
+                            <a href="#" class="ttr-material-button ttr-search-toggle"><i class="fa fa-search"></i></a>
+                        </li>
+                        <li>
+                            <a href="#" class="ttr-material-button ttr-submenu-toggle"><i class="fa fa-bell"></i></a>
+                            <div class="ttr-header-submenu noti-menu">
+                                <div class="ttr-notify-header">
+                                    <span class="ttr-notify-text-top">9 New</span>
+                                    <span class="ttr-notify-text">User Notifications</span>
+                                </div>
+                                <div class="noti-box-list">
+                                    <ul>
+                                        <li>
+                                            <span class="notification-icon dashbg-gray">
+                                                <i class="fa fa-check"></i>
+                                            </span>
+                                            <span class="notification-text">
+                                                <span>Sneha Jogi</span> sent you a message.
+                                            </span>
+                                            <span class="notification-time">
+                                                <a href="#" class="fa fa-close"></a>
+                                                <span> 02:14</span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="notification-icon dashbg-yellow">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </span>
+                                            <span class="notification-text">
+                                                <a href="#">Your order is placed</a> sent you a message.
+                                            </span>
+                                            <span class="notification-time">
+                                                <a href="#" class="fa fa-close"></a>
+                                                <span> 7 Min</span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="notification-icon dashbg-red">
+                                                <i class="fa fa-bullhorn"></i>
+                                            </span>
+                                            <span class="notification-text">
+                                                <span>Your item is shipped</span> sent you a message.
+                                            </span>
+                                            <span class="notification-time">
+                                                <a href="#" class="fa fa-close"></a>
+                                                <span> 2 May</span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="notification-icon dashbg-green">
+                                                <i class="fa fa-comments-o"></i>
+                                            </span>
+                                            <span class="notification-text">
+                                                <a href="#">Sneha Jogi</a> sent you a message.
+                                            </span>
+                                            <span class="notification-time">
+                                                <a href="#" class="fa fa-close"></a>
+                                                <span> 14 July</span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="notification-icon dashbg-primary">
+                                                <i class="fa fa-file-word-o"></i>
+                                            </span>
+                                            <span class="notification-text">
+                                                <span>Sneha Jogi</span> sent you a message.
+                                            </span>
+                                            <span class="notification-time">
+                                                <a href="#" class="fa fa-close"></a>
+                                                <span> 15 Min</span>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
                         <li>
                             <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="assets/assets_admin/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
                             <div class="ttr-header-submenu">
                                 <ul>
                                     <li><a href="user-profile.html">My profile</a></li>
+                                    <li><a href="list-view-calendar.html">Activity</a></li>
+                                    <li><a href="mailbox.html">Messages</a></li>
                                     <li><a href="../login.html">Logout</a></li>
                                 </ul>
+                            </div>
+                        </li>
+                        <li class="ttr-hide-on-mobile">
+                            <a href="#" class="ttr-material-button"><i class="ti-layout-grid3-alt"></i></a>
+                            <div class="ttr-header-submenu ttr-extra-menu">
+                                <a href="#">
+                                    <i class="fa fa-music"></i>
+                                    <span>Musics</span>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-youtube-play"></i>
+                                    <span>Videos</span>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-envelope"></i>
+                                    <span>Emails</span>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-book"></i>
+                                    <span>Reports</span>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-smile-o"></i>
+                                    <span>Persons</span>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-picture-o"></i>
+                                    <span>Pictures</span>
+                                </a>
                             </div>
                         </li>
                     </ul>
@@ -191,12 +309,12 @@
                     <ul>
 
                         <li>
-                            
+
                             <a href="writtenblog" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-save-alt"></i></span>
                                 <span class="ttr-label">Manage Blog</span>
                             </a>
-                            <a href="coursemanage" class="ttr-material-button">
+                            <a href="course" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-marker-alt"></i></span>
                                 <span class="ttr-label">Manage Course</span>
                             </a>
@@ -213,106 +331,92 @@
         <main class="ttr-wrapper">
             <div class="container-fluid">
                 <div class="db-breadcrumb">
-                    <h4 class="breadcrumb-title">Manage Blog</h4>
+                    <h4 class="breadcrumb-title">Manage Course</h4>
                     <ul class="db-breadcrumb-list">
                         <li><a href="index.html"><i class="fa fa-home"></i>Home</a></li>
-                        <li><a href="writtenblog?status=0"><i class=" ${statusValue==0 ? 'active' : ''}"></i>Save</a></li>
-                        <li><a href="writtenblog?status=1"><i class=" ${statusValue==1 ? 'active' : ''}"></i>Publish</a></li>
-                        <a href="#" class="btn radius-xl" data-bs-toggle="modal" data-bs-target="#newblogadd">Add Blog</a>                             
+                        <li><a href="coursemanage?status=0"><i class=" ${statusValue==0 ? 'active' : ''}"></i>Save</a></li>
+                        <li><a href="coursemanage?status=1"><i class=" ${statusValue==1 ? 'active' : ''}"></i>Publish</a></li>
+                        <li><a href="coursemanage?status=2"><i class=" ${statusValue==2 ? 'active' : ''}"></i>Pending</a></li>
+                        <a href="#" class="btn radius-xl" data-bs-toggle="modal" data-bs-target="#newcourseadd">Add Course</a>                             
                     </ul>
-
                 </div>	
                 <div class="content-block">
                     <!-- Your Profile Views Chart -->
                     <div >
                         <div class="container">
                             <div >
-                                <h4>My Blog</h4>
+                                <h4>My Course</h4>
                             </div>
                             <div class="ttr-blog-grid-3 row" id="masonry">
-                                <c:forEach items="${bList}" var ="o">
+                                <c:forEach items="${cList}" var ="o">
                                     <div class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40">
                                         <div class="recent-news">
-                                            <div class="action-box">
-                                                <img src="assets/images/blog/${o.blogImage != null && !o.blogImage.isEmpty() ? o.blogImage : 'default.jpg'}" alt=""/>
+                                            <div class="action-box"> 
+                                                <img src="assets/images/courses/${o.getImage() != null && !o.getImage().isEmpty() ? o.getImage() : 'default.jpg'}" alt=""/>    
                                             </div>     
                                             <div class="info-bx">
                                                 <div class="card-courses-full-dec">
                                                     <div class="card-courses-title">
-                                                        <h4 class="m-b5">${o.getBlogTitle()}</h4>
+                                                        <a href="lessonmanage?courseid=${o.getCouseraID()}&coursename=${o.getName()}"> <h4  class="m-b5">${o.getName()}</h4></a>
                                                     </div>
                                                     <h5 class="m-b5">
-                                                        <c:out value="${Utility.shortenText(o.getBlogDetail(), 20)}"/>
+                                                        <c:out value="${Utility.shortenText(o.getDescription(), 20)}"/>
                                                     </h5>
                                                     <div class="card-courses-list-bx">
                                                         <ul class="card-courses-view">
                                                             <li class="card-courses-categories">
-                                                                <h5>Tag</h5>
-                                                                <c:forEach items="${TagList}" var="tag">
-                                                                    <c:if test="${tag.getBlogTagID() == o.getBlogTagID()}">
+                                                                <h4>Category</h4>
+                                                                <c:forEach items="${cateList}" var="tag">
+                                                                    <c:if test="${tag.getCategoryID() == o.getCategory_categoryID()}">
                                                                         <h4>${tag.getName()}</h4>
                                                                     </c:if>
                                                                 </c:forEach>    
                                                             </li>
-                                                            <li class="card-courses-review">
-                                                                <i class="uil uil-calendar-alt text-dark h6 me-1"></i>
-                                                                <script>
-                                                                    var postDate = new Date("${o.getPostDate()}");
-                                                                    var day = postDate.getDate();
-                                                                    var month = postDate.getMonth() + 1;
-                                                                    var year = postDate.getFullYear();
-                                                                    if (day < 10) {
-                                                                        day = "0" + day;
-                                                                    }
-                                                                    if (month < 10) {
-                                                                        month = "0" + month;
-                                                                    }
-                                                                    var formattedDate = day + "/" + month + "/" + year;
-                                                                    document.write(formattedDate);
-                                                                </script>
+                                                            <li class="card-courses-categories">
+                                                                <h4>Price</4>
+
+                                                                    <h4>${o.getOriginalPrice()} </h4>
                                                             </li>
                                                         </ul>
+                                                    </div>                                                          
+                                                </div>
+                                                <div class="row card-courses-dec">
+                                                    <div class="col-md-12">
+                                                        <a href="#" class="btn btn-primary edit-button" data-bs-toggle="modal" data-bs-target="#newcourseadd"
+                                                           data-courseid="${o.getCouseraID()}"
+                                                           data-title="${o.getName()}"
+                                                           data-course-image="${o.getImage()}"
+                                                           data-category="${o.getCategory_categoryID()}"
+                                                           data-fee="${o.getFeestatus()}"
+                                                           data-price="${o.getOriginalPrice()}"
+                                                           data-description="${o.getDescription()}"
+                                                           data-introduce="${o.getIntroduce()}">Edit</a>
+                                                        <a href="coursemanage?type=0&id=${o.getCouseraID()}&status=${statusValue}&page=${currentPage}" class="btn red outline radius-xl delete-button">Delete</a>
                                                     </div>
-                                                    <div class="row card-courses-dec">
-
-                                                        <div class="col-md-12">
-                                                            <a href="#" class="btn radius-xl" data-bs-toggle="modal" data-bs-target="#newblogadd"
-                                                               data-blog-id="${o.getBlogId()}"
-                                                               data-blog-title="${o.getBlogTitle()}"
-                                                               data-blog-image="${o.getBlogImage()}"
-                                                               data-post-date="${o.getPostDate()}"
-                                                               data-blog-tag-id='${o.getBlogTagID()}'
-                                                               data-blog-detail='${fn:escapeXml(o.getBlogDetail())}'>Edit</a>
-                                                            <a href="writtenblog?type=0&id=${o.getBlogId()}&status=${statusValue}&page=${currentPage}" class="btn red outline radius-xl delete-button">Delete</a>
-                                                        </div>
-                                                    </div>
-
                                                 </div>
 
-                                            </div>
-
+                                            </div>                                                          
                                         </div>                                              
                                     </div>
                                 </c:forEach>	
-
                             </div>
                             <div class="row text-center mt-2 mb-3">
                                 <div class="col-12">
                                     <ul class="pagination justify-content-center mb-0 list-unstyled">
                                         <c:choose>
                                             <c:when test="${currentPage > 1}">
-                                                <li class="page-item"><a class="page-link" href="writtenblog?page=${currentPage - 1}&status=${statusValue}" aria-label="Previous">< Prev</a></li>
+                                                <li class="page-item"><a class="page-link" href="coursemanage?page=${currentPage - 1}&status=${statusValue}" aria-label="Previous">< Prev</a></li>
                                                 </c:when>
                                                 <c:otherwise>
                                                 <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous">< Prev</a></li>
                                                 </c:otherwise>
                                             </c:choose>
                                             <c:forEach begin="1" end="${totalPages}" var="i">
-                                            <li class="page-item ${currentPage == i ? 'active' : ''}"><a class="page-link" href="writtenblog?page=${i}&status=${statusValue}">${i}</a></li>
+                                            <li class="page-item ${currentPage == i ? 'active' : ''}"><a class="page-link" href="coursemanage?page=${i}&status=${statusValue}">${i}</a></li>
                                             </c:forEach>
                                             <c:choose>
                                                 <c:when test="${currentPage < totalPages}">
-                                                <li class="page-item"><a class="page-link" href="writtenblog?page=${currentPage + 1}&status=${statusValue}" aria-label="Next">Next ></a></li>
+                                                <li class="page-item"><a class="page-link" href="coursemanage?page=${currentPage + 1}&status=${statusValue}" aria-label="Next">Next ></a></li>
                                                 </c:when>
                                                 <c:otherwise>
                                                 <li class="page-item disabled"><a class="page-link" href="#" aria-label="Next">Next ></a></li>
@@ -330,72 +434,97 @@
         </main>
         <div class="ttr-overlay"></div>
 
-        <div class="modal fade" id="newblogadd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="newcourseadd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xxl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header border-bottom p-3">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Blog</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Add Course</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form class="edit-profile m-b30" action="blog" enctype="multipart/form-data" method="post">
+                    <form class="edit-profile m-b30" action="coursemanage" enctype="multipart/form-data" method="post">
                         <div class="modal-body p-3 pt-4">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="d-grid">
-                                        <p class="text-muted">Upload your picture of blog</p>
-                                        <div class="preview-box d-block justify-content-center rounded shadow overflow-hidden bg-light p-1" id="blogImagePreview">
-                                            <img src="assets/images/blog/default.jpg" alt="Blog Image" name="blogImage" id="blogImage">
+                                        <p class="text-muted">Upload your picture of course</p>
+                                        <div class="preview-box d-block justify-content-center rounded shadow overflow-hidden bg-light p-1" id="courseImagePreview">
+                                            <img src="assets/images/courses/pic1.png" alt="Course Image" name="courseImage" id="courseImage">
                                         </div>
                                         <input type="file" id="input-file" name="image" accept="image/*" onchange="handleChange()" hidden/>
                                         <input type="hidden" id="current-image-filename" name="currentImageFilename" value="">
                                         <label class="btn-upload btn btn-primary mt-4" for="input-file">Upload Image</label>
                                     </div>
-                                </div><!--end col-->
-                                <input type="hidden" name="date" id="currentTimeInput" value="">
-                                <input type="hidden" name="blogid" id="blogid" value="">
+                                </div>
+
+                                <input type="hidden" name="courseid" value="">
                                 <div class="col-md-8 mt-4 mt-sm-0">
                                     <div class="ms-md-4">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="mb-3">
-                                                    <label class="form-label">Blog Title</label>
+                                                    <label class="form-label">Course Title</label>
                                                     <div>
-                                                        <input name="title" id="blogTitle" class="form-control" type="text" value="" required>
+                                                        <input name="title" id="coursetitle" class="form-control" type="text" value="" required>
                                                     </div>
                                                 </div>
-                                            </div><!--end col-->
+                                            </div>
 
                                             <div class="col-md-6">
                                                 <div class="mb-3">
-                                                    <label class="form-label">Tag</label>
-                                                    <select class="form-control" name="tag" id="tagSelect" title="Select Tag" required>
-                                                        <c:forEach items="${TagList}" var="i">
-                                                            <option value="${i.getBlogTagID()}">${i.getName()}</option>
+                                                    <label class="form-label">Category</label>
+                                                    <select class="form-control" name="cate" id="cateSelect" title="Select Category" required>
+                                                        <c:forEach items="${cateList}" var="i">
+                                                            <option value="${i.getCategoryID()}">${i.getName()}</option>
                                                         </c:forEach>
                                                     </select>
                                                 </div>
-                                            </div><!--end col-->
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Fee</label>
+                                                    <div>
+                                                        <input name="fee" id="coursefee" class="form-control" type="text" value="" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Price</label>
+                                                    <div>
+                                                        <input name="price" class="form-control" type="text" value="" required>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
                                                     <label class="form-label">Description <span class="text-danger">*</span></label>
-                                                    <textarea name="texttitle" id="editor"></textarea>
+                                                    <br>
+                                                    <textarea name="description"></textarea>
                                                 </div>
-                                            </div><!--end col-->
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Introduce <span class="text-danger">*</span></label>
+                                                    <br>
+                                                    <textarea name="introduce"></textarea>
+                                                </div>
+                                            </div>
 
                                             <div class="col-lg-12 text-end">
-                                                <button type="submit" class="btn btn-primary" name="action" value="save">Save Blog</button>
-                                                <button type="submit" class="btn btn-primary" name="action" value="publish">Publish Blog</button>
-                                            </div><!--end col-->
+                                                <button type="submit" class="btn btn-primary" name="action" value="save">Save Course</button>
+                                                <button type="submit" class="btn btn-primary" name="action" value="send">Send Course</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div><!--end col-->
-                            </div><!--end row-->
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+
 
 
         <!-- External JavaScripts -->
@@ -418,84 +547,48 @@
         <script src="assets/assets_admin/js/bootstrap.bundle.min.js"></script>
         <script src='assets/assets_admin/vendors/switcher/switcher.js'></script>
         <script>
+
                                             document.addEventListener('DOMContentLoaded', function () {
-                                                const blogModal = document.getElementById('newblogadd');
-                                                const blogTitle = document.getElementById('blogTitle');
-                                                const blogImage = document.getElementById('blogImage');
-                                                const blogId = document.getElementById('blogid');
-                                                const tagSelect = document.getElementById('tagSelect');
+                                                const courseModal = document.getElementById('newcourseadd');
+                                                const courseTitle = document.getElementById('coursetitle');
+                                                const courseImage = document.getElementById('courseImage');
+                                                const courseId = document.querySelector('input[name="courseid"]');
+                                                const tagSelect = document.getElementById('cateSelect');
+                                                const courseFee = document.querySelector('input[name="fee"]');
+                                                const coursePrice = document.querySelector('input[name="price"]');
+                                                const courseDescription = document.querySelector('textarea[name="description"]');
+                                                const courseIntroduce = document.querySelector('textarea[name="introduce"]');
                                                 const currentImageFilename = document.getElementById('current-image-filename');
-                                                let editorInitialized = false;
 
-                                                tinymce.init({
-                                                    selector: 'textarea#editor',
-                                                    width: '100%',
-                                                    height: 600,
-                                                    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-                                                    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-                                                    images_upload_url: '/OnlineLearning/upload',
-                                                    images_upload_handler: function (blobInfo, success, failure) {
-                                                        var xhr, formData;
-                                                        xhr = new XMLHttpRequest();
-                                                        xhr.withCredentials = false;
-                                                        xhr.open('POST', '/OnlineLearning/upload');
-                                                        xhr.onload = function () {
-                                                            var json;
-                                                            if (xhr.status != 200) {
-                                                                failure('HTTP Error: ' + xhr.status);
-                                                                return;
-                                                            }
-                                                            json = JSON.parse(xhr.responseText);
-                                                            if (!json || typeof json.location != 'string') {
-                                                                failure('Invalid JSON: ' + xhr.responseText);
-                                                                return;
-                                                            }
-                                                            success(json.location);
-                                                        };
-                                                        formData = new FormData();
-                                                        formData.append('file', blobInfo.blob(), blobInfo.filename());
-                                                        xhr.send(formData);
-                                                    },
-                                                    setup: function (editor) {
-                                                        editor.on('init', function () {
-                                                            editorInitialized = true;
-                                                        });
-                                                    }
-                                                });
-
-                                                blogModal.addEventListener('show.bs.modal', function (event) {
+                                                courseModal.addEventListener('show.bs.modal', function (event) {
                                                     const button = event.relatedTarget;
-                                                    const blogTitleValue = button.getAttribute('data-blog-title');
-                                                    const blogImageValue = button.getAttribute('data-blog-image');
-                                                    const blogIdValue = button.getAttribute('data-blog-id');
-                                                    const blogDetailValue = decodeURIComponent(button.getAttribute('data-blog-detail'));
-                                                    const blogTagIdValue = button.getAttribute('data-blog-tag-id');
+                                                    const courseTitleValue = button.getAttribute('data-title');
+                                                    const courseImageValue = button.getAttribute('data-course-image');
+                                                    const courseIdValue = button.getAttribute('data-courseid');
+                                                    const courseFeeValue = button.getAttribute('data-fee');
+                                                    const coursePriceValue = button.getAttribute('data-price');
+                                                    const courseDescriptionValue = button.getAttribute('data-description');
+                                                    const courseIntroduceValue = button.getAttribute('data-introduce');
 
-                                                    blogTitle.value = blogTitleValue || '';
-                                                    blogImage.src = blogImageValue ? 'assets/images/blog/' + blogImageValue : 'assets/images/blog/default.jpg';
-                                                    blogId.value = blogIdValue || '';
-                                                    currentImageFilename.value = blogImageValue || '';
-
-                                                    if (editorInitialized) {
-                                                        tinymce.get('editor').setContent(blogDetailValue || '');
-                                                    }
-
-                                                    if (blogTagIdValue) {
-                                                        tagSelect.value = blogTagIdValue;
-                                                    } else {
-                                                        tagSelect.selectedIndex = 0;
-                                                    }
+                                                    courseTitle.value = courseTitleValue || '';
+                                                    courseImage.src = courseImageValue ? 'assets/images/courses/' + courseImageValue : 'assets/images/courses/default.jpg';
+                                                    courseId.value = courseIdValue || '';
+                                                    currentImageFilename.value = courseImageValue || '';
+                                                    courseFee.value = courseFeeValue || '';
+                                                    coursePrice.value = coursePriceValue || '';
+                                                    courseDescription.value = courseDescriptionValue || '';
+                                                    courseIntroduce.value = courseIntroduceValue || '';
                                                 });
 
-                                                blogModal.addEventListener('hidden.bs.modal', function () {
-                                                    blogTitle.value = '';
-                                                    blogImage.src = 'assets/images/blog/default.jpg';
-                                                    blogId.value = '';
+                                                courseModal.addEventListener('hidden.bs.modal', function () {
+                                                    courseTitle.value = '';
+                                                    courseImage.src = 'assets/images/courses/default.jpg';
+                                                    courseId.value = '';
                                                     currentImageFilename.value = '';
-                                                    if (editorInitialized) {
-                                                        tinymce.get('editor').setContent('');
-                                                    }
-                                                    tagSelect.selectedIndex = 0;
+                                                    courseFee.value = '';
+                                                    coursePrice.value = '';
+                                                    courseDescription.value = '';
+                                                    courseIntroduce.value = '';
                                                 });
                                             });
 
@@ -536,12 +629,6 @@
                                                 }
                                             };
 
-                                            document.addEventListener("DOMContentLoaded", function () {
-                                                const currentTimeInput = document.getElementById("currentTimeInput");
-                                                const now = new Date();
-                                                const formattedTime = now.toISOString().slice(0, 10);
-                                                currentTimeInput.value = formattedTime;
-                                            });
         </script>
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {

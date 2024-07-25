@@ -4,8 +4,8 @@
     Author     : hienhack
 --%>
 <%@ page import="Utility.Utility" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -277,17 +277,22 @@
                                                                 document.write(formattedDate);
                                                             </script>
                                                         </a></li>
+                                                    <li>
+                                                        <c:forEach items="${TagList}" var="tag">
+                                                            <c:if test="${tag.getBlogTagID() == o.getBlogTagID()}">
+                                                                <a href="#" class="comments-bx"><i class="fa fa-tag"></i>${tag.getName()}</a>
+                                                                </c:if>
+                                                            </c:forEach> 
+                                                        </a></li>
                                                     <li><a href="#"><i class="fa fa-user"></i>By William</a></li>
                                                 </ul>
-                                                <h5 class="post-title"><a href="blogdetail?id=${o.getBlogID()}">${o.getBlogTitle()}</a></h5>
-                                                <c:out value="${Utility.shortenText(o.getBlogDetail(), 100)}"/>
+                                                <h5 class="post-title"><a href="blogdetail?id=${o.getBlogId()}">${o.getBlogTitle()}</a></h5>
+                                                    <c:out value="${Utility.shortenText(o.getBlogDetail(), 20)}"/>
+
                                                 <div class="post-extra">
                                                     <a href="#" class="btn-link">READ MORE</a>
-                                                    <c:forEach items="${TagList}" var="tag">
-                                                        <c:if test="${tag.getBlogTagID() == o.getBlogTagID()}">
-                                                            <a href="#" class="comments-bx"><i class="fa fa-tag"></i>${tag.getName()}</a>
-                                                            </c:if>
-                                                    </c:forEach> 
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -297,18 +302,18 @@
                                         <ul class="pagination">
                                             <c:choose>
                                                 <c:when test="${currentPage > 1}">
-                                                    <li class="page-item"><a class="page-link" href="bloglist?page=${currentPage - 1}" aria-label="Previous">< Prev</a></li>
+                                                    <li class="page-item"><a class="page-link" href="blogview?page=${currentPage - 1}" aria-label="Previous">< Prev</a></li>
                                                     </c:when>
                                                     <c:otherwise>
                                                     <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous">< Prev</a></li>
                                                     </c:otherwise>
                                                 </c:choose>
                                                 <c:forEach begin="1" end="${totalPages}" var="i">
-                                                <li class="page-item ${currentPage == i ? 'active' : ''}"><a class="page-link" href="bloglist?page=${i}">${i}</a></li>
+                                                <li class="page-item ${currentPage == i ? 'active' : ''}"><a class="page-link" href="blogview?page=${i}">${i}</a></li>
                                                 </c:forEach>
                                                 <c:choose>
                                                     <c:when test="${currentPage < totalPages}">
-                                                    <li class="page-item"><a class="page-link" href="bloglist?page=${currentPage + 1}" aria-label="Next">Next ></a></li>
+                                                    <li class="page-item"><a class="page-link" href="blogview?page=${currentPage + 1}" aria-label="Next">Next ></a></li>
                                                     </c:when>
                                                     <c:otherwise>
                                                     <li class="page-item disabled"><a class="page-link" href="#" aria-label="Next">Next ></a></li>
@@ -320,12 +325,12 @@
                                 </div>
                                 <!-- Left part END -->
                                 <!-- Side bar start -->
-                                <div class="col-lg-4 sticky-top">
-                                    <aside class="side-bar sticky-top">
+                                <div class="col-lg-4 col-xl-4">
+                                    <aside  class="side-bar sticky-top">  
                                         <div class="widget">
                                             <h6 class="widget-title">Search</h6>
                                             <div class="search-bx style-1">
-                                                <form role="search" method="get" action="bloglist">
+                                                <form role="search" method="get" action="blogview">
                                                     <div class="input-group">
                                                         <input name="query" class="form-control" placeholder="Enter your keywords..." type="text">
                                                         <span class="input-group-btn">
@@ -343,23 +348,23 @@
                                                         <div class="ttr-post-media"> <img src="assets/images/blog/${b.blogImage != null && !b.blogImage.isEmpty() ? b.blogImage : 'default.jpg'}" alt=""/>  </div>
                                                         <div class="ttr-post-info">
                                                             <div class="ttr-post-header">
-                                                                <h6 class="post-title"><a href="blogdetail?id=${b.getBlogID()}">${b.getBlogTitle()}</a></h6>
+                                                                <h6 class="post-title"><a href="blogdetail?id=${b.getBlogId()}">${b.getBlogTitle()}</a></h6>
                                                             </div>
                                                             <ul class="media-post">
                                                                 <li><a href="#"><i class="fa fa-calendar"></i>
                                                                         <script>
-                                                                            var postDate = new Date("${b.getPostDate()}");
-                                                                            var day = postDate.getDate();
-                                                                            var month = postDate.getMonth() + 1;
-                                                                            var year = postDate.getFullYear();
-                                                                            if (day < 10) {
-                                                                                day = "0" + day;
-                                                                            }
-                                                                            if (month < 10) {
-                                                                                month = "0" + month;
-                                                                            }
-                                                                            var formattedDate = day + "/" + month + "/" + year;
-                                                                            document.write(formattedDate);
+                                                            var postDate = new Date("${b.getPostDate()}");
+                                                            var day = postDate.getDate();
+                                                            var month = postDate.getMonth() + 1;
+                                                            var year = postDate.getFullYear();
+                                                            if (day < 10) {
+                                                                day = "0" + day;
+                                                            }
+                                                            if (month < 10) {
+                                                                month = "0" + month;
+                                                            }
+                                                            var formattedDate = day + "/" + month + "/" + year;
+                                                            document.write(formattedDate);
                                                                         </script>
                                                                     </a></li>
                                                                 <li><a href="#">
@@ -374,13 +379,13 @@
                                                     </div>
                                                 </c:forEach>
                                             </div>
-                                        </div>                                    
+                                        </div>                                      
                                         <div class="widget widget_tag_cloud">
                                             <h6 class="widget-title">Tags</h6>
                                             <div class="tagcloud"> 
                                                 <c:forEach items="${TagList}" var="tag">
 
-                                                    <a href="bloglist?tagid=${tag.getBlogTagID()}">${tag.getName()}</a>
+                                                    <a href="blogview?tagid=${tag.getBlogTagID()}">${tag.getName()}</a>
 
                                                 </c:forEach> 
                                             </div>

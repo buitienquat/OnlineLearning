@@ -5,9 +5,12 @@
 package dal.implement;
 
 import controller.constant.commonConstant;
+import dal.DBContext;
 import dal.GenericDAO;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -20,9 +23,6 @@ import org.apache.catalina.util.ParameterMap;
  */
 public class CourseDAO extends GenericDAO<Course> {
 
-//    protected Connection connection;//kết nối giữa ứng dụng Java và cơ sở dữ liệu
-//    protected java.sql.PreparedStatement statement;//thực thi các câu lệnh SQL trước khi thực sự thực thi
-//    protected ResultSet resultSet;// giống như 1 cái bảng , như sql manager
 
     @Override
     public List<Course> findAll() {
@@ -191,8 +191,177 @@ public class CourseDAO extends GenericDAO<Course> {
         return queryGenericDAO(Course.class, sql, parameterMap);
     }
 
-    public static void main(String[] args) {
+     Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
 
+    public void updateCourse(String title, String image, String description, String status, String cate, String fee, String intro, String price, int courseId) {
+        String query = "UPDATE course SET name=?, image=?, description=?, status=?,Category_categoryID=?,FeeStatus=?,Introduce=?, OriginalPrice=?   WHERE CouseraID=?";
+        try {
+            conn = new DBContext().getConnection(); // Lấy kết nối từ DBContext
+            ps = conn.prepareStatement(query);
+            ps.setString(1, title);
+            ps.setString(2, image);
+            ps.setString(3, description);
+            ps.setString(4, status);
+            ps.setString(5, cate);
+            ps.setString(6, fee);
+            ps.setString(7, intro);
+            ps.setString(8, price);
+            ps.setInt(9, courseId);
+            ps.executeUpdate(); // Thực hiện câu lệnh cập nhật
+        } catch (Exception e) {
+            e.printStackTrace(); // In ra lỗi nếu có
+            // Xử lý ngoại lệ một cách phù hợp
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close(); // Đóng PreparedStatement
+                }
+                if (conn != null) {
+                    conn.close(); // Đóng kết nối
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(); // In ra lỗi nếu có
+            }
+        }
+    }
+
+    public void insertCourse(String name, String image, String description, String status, String categoryCategoryID, String feestatus, String introduce, String originalPrice, int userIdUser) {
+        String sql = "INSERT INTO Course ( Name, Image, Description, Status, Category_categoryID, Feestatus, Introduce, OriginalPrice, UserId_User) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, name);
+            ps.setString(2, image);
+            ps.setString(3, description);
+            ps.setString(4, status);
+            ps.setString(5, categoryCategoryID);
+            ps.setString(6, feestatus);
+            ps.setString(7, introduce);
+            ps.setString(8, originalPrice);
+            ps.setInt(9, userIdUser);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void delCourse(int id) {
+        String deleteLessonsSql = "DELETE FROM Lesson WHERE Course_courseID=?";
+        String deleteCourseSql = "DELETE FROM Course WHERE CouseraID=?";
+        Connection conn = null;
+        PreparedStatement psDeleteLessons = null;
+        PreparedStatement psDeleteCourse = null;
+
+        try {
+            // Kết nối đến database
+            conn = new DBContext().getConnection();
+            conn.setAutoCommit(false);  // Bắt đầu transaction
+
+            // Xóa tất cả các bài học liên quan đến course
+            psDeleteLessons = conn.prepareStatement(deleteLessonsSql);
+            psDeleteLessons.setInt(1, id);
+            psDeleteLessons.executeUpdate();
+
+            // Xóa course
+            psDeleteCourse = conn.prepareStatement(deleteCourseSql);
+            psDeleteCourse.setInt(1, id);
+            psDeleteCourse.executeUpdate();
+
+            // Commit transaction
+            conn.commit();
+
+        } catch (SQLException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback();  // Rollback nếu có lỗi
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            e.printStackTrace();
+        } finally {
+            try {
+                if (psDeleteLessons != null) {
+                    psDeleteLessons.close();
+                }
+                if (psDeleteCourse != null) {
+                    psDeleteCourse.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public List<Course> getCourseByStatus(int status, int uid) {
+        List<Course> courses = new ArrayList<>();
+        String query = "SELECT * FROM Course WHERE Status = ? and UserId_User=?";
+
+        try {
+            conn = new DBContext().getConnection(); // Establishing the connection
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, status); // Setting the status parameter
+            ps.setInt(2, uid);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int courseId = rs.getInt("CouseraID");
+                String name = rs.getString("Name");
+                String img = rs.getString("Image");
+                String des = rs.getString("Description");
+                int cate = rs.getInt("Category_categoryID");
+                int fee = rs.getInt("FeeStatus");
+                String intro = rs.getString("Introduce");
+                int price = rs.getInt("OriginalPrice");
+
+                Course course = new Course(courseId, name, img, des, 1, cate, fee, intro, price, uid);
+                courses.add(course);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return courses;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(new CourseDAO().getCourseByStatus(1, 3));
     }
 
 }
+
+
+

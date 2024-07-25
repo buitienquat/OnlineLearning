@@ -3,8 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="PE PRJ301">
-            <file>file:/G:/OnlineLearning/OnlineLearning/web/view/course/courseDetail.jsp</file>
-            <file>file:/G:/OnlineLearning/OnlineLearning/web/view/common/commonCourseDetail/header.jsp</file>
+            <file>file:/G:/OnlineLearning/OnlineLearning/src/java/controller/Course/LessonManage.java</file>
+            <file>file:/G:/OnlineLearning/OnlineLearning/src/java/controller/Course/CourseManage.java</file>
+            <file>file:/G:/OnlineLearning/OnlineLearning/web/view/course/coursemanage.jsp</file>
         </group>
     </open-files>
 </project-private>

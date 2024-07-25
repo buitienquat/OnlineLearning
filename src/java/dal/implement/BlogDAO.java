@@ -33,7 +33,7 @@ public class BlogDAO {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                int blogId = rs.getInt("BlogID");
+                int blogId = rs.getInt("BlogId");
                 String blogTitle = rs.getString("BlogTitle");
                 String blogImage = rs.getString("BlogImage");
                 String blogDetail = rs.getString("BlogDetail");
@@ -66,7 +66,7 @@ public class BlogDAO {
 
             while (rs.next()) {
                 Blog blog = new Blog();
-                blog.setBlogID(rs.getInt("blogID"));
+                blog.setBlogId(rs.getInt("blogID"));
                 blog.setBlogTitle(rs.getString("BlogTitle"));
                 blog.setBlogDetail(rs.getString("BlogDetail"));
                 blog.setBlogImage(rs.getString("BlogImage"));
@@ -82,8 +82,7 @@ public class BlogDAO {
 
     public List<Blog> getRadomBlog() {
         ArrayList<Blog> blogS = new ArrayList<>();
-        String query = "SELECT TOP 3 * FROM blog WHERE BlogStatus = 1\n"
-                + "ORDER BY NEWID()";
+        String query = "SELECT TOP 3 * FROM blog WHERE BlogStatus = 1 ORDER BY NEWID()";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
@@ -153,7 +152,7 @@ public class BlogDAO {
 
     public ArrayList<Blog> getBlogFromStatus(int status, int uid) throws Exception {
         ArrayList<Blog> blogS = new ArrayList<>();
-        String sql = "SELECT * FROM blog WHERE BlogStatus = ? AND UserId = ?";
+        String sql = "SELECT * FROM blog WHERE BlogStatus = ? AND UserId = ? Order By PostDate Desc";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
@@ -278,7 +277,7 @@ public class BlogDAO {
             rs = ps.executeQuery();
             if (rs.next()) {
                 blog = new Blog(
-                        rs.getInt("BlogID"),
+                        rs.getInt("BlogId"),
                         rs.getString("BlogTitle"),
                         rs.getString("BlogImage"),
                         rs.getString("BlogDetail"),
@@ -306,8 +305,8 @@ public class BlogDAO {
 //
     public static void main(String[] args) throws SQLException, Exception {
         BlogDAO dao = new BlogDAO();
-        List<Blog> blog = dao.searchBlogs("kiem tra");
-        for (Blog blogTag : blog) {
+        List<BlogTag> blog = dao.getListBlogTag();
+        for (BlogTag blogTag : blog) {
             System.out.println(blogTag);
         }
 //

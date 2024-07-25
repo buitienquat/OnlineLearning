@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-    <!-- Define JSP Configuration -->
     <filter>
         <filter-name>adminFilterBlock</filter-name>
         <filter-class>Filter.adminFilterBlock</filter-class>
@@ -10,6 +9,7 @@
         <url-pattern>/dashboardmanager</url-pattern>
         <url-pattern>/blogmanager</url-pattern>
     </filter-mapping>
+
     <servlet>
         <servlet-name>courseController</servlet-name>
         <servlet-class>controller.Course.courseController</servlet-class>
@@ -46,10 +46,7 @@
         <servlet-name>WrittenBlog</servlet-name>
         <servlet-class>controller.blog.WrittenBlog</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>BlogList</servlet-name>
-        <servlet-class>controller.blog.BlogList</servlet-class>
-    </servlet>
+
     <servlet>
         <servlet-name>search</servlet-name>
         <servlet-class>controller.Admin.search</servlet-class>
@@ -83,8 +80,16 @@
         <servlet-class>controller.Admin.updateblog</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>controller.Admin.UploadServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>adminprofile</servlet-name>
         <servlet-class>controller.Admin.adminprofile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateImage</servlet-name>
+        <servlet-class>controller.Admin.updateImage</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>BlogManager</servlet-name>
@@ -93,6 +98,18 @@
     <servlet>
         <servlet-name>dashboardmanager</servlet-name>
         <servlet-class>controller.Admin.dashboardmanager</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CourseManage</servlet-name>
+        <servlet-class>controller.Course.CourseManage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LessonManage</servlet-name>
+        <servlet-class>controller.Course.LessonManage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BlogView</servlet-name>
+        <servlet-class>controller.blog.BlogView</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
@@ -106,7 +123,7 @@
         <servlet-name>resetPasswordServlet</servlet-name>
         <servlet-class>controller.Authen.resetPasswordServlet</servlet-class>
     </servlet>
-    <!-- Servlet Mappings -->
+
     <servlet-mapping>
         <servlet-name>courseController</servlet-name>
         <url-pattern>/course</url-pattern>
@@ -143,10 +160,7 @@
         <servlet-name>WrittenBlog</servlet-name>
         <url-pattern>/writtenblog</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>BlogList</servlet-name>
-        <url-pattern>/bloglist</url-pattern>
-    </servlet-mapping>
+   
     <servlet-mapping>
         <servlet-name>search</servlet-name>
         <url-pattern>/search</url-pattern>
@@ -180,16 +194,36 @@
         <url-pattern>/updateblog</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/UploadServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>adminprofile</servlet-name>
         <url-pattern>/adminprofile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>updateImage</servlet-name>
+        <url-pattern>/updateImage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>BlogManager</servlet-name>
-        <url-pattern>/blogmanager</url-pattern>
+        <url-pattern>/BlogManager</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>dashboardmanager</servlet-name>
         <url-pattern>/dashboardmanager</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseManage</servlet-name>
+        <url-pattern>/coursemanage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LessonManage</servlet-name>
+        <url-pattern>/lessonmanage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlogView</servlet-name>
+        <url-pattern>/blogview</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
@@ -203,7 +237,7 @@
         <servlet-name>resetPasswordServlet</servlet-name>
         <url-pattern>/resetPasswordServlet</url-pattern>
     </servlet-mapping>
-    <!-- Welcome File List -->
+
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>
