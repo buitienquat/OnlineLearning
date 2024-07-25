@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <!-- Define JSP Configuration -->
+    <filter>
+        <filter-name>adminFilterBlock</filter-name>
+        <filter-class>Filter.adminFilterBlock</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>adminFilterBlock</filter-name>
+        <url-pattern>/dashboardmanager</url-pattern>
+        <url-pattern>/blogmanager</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>courseController</servlet-name>
         <servlet-class>controller.Course.courseController</servlet-class>
@@ -97,7 +106,6 @@
         <servlet-name>resetPasswordServlet</servlet-name>
         <servlet-class>controller.Authen.resetPasswordServlet</servlet-class>
     </servlet>
-
     <!-- Servlet Mappings -->
     <servlet-mapping>
         <servlet-name>courseController</servlet-name>
@@ -195,7 +203,6 @@
         <servlet-name>resetPasswordServlet</servlet-name>
         <url-pattern>/resetPasswordServlet</url-pattern>
     </servlet-mapping>
-
     <!-- Welcome File List -->
     <welcome-file-list>
         <welcome-file>home</welcome-file>

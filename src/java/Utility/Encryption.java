@@ -16,8 +16,6 @@ public class Encryption {
 
     private static final String BASE_SALT_FIRST = "asjrlkmcoewj@tjle;oxqskjhdjksjf1jurVn";
     private static final String BASE_SALT_TAIL = "$3cUr3P@$$w0rd!#2024";
-
-    //md5
     //sha-1 phần lớn các web đều dùng sha-1
     public static String toSHA1(String str) {
 //        String baseSalt = "asjrlkmcoewj@tjle;oxqskjhdjksjf1jurVn";// Làm cho mật khẩu phức tap

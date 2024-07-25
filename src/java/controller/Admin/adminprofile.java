@@ -5,6 +5,7 @@
 package controller.Admin;
 
 
+import controller.constant.commonConstant;
 import dal.implement.UserDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import java.io.File;
 import java.nio.file.Paths;
@@ -38,8 +40,10 @@ public class adminprofile extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute(commonConstant.SESSION_ACCOUNT);
         UserDBContext dbContext = new UserDBContext();
-        List<User> listUser = dbContext.getUserbyUserId(2);
+        List<User> listUser = dbContext.getUserbyUserId(user.getUserID());
         request.setAttribute("listUser", listUser);
         request.getRequestDispatcher("view/admin/Myprofile.jsp").forward(request, response);
     }

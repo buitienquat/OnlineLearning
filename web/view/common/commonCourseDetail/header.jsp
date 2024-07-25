@@ -3,6 +3,7 @@
     Created on : Jul 9, 2024, 2:07:17 PM
     Author     : Admin
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <header class="header rs-nav">
     <div class="top-bar">
@@ -15,7 +16,7 @@
                     </ul>
                 </div>
                 <div class="topbar-right">
-                    
+
                 </div>
             </div>
         </div>
@@ -25,7 +26,7 @@
             <div class="container clearfix">
                 <!-- Header Logo ==== -->
                 <div class="menu-logo">
-                     <a href="/OnlineLearning/home"><img src="${pageContext.request.contextPath}/assets/images/logo.png" alt=""></a>
+                    <a href="/OnlineLearning/home"><img src="${pageContext.request.contextPath}/assets/images/logo.png" alt=""></a>
                 </div>
                 <!-- Mobile Nav Button ==== -->
                 <button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +35,7 @@
                     <span></span>
                 </button>
                 <!-- Author Nav ==== -->
-                
+
                 <!-- Search Box ==== -->
                 <div class="nav-search-bar">
                     <form action="#">
@@ -50,18 +51,45 @@
                     </div>
                     <ul class="nav navbar-nav">	
                         <li class="active"><a href="/OnlineLearning/home">Home</a>
-                          
+
                         </li>
                         <li><a href="javascript:;">Pages</a>
-                      
+
                         </li>
                         <li class="add-mega-menu"><a href="/OnlineLearning/course">Our Courses</a>
-                            
+
                         </li>
                         <li><a href="javascript:;">Blog </a>
-                            
+
                         </li>
-                        
+<div class="topbar-right">
+                                <ul>
+                                    <c:if test="${account != null}">
+                                        <li>
+                                            <c:if test="${account.getFullName() != null}">
+                                                <span>Xin chào, ${account.getFullName()}</span>
+                                            </c:if>
+                                                    
+                                        </li>
+                                        <!--  Student-->
+                                        <c:choose>
+                                            <c:when test="${account.getRoleID()== 3}"><a href="#">My Account</a>  </c:when>
+                                            <c:when test="${account.getRoleID()== 2}"><a href="#">My Account</a>  </c:when>
+                                            <c:when test="${account.getRoleID()== 1}"><a href="#">My Account</a>  </c:when>
+                                        </c:choose>
+                                       </c:if>
+                     
+                                    <c:if test="${account == null}">
+                                        <li><a href="authen?action=login">Login</a></li>
+                                        <li><a href="authen?action=register">Register</a></li>
+                                        </c:if>
+                                        <c:if test="${account != null}">
+                                        <li>
+                                            <a href="${pageContext.request.contextPath}/authen?action=log-out">Sign Out</a>
+                                        </li>
+                                    </c:if>
+                                </ul>
+                            </div>
                     </ul>
                     <div class="nav-social-link">
                         <a href="javascript:;"><i class="fa fa-facebook"></i></a>

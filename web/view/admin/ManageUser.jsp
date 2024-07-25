@@ -177,7 +177,7 @@
                                     <li><a href="adminprofile">My profile</a></li>
                                     
                                     <li><a href="mailbox.html">Messages</a></li>
-                                    <li><a href="../login.html">Logout</a></li>
+                                    <li><a href="authen?action=log-out">Logout</a></li>
                                 </ul>
                             </div>
                         </li>
