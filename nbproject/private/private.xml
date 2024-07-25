@@ -2,10 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="PE PRJ301">
-            <file>file:/G:/OnlineLearning/OnlineLearning/src/java/controller/Course/LessonManage.java</file>
-            <file>file:/G:/OnlineLearning/OnlineLearning/src/java/controller/Course/CourseManage.java</file>
-            <file>file:/G:/OnlineLearning/OnlineLearning/web/view/course/coursemanage.jsp</file>
+        <group>
+            <file>file:/D:/Project/Clone%20Project%201/OnlineLearning/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Project/Clone%20Project%201/OnlineLearning/web/META-INF/context.xml</file>
+            <file>file:/D:/Project/Clone%20Project%201/OnlineLearning/src/java/dal/DBContext.java</file>
+            <file>file:/D:/Project/Clone%20Project%201/OnlineLearning/src/java/dal/implement/BlogDAO.java</file>
+            <file>file:/D:/Project/Clone%20Project%201/OnlineLearning/src/java/dal/implement/UserDBContext.java</file>
         </group>
+        <group name="PE PRJ301"/>
     </open-files>
 </project-private>
