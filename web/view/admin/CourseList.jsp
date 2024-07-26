@@ -261,7 +261,7 @@ Author     : vuduc
                             </a>
                         </li>
                         <li>
-                            <a href="CourseList" class="ttr-material-button">
+                            <a href="CourseList?status=1" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-book"></i></span>
                                 <span class="ttr-label">Courses list</span>
                             </a>
@@ -276,7 +276,7 @@ Author     : vuduc
                             </a>
                         </li>
                         <li>
-                            <a href="blogmanager" class="ttr-material-button">
+                            <a href="blogmanager?status=1" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
                                 <span class="ttr-label">Blog listing</span>
                             </a>
@@ -372,10 +372,18 @@ Author     : vuduc
                                                 <form action="/OnlineLearning/updatecourse" method="POST">
                                                     <div class="col-md-12">
                                                         <input type="hidden" name="courseID" value="${course.couseraID}" />
-                                                        <button onclick="return confirmAction('approve')" type="submit" class="btn green radius-xl outline" name="btn" value="approve">Approve</button>
-                                                      
+                                                        <c:if test="${course.status == 0}">
+                                                            <button onclick="return confirmAction('approve')" type="submit" class="btn green radius-xl outline" name="btn" value="approve">Unban</button>
+                                                        </c:if>
+                                                        
+                                                      <c:if test="${course.status == 1}">
+                                                        <button type="button" class="btn red outline radius-xl" data-toggle="modal" data-target="#banModal" onclick="setCourseID(${course.couseraID})">ban</button>
+                                                     </c:if>
+                                                        <c:if test="${course.status == 2}">
+                                                            <button onclick="return confirmAction('approve')" type="submit" class="btn green radius-xl outline" name="btn" value="approve">Approve</button>
                                                         <button type="button" class="btn red outline radius-xl" data-toggle="modal" data-target="#banModal" onclick="setCourseID(${course.couseraID})">Reject</button>
-                                                    </div>
+                                                     </c:if>
+                                                      </div>
                                                 </form>
                                             </div>
 

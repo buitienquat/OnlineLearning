@@ -234,12 +234,17 @@ public class UserDBContext extends DBContext {
         return list;
     }
 
-    public void updateUserImage(int userId, String imagePath) {
+    public void updateUserImage(int userId, String imagePath,String email,String phone,String fullname,String dob,String address) {
         try {
-            String sql = "UPDATE [User] SET Image = ? WHERE UserID = ?";
+            String sql = "UPDATE [User] SET Email = ? , Phone = ?, FullName = ?, Image = ?, Dob = ?, Address = ? WHERE UserID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setString(1, imagePath);
-            stm.setInt(2, userId);
+            stm.setString(1, email);
+            stm.setString(2, phone);
+            stm.setString(3, fullname);
+            stm.setString(4, imagePath);
+            stm.setString(5, dob);
+            stm.setString(6, address);
+            stm.setInt(7, userId);
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);

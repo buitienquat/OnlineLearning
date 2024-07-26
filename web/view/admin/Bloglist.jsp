@@ -261,7 +261,7 @@ Author     : vuduc
                             </a>
                         </li>
                         <li>
-                            <a href="CourseList" class="ttr-material-button">
+                            <a href="CourseList?status=1" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-book"></i></span>
                                 <span class="ttr-label">Courses list</span>
                             </a>
@@ -276,7 +276,7 @@ Author     : vuduc
                             </a>
                         </li>
                         <li>
-                            <a href="blogmanager" class="ttr-material-button">
+                            <a href="blogmanager?status=1" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
                                 <span class="ttr-label">Blog listing</span>
                             </a>

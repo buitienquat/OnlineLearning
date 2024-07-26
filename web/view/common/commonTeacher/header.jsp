@@ -101,7 +101,7 @@
                         <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="${account.getImage()}" width="32" height="32"></span></a>
                         <div class="ttr-header-submenu">
                             <ul>
-                                <li><a href="user-profile.html">My profile</a></li>
+                                <li><a href="adminprofile">My profile</a></li>
                                 <li><a href="home">Logout</a></li>
                             </ul>
                         </div>

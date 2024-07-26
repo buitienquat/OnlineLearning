@@ -8,6 +8,11 @@
         <filter-name>adminFilterBlock</filter-name>
         <url-pattern>/dashboardmanager</url-pattern>
         <url-pattern>/blogmanager</url-pattern>
+        <url-pattern>/CourseList</url-pattern>
+        <url-pattern>/dashboardmanager</url-pattern>
+        <url-pattern>/listuser</url-pattern>
+        <url-pattern>/profile</url-pattern>
+        
     </filter-mapping>
 
     <servlet>
@@ -207,7 +212,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BlogManager</servlet-name>
-        <url-pattern>/BlogManager</url-pattern>
+        <url-pattern>/blogmanager</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>dashboardmanager</servlet-name>

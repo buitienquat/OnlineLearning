@@ -196,7 +196,9 @@
         </header>
         <!-- header end -->
         <!-- Left sidebar menu start -->
-        <div class="ttr-sidebar">
+        <c:if test="${account.getRoleID() == 1}">
+            
+            <div class="ttr-sidebar">
             <div class="ttr-sidebar-wrapper content-scroll">
                 <!-- side menu logo start -->
                 <div class="ttr-sidebar-logo">
@@ -220,7 +222,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="CourseList" class="ttr-material-button">
+                            <a href="CourseList?status=1" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-book"></i></span>
                                 <span class="ttr-label">Courses list</span>
                             </a>
@@ -235,7 +237,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="blogmanager" class="ttr-material-button">
+                            <a href="blogmanager?status=1" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
                                 <span class="ttr-label">Blog listing</span>
                             </a>
@@ -248,6 +250,7 @@
                 <!-- sidebar menu end -->
             </div>
         </div>
+        </c:if>
         <!-- Left sidebar menu end -->
 
         <!--Main container start -->
@@ -285,13 +288,13 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Phone</label>
                                                 <div class="col-sm-7">
-                                                    <input class="form-control" type="text" value="${user.getPhone()}">
+                                                    <input class="form-control" name="phone" type="text" value="${user.getPhone()}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Fullname</label>
                                                 <div class="col-sm-7">
-                                                    <input class="form-control" type="text" value="${user.getFullName()}">
+                                                    <input class="form-control" name="fullname" type="text" value="${user.getFullName()}">
                                                     <span class="help">If you want your invoices addressed to a company. Leave blank to use your full name.</span>
                                                 </div>
                                             </div>
@@ -308,13 +311,13 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Dob</label>
                                                 <div class="col-sm-7">
-                                                    <input class="form-control" type="text" value="${user.getDob()}">
+                                                    <input class="form-control" name="dob" type="text" value="${user.getDob()}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Address</label>
                                                 <div class="col-sm-7">
-                                                    <input class="form-control" type="text" value="${user.getAddress()}">
+                                                    <input class="form-control" name="address" type="text" value="${user.getAddress()}">
                                                 </div>
                                             </div>
                                             <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
@@ -325,7 +328,7 @@
                                                     <div class="col-sm-2">
                                                     </div>
                                                     <div class="col-sm-7">
-                                                        <button type="submit" class="btn">Save changes</button>
+                                                        <button type="submit" name="changein4" value="changein4" class="btn">Save changes</button>
                                                         <button type="reset" class="btn-secondry">Cancel</button>
                                                     </div>
                                                 </div>
@@ -342,23 +345,18 @@
                                             reader.readAsDataURL(event.target.files[0]);
                                         }
                                     </script>
-                                    <form class="edit-profile">
+                                    <form class="edit-profile m-b30" enctype="multipart/form-data" action="adminprofile" method="post">
                                         <div class="">
                                             <div class="form-group row">
                                                 <div class="col-sm-10 ml-auto">
                                                     <h3>2. Password</h3>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Current Password</label>
-                                                <div class="col-sm-7">
-                                                    <input class="form-control" type="text" value="${user.password}" readonly>
-                                                </div>
-                                            </div>
+                                           
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">New Password</label>
                                                 <div class="col-sm-7">
-                                                    <input class="form-control" type="password" value="">
+                                                    <input class="form-control" name="newpassword" type="password" value="">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -372,7 +370,7 @@
                                             <div class="col-sm-2">
                                             </div>
                                             <div class="col-sm-7">
-                                                <button type="reset" class="btn">Save changes</button>
+                                                <button type="submit" name="changepass" value="changepass" class="btn">Save changes</button>
                                                 <button type="reset" class="btn-secondry">Cancel</button>
                                             </div>
                                         </div>

@@ -5,6 +5,7 @@
 package controller.Admin;
 
 
+import Utility.Encryption;
 import controller.constant.commonConstant;
 import dal.implement.UserDBContext;
 import java.io.IOException;
@@ -75,8 +76,18 @@ public class adminprofile extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserDBContext dbContext = new UserDBContext();
-        int userId = 2; // ID người dùng cần cập nhật, bạn có thể thay đổi tùy vào trường hợp cụ thể
+        HttpSession session = request.getSession();
+         User user = (User) session.getAttribute(commonConstant.SESSION_ACCOUNT);
+        int userId = user.getUserID(); // ID người dùng cần cập nhật, bạn có thể thay đổi tùy vào trường hợp cụ thể
         String imagePath = ""; // Đường dẫn ảnh sau khi tải lên thành công
+        String email=request.getParameter("email");
+        String phone=request.getParameter("phone");
+        String fullname=request.getParameter("fullname");
+        String dob=request.getParameter("dob");
+        String address=request.getParameter("address");
+        String newpassword=request.getParameter("newpassword");
+        String btn=request.getParameter("changepass");
+        newpassword= Encryption.toSHA1(newpassword);
 
         // Lấy đường dẫn ảnh sau khi người dùng tải lên
         Part filePart = request.getPart("userImage");
@@ -90,7 +101,10 @@ public class adminprofile extends HttpServlet {
 
         // Cập nhật đường dẫn ảnh trong cơ sở dữ liệu
         if (!imagePath.isEmpty()) {
-            dbContext.updateUserImage(userId, imagePath);
+            dbContext.updateUserImage(userId, imagePath,email,phone,fullname,dob,address);
+        }
+        if(btn.equals("changepass")){
+            dbContext.ChangePassword(userId, newpassword);
         }
 List<User> listUser = dbContext.getUserbyUserId(userId);
     request.setAttribute("listUser", listUser);

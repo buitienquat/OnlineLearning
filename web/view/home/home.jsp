@@ -87,13 +87,13 @@
                                         <!--  Student-->
                                         <c:if test="${account.getRoleID()== 3}">
                                             <li>
-                                                <a href="#">My Account</a>                              
+                                                <a href="adminprofile">My Account</a>                              
                                             </li>
                                         </c:if>
                                         <!--  Teacher-->
                                         <c:if test="${account.getRoleID() == 2}">
                                             <li>
-                                                <a href="#">My Account</a>                              
+                                                <a href="blog">My Account</a>                              
                                             </li>
                                         </c:if>
                                         <!--  Admin -->
