@@ -198,7 +198,7 @@ public class authenControl extends HttpServlet {
     }
 
 
-    private String loginGoogle(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  private String loginGoogle(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String url = null;
         String code = request.getParameter("code");
         GoogleLogin gg = new GoogleLogin();
@@ -206,6 +206,7 @@ public class authenControl extends HttpServlet {
         User acc = gg.getUserInfo(accessToken);
         boolean isExistEmail = userDAO.checkEmailExist(acc);
         if (isExistEmail) {
+            userDAO.updateIformationDataUser(acc);
             request.getSession().setAttribute(commonConstant.SESSION_ACCOUNT, acc);
             url = "home";
         } else {

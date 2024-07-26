@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="PE PRJ301">
-            <file>file:/G:/OnlineLearning/OnlineLearning/web/view/blog/blogdetail.jsp</file>
-            <file>file:/G:/OnlineLearning/OnlineLearning/web/view/blog/writtenblog.jsp</file>
-            <file>file:/G:/OnlineLearning/OnlineLearning/web/view/admin/ManageUser.jsp</file>
-            <file>file:/G:/OnlineLearning/OnlineLearning/web/view/course/coursemanage.jsp</file>
-            <file>file:/G:/OnlineLearning/OnlineLearning/web/view/home/home.jsp</file>
-            <file>file:/G:/OnlineLearning/OnlineLearning/web/view/blog/blogview.jsp</file>
-            <file>file:/G:/OnlineLearning/OnlineLearning/web/view/course/lessonmanage.jsp</file>
-        </group>
         <group>
             <file>file:/D:/Project/Clone%203/OnlineLearning/web/view/blog/blogview.jsp</file>
             <file>file:/D:/Project/Clone%203/OnlineLearning/web/view/course/lessonmanage.jsp</file>
@@ -18,5 +9,6 @@
             <file>file:/D:/Project/Clone%203/OnlineLearning/web/view/blog/writtenblog.jsp</file>
             <file>file:/D:/Project/Clone%203/OnlineLearning/web/view/course/coursemanage.jsp</file>
         </group>
+        <group name="PE PRJ301"/>
     </open-files>
 </project-private>

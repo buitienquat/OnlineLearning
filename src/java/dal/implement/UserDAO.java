@@ -66,21 +66,23 @@ public class UserDAO extends GenericDAO<User> {
         parameterMap.put("Password", t.getPassword());
         return insertGenericDAO(sql, parameterMap);
     }
-        public int countUsersByRole(int roleId) {
-    int count = 0;
-    try {
-        String sql = "SELECT COUNT(*) FROM [User] WHERE RoleID = ?";
-        PreparedStatement stm = connection.prepareStatement(sql);
-        stm.setInt(1, roleId);
-        ResultSet rs = stm.executeQuery();
-        if (rs.next()) {
-            count = rs.getInt(1);
+
+    public int countUsersByRole(int roleId) {
+        int count = 0;
+        try {
+            String sql = "SELECT COUNT(*) FROM [User] WHERE RoleID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, roleId);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception ex) {
+
         }
-    } catch (Exception ex) {
-       
+        return count;
     }
-    return count;
-}
+
     public User findByUsernameAndPass(User user) {
         String sql = "SELECT * \n"
                 + "FROM dbo.[User]\n"
@@ -119,7 +121,7 @@ public class UserDAO extends GenericDAO<User> {
         return !queryGenericDAO(User.class, sql, parameterMap).isEmpty();
     }
 
-   public boolean checkGmailIDExist(User user) {
+    public boolean checkGmailIDExist(User user) {
         String sql = "SELECT * \n"
                 + "FROM dbo.[User]\n"
                 + "WHERE GmailID = ?";
@@ -127,4 +129,20 @@ public class UserDAO extends GenericDAO<User> {
         parameterMap.put("GmailID", user.getGmailID());
         return !queryGenericDAO(User.class, sql, parameterMap).isEmpty();
     }
+
+    public void updateIformationDataUser(User acc) {
+
+        String sql = "UPDATE [dbo].[User] "
+                + "SET [FullName] = ?, "
+                + "[Image] = ?, "
+                + "[GmailID] = ? "
+                + "WHERE Email = ?";
+        parameterMap = new LinkedHashMap<>();
+        parameterMap.put("FullName", acc.getFullName());
+        parameterMap.put("Image", acc.getImage());
+        parameterMap.put("GmailID", acc.getGmailID());
+        parameterMap.put("Email", acc.getEmail());
+        updateGenericDAO(sql, parameterMap);
+    }
+
 }
