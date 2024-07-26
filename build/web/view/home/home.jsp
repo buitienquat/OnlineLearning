@@ -177,7 +177,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a href="javascript:;">Blog</a>
+                                    <li><a href="/OnlineLearning/blogview">Blog</a>
                                         
                                     </li>
                                     

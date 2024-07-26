@@ -112,7 +112,7 @@
         </style>
     </head>
     <body class="ttr-opened-sidebar ttr-pinned-sidebar">
-
+        <%@include file="/view/common/commonTeacher/header.jsp"%>
         <!-- header start -->
         <header class="ttr-header">
             <div class="ttr-header-wrapper">
