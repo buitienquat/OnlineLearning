@@ -146,13 +146,10 @@
                                     <li class="active"><a href="/OnlineLearning/home">Home</a>
                                        
                                     </li>
-                                    <li><a href="javascript:;">Pages </a>
-                                     
-                                    </li>
                                     <li class="add-mega-menu"><a href="/OnlineLearning/course">Our Courses</a>
                               
                                     </li>
-                                    <li><a href="javascript:;">Blog </a>
+                                    <li><a href="/OnlineLearning/blogview">Blog </a>
                                       
                                     </li>
                                    

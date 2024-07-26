@@ -60,7 +60,99 @@
         <div class="page-wraper">
             <div id="loading-icon-bx"></div>
             <!-- Header Top ==== -->
-            <jsp:include page="../common/commonCourseDetail/header.jsp"></jsp:include>
+            <header class="header rs-nav">
+    <div class="top-bar">
+        <div class="container">
+            <div class="row d-flex justify-content-between">
+                <div class="topbar-left">
+                    <ul>
+                        <li><a href="faq-1.html"><i class="fa fa-question-circle"></i>Ask a Question</a></li>
+                        <li><a href="javascript:;"><i class="fa fa-envelope-o"></i>Support@website.com</a></li>
+                    </ul>
+                </div>
+                <div class="topbar-right">
+                    <ul>
+                        <c:if test="${account != null}">
+                            <li>
+                                <c:if test="${account.getFullName() != null}">
+                                    <span>Xin chào, ${account.getFullName()}</span>
+                                </c:if>
+
+                            </li>
+                            <!--  Student-->
+                            <c:choose>
+                                <c:when test="${account.getRoleID()== 3}"><a href="#">My Account</a>  </c:when>
+                                <c:when test="${account.getRoleID()== 2}"><a href="#">My Account</a>  </c:when>
+                                <c:when test="${account.getRoleID()== 1}"><a href="#">My Account</a>  </c:when>
+                            </c:choose>
+                        </c:if>
+
+                        <c:if test="${account == null}">
+                            <li><a href="authen?action=login">Login</a></li>
+                            <li><a href="authen?action=register">Register</a></li>
+                            </c:if>
+                            <c:if test="${account != null}">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/authen?action=log-out">Sign Out</a>
+                            </li>
+                        </c:if>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sticky-header navbar-expand-lg">
+        <div class="menu-bar clearfix">
+            <div class="container clearfix">
+                <!-- Header Logo ==== -->
+                <div class="menu-logo">
+                    <a href="/OnlineLearning/home"><img src="${pageContext.request.contextPath}/assets/images/logo.png" alt=""></a>
+                </div>
+                <!-- Mobile Nav Button ==== -->
+                <button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <!-- Author Nav ==== -->
+
+                <!-- Search Box ==== -->
+                <div class="nav-search-bar">
+                    <form action="#">
+                        <input name="search" value="" type="text" class="form-control" placeholder="Type to search">
+                        <span><i class="ti-search"></i></span>
+                    </form>
+                    <span id="search-remove"><i class="ti-close"></i></span>
+                </div>
+                <!-- Navigation Menu ==== -->
+                <div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
+                    <div class="menu-logo">
+                        <a href="index.html"><img src="${pageContext.request.contextPath}/images/logo.png" alt=""></a>
+                    </div>
+                    <ul class="nav navbar-nav">	
+                        <li class="active"><a href="/OnlineLearning/home">Home</a>
+
+                        </li>
+      
+                        <li class="add-mega-menu"><a href="/OnlineLearning/course">Our Courses</a>
+
+                        </li>
+                        <li><a href="/OnlineLearning/blogview">Blog </a>
+
+                        </li>
+
+                    </ul>
+                    <div class="nav-social-link">
+                        <a href="javascript:;"><i class="fa fa-facebook"></i></a>
+                        <a href="javascript:;"><i class="fa fa-google-plus"></i></a>
+                        <a href="javascript:;"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <!-- Navigation Menu END ==== -->
+            </div>
+        </div>
+    </div>
+</header>
                 <!-- header END ==== -->
                 <!-- Content -->
                 <div class="page-content bg-white">
@@ -156,7 +248,7 @@
                                 <div class="col-lg-9 col-md-8 col-sm-12">
                                     <div class="courses-post">
                                         <div class="ttr-post-media media-effect">
-                                            <a href="#"><img src="${findCourseId.getImage()}" alt=""></a>
+                                            <img src="assets/images/courses/${findCourseId.getImage() != null && !findCourseId.getImage().isEmpty() ? findCourseId.getImage() : 'default.jpg'}" alt=""/> 
                                         </div>
                                         <div class="ttr-post-info">
                                             <div class="ttr-post-title ">

@@ -13,25 +13,10 @@
         <li class="active"><a href="/OnlineLearning/home">Home</a>
        
         </li>
-        <li><a href="javascript:;">Pages</a>
-            
+  
+        <li class="add-mega-menu"><a href="/OnlineLearning/course">Our Courses </a>
         </li>
-        <li class="add-mega-menu"><a href="javascript:;">Our Courses <i class="fa fa-chevron-down"></i></a>
-            <ul class="sub-menu add-menu">
-                <li class="add-menu-left">
-                    <h5 class="menu-adv-title">Our Courses</h5>
-                    <ul>
-                        <c:forEach items="${category}" var="ca">
-                            <li><a href="course?action=searchCategory&categoryId=${ca.getCategoryID()}">${ca.getName()}</a></li>
-                        </c:forEach>
-                    </ul>
-                </li>
-                <li class="add-menu-right">
-                    <img src="assets/images/adv/adv.jpg" alt=""/>
-                </li>
-            </ul>
-        </li>
-        <li><a href="javascript:;">Blog</a>
+        <li><a href="/OnlineLearning/blogview">Blog</a>
            
         </li>
     </ul>

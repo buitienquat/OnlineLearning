@@ -99,7 +99,7 @@
                                         <!--  Admin -->
                                         <c:if test="${account.getRoleID() == 1}">
                                             <li>
-                                                <a href="/OnlineLearning/dashboardmanager">My Account</a>
+                                                <a href="dashboardmanager">My Account</a>
                                             </li>
                                         </c:if>
                                     </c:if>
@@ -159,9 +159,7 @@
                                     <li class="active"><a href="/OnlineLearning/home">Home</a>
 
                                     </li>
-                                    <li><a href="javascript:;">Pages </a>
-                                        
-                                    </li>
+ 
                                     <li class="add-mega-menu"><a href="/OnlineLearning/course">Our Courses <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu add-menu">
                                             <li class="add-menu-left">
@@ -264,7 +262,7 @@
 
                                             <div class="cours-bx">
                                                 <div class="action-box">
-                                                    <img src="${course.getImage()}" alt="">
+                                                    <img src="assets/images/courses/${course.getImage() != null && !course.getImage().isEmpty() ? course.getImage() : 'default.jpg'}" alt=""/> 
                                                     <a href="coursedetail?id=${course.getCouseraID()}&categoryId=${course.getCategory_categoryID()}" class="btn">Read More</a>
                                                 </div>
                                                 <div class="info-bx text-center">

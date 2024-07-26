@@ -77,19 +77,19 @@
                                         <!--  Student-->
                                         <c:if test="${account.getRoleID()== 3}">
                                             <li>
-                                                <a href="#">My Account</a>                              
+                                                <a href="adminprofile">My Account</a>                              
                                             </li>
                                         </c:if>
                                         <!--  Teacher-->
                                         <c:if test="${account.getRoleID() == 2}">
                                             <li>
-                                                <a href="#">My Account</a>                              
+                                                <a href="blog">My Account</a>                              
                                             </li>
                                         </c:if>
                                         <!--  Admin -->
                                         <c:if test="${account.getRoleID() == 1}">
                                             <li>
-                                                <a href="#">My Account</a>
+                                                <a href="dashboardmanager">My Account</a>
                                             </li>
                                         </c:if>
                                     </c:if>
@@ -104,6 +104,7 @@
                                     </c:if>
                                 </ul>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -141,6 +142,7 @@
                         </div>
                     </div>
                 </header>
+
                 <!-- header END ==== -->
                 <!-- Content -->
                 <div class="page-content bg-white">
@@ -233,7 +235,8 @@
                                             <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
                                                 <div class="cours-bx">
                                                     <div class="action-box">
-                                                        <img src="${c.getImage()}" alt="">
+<!--                                                        <img src="${c.getImage()}" alt="">-->
+                                                        <img src="assets/images/courses/${c.getImage() != null && !c.getImage().isEmpty() ? c.getImage() : 'default.jpg'}" alt=""/> 
                                                         <c:forEach items="${category}" var="ca">
                                                             <c:if test="${c.getCategory_categoryID() == ca.getCategoryID()}">
                                                                 <a href="coursedetail?id=${c.getCouseraID()}&categoryId=${ca.getCategoryID()}" class="btn">Read More</a>
@@ -273,7 +276,7 @@
                                             </div>
                                         </c:forEach>
                                         <!-- pagination start -->
-                                    <jsp:include page="../common/commonCourse/pagination.jsp"></jsp:include>
+                                        <jsp:include page="../common/commonCourse/pagination.jsp"></jsp:include>
                                             <!-- pagination end-->
                                         </div>
                                     </div>
@@ -285,7 +288,7 @@
                 </div>
                 <!-- Content END-->
                 <!-- Footer ==== -->
-                                    <jsp:include page="../common/commonCourse/footer.jsp"></jsp:include>
+            <jsp:include page="../common/commonCourse/footer.jsp"></jsp:include>
             <!-- Footer END ==== -->
             <button class="back-to-top fa fa-chevron-up" ></button>
         </div>
