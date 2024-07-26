@@ -102,120 +102,14 @@
     </head>
     <body class="ttr-opened-sidebar ttr-pinned-sidebar">
         <%@include file="/view/common/commonTeacher/header.jsp"%>
-        <!-- header start -->
-        <header class="ttr-header">
-            <div class="ttr-header-wrapper">
-                <!--sidebar menu toggler start -->
-                <div class="ttr-toggle-sidebar ttr-material-button">
-                    <i class="ti-close ttr-open-icon"></i>
-                    <i class="ti-menu ttr-close-icon"></i>
-                </div>
-                <!--sidebar menu toggler end -->
-                <!--logo start -->
-                <div class="ttr-logo-box">
-                    <div>
-                        <a href="index.html" class="ttr-logo">
-                            <img alt="" class="ttr-logo-mobile" src="assets/assets_admin/images/logo-mobile.png" width="30" height="30">
-                            <img alt="" class="ttr-logo-desktop" src="assets/assets_admin/images/logo-white.png" width="160" height="27">
-                        </a>
-                    </div>
-                </div>
-                <!--logo end -->
-                <div class="ttr-header-menu">
-                    <!-- header left menu start -->
-                    <ul class="ttr-header-navigation">
-                        <li>
-                            <a href="../index.html" class="ttr-material-button ttr-submenu-toggle">HOME</a>
-                        </li>
-                        <li>
-                            <a href="#" class="ttr-material-button ttr-submenu-toggle">QUICK MENU<i class="fa fa-angle-down"></i></a>
-                            <div class="ttr-header-submenu">
-                                <ul>
-                                    <li><a href="../courses.html">Our Courses</a></li>
-                                    <li><a href="../event.html">New Event</a></li>
-                                    <li><a href="../membership.html">Membership</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                    <!-- header left menu end -->
-                </div>
-                <div class="ttr-header-right ttr-with-seperator">
-                    <!-- header right menu start -->
-                    <ul class="ttr-header-navigation">                      
-                        <li>
-                            <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="assets/assets_admin/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
-                            <div class="ttr-header-submenu">
-                                <ul>
-                                    <li><a href="adminprofile">My profile</a></li>
-                                    <li><a href="authen?action=log-out">Logout</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                    <!-- header right menu end -->
-                </div>
-                <!--header search panel start -->
-                <div class="ttr-search-bar">
-                    <form class="ttr-search-form">
-                        <div class="ttr-search-input-wrapper">
-                            <input type="text" name="qq" placeholder="search something..." class="ttr-search-input">
-                            <button type="submit" name="search" class="ttr-search-submit"><i class="ti-arrow-right"></i></button>
-                        </div>
-                        <span class="ttr-search-close ttr-search-toggle">
-                            <i class="ti-close"></i>
-                        </span>
-                    </form>
-                </div>
-                <!--header search panel end -->
-            </div>
-        </header>
-        <!-- header end -->
-        <!-- Left sidebar menu start -->
-        <div class="ttr-sidebar">
-            <div class="ttr-sidebar-wrapper content-scroll">
-                <!-- side menu logo start -->
-                <div class="ttr-sidebar-logo">
-                    <a href="#"><img alt="" src="assets/assets_admin/images/logo.png" width="122" height="27"></a>
-                    <!-- <div class="ttr-sidebar-pin-button" title="Pin/Unpin Menu">
-                            <i class="material-icons ttr-fixed-icon">gps_fixed</i>
-                            <i class="material-icons ttr-not-fixed-icon">gps_not_fixed</i>
-                    </div> -->
-                    <div class="ttr-sidebar-toggle-button">
-                        <i class="ti-arrow-left"></i>
-                    </div>
-                </div>
-                <!-- side menu logo end -->
-                <!-- sidebar menu start -->
-                <nav class="ttr-sidebar-navi">
-                    <ul>
-
-                        <li>
-                            
-                            <a href="writtenblog" class="ttr-material-button">
-                                <span class="ttr-icon"><i class="ti-save-alt"></i></span>
-                                <span class="ttr-label">Manage Blog</span>
-                            </a>
-                            <a href="coursemanage" class="ttr-material-button">
-                                <span class="ttr-icon"><i class="ti-marker-alt"></i></span>
-                                <span class="ttr-label">Manage Course</span>
-                            </a>
-                        </li>			
-                        <li class="ttr-seperate"></li>
-                    </ul>
-                </nav>
-                <!-- sidebar menu end -->
-            </div>
-        </div>
-        <!-- Left sidebar menu end -->
-
+       
         <!--Main container start -->
         <main class="ttr-wrapper">
             <div class="container-fluid">
                 <div class="db-breadcrumb">
                     <h4 class="breadcrumb-title">Manage Blog</h4>
                     <ul class="db-breadcrumb-list">
-                        <li><a href="index.html"><i class="fa fa-home"></i>Home</a></li>
+                        <li><a href="home"><i class="fa fa-home"></i>Home</a></li>
                         <li><a href="writtenblog?status=0"><i class=" ${statusValue==0 ? 'active' : ''}"></i>Save</a></li>
                         <li><a href="writtenblog?status=1"><i class=" ${statusValue==1 ? 'active' : ''}"></i>Publish</a></li>
                         <a href="#" class="btn radius-xl" data-bs-toggle="modal" data-bs-target="#newblogadd">Add Blog</a>                             
