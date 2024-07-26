@@ -65,7 +65,8 @@ public class homeControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Course> listCourse = courseDAO.findAll();
+        int statusCourse = 1;
+        List<Course> listCourse = courseDAO.findAllStatus(statusCourse);
         List<Category> listCategory = categoryDAO.findAll();
         request.setAttribute("listCourse", listCourse);
         request.setAttribute("listCategory", listCategory);

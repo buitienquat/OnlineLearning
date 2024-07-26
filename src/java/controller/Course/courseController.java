@@ -64,6 +64,7 @@ public class courseController extends HttpServlet {
 
     private List<Course> findCourseDoGet(HttpServletRequest request, Page pageControl) {
         //get ve page
+        int statusCourse = 1;
         String pageRaw = request.getParameter("page");
         //valid page
         int page;
@@ -101,7 +102,8 @@ public class courseController extends HttpServlet {
                     listCourse = courseDAO.findCourseByCategoryAll(cateIdAll, page);
                     pageControl.setUrlPattern(requestURL + "?action=searchCategoryAll&categoryId=" + cateIdAll + "&");
                 } catch (Exception e) {
-                    listCourse = courseDAO.findAll();
+//                    listCourse = courseDAO.findAll();
+                        listCourse = courseDAO.findAllStatus(statusCourse);
                 }
                 break;
             case "searchCategory":
@@ -116,7 +118,8 @@ public class courseController extends HttpServlet {
                     listCourse = courseDAO.findCourseByCategory(cateId, page);
                     pageControl.setUrlPattern(requestURL + "?action=searchCategory&categoryId=" + cateId + "&");
                 } catch (Exception e) {
-                    listCourse = courseDAO.findAll();
+//                    listCourse = courseDAO.findAll();
+                    listCourse = courseDAO.findAllStatus(statusCourse);
                 }
                 break;
             case "searchCategoryFree":
@@ -131,7 +134,8 @@ public class courseController extends HttpServlet {
                     listCourse = courseDAO.findCourseByCategoryFree(cateIdFree, page);
                     pageControl.setUrlPattern(requestURL + "?action=earchCategoryFree&categoryIdFree=" + categoryIdFree + "&");
                 } catch (Exception e) {
-                    listCourse = courseDAO.findAll();
+//                    listCourse = courseDAO.findAll();
+                    listCourse = courseDAO.findAllStatus(statusCourse);
                 }
                 break;
             default:

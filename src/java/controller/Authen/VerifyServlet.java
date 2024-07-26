@@ -30,13 +30,14 @@ public class VerifyServlet extends HttpServlet {
             String email = (String) request.getSession().getAttribute("email");
             String username = (String) request.getSession().getAttribute("username");
             String password = (String) request.getSession().getAttribute("password");
+            String fullname = (String) request.getSession().getAttribute("fullname");
             if (username == null) {
                 request.getRequestDispatcher("view/authen/reset_password.jsp").forward(request, response);
             } else {
 
                 // Thêm thông tin người dùng vào cơ sở dữ liệu
                 UserDBContext userDB = new UserDBContext();
-                userDB.addUser(email, username, password);
+                userDB.addUser(email, username, password,fullname);
                 response.setContentType("text/html;charset=UTF-8");
                 PrintWriter out = response.getWriter();
                 out.println("<html>");

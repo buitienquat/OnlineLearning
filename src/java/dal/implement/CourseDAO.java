@@ -23,12 +23,9 @@ import org.apache.catalina.util.ParameterMap;
  */
 public class CourseDAO extends GenericDAO<Course> {
 
-
     @Override
     public List<Course> findAll() {
         return queryGenericDAO(Course.class);
-//        List<Course> list = new ArrayList<>();
-//        connection = getConnection();
     }
 
     @Override
@@ -68,7 +65,7 @@ public class CourseDAO extends GenericDAO<Course> {
     public List<Course> findCourseByName(String searchName, int page) {
         String sql = "SELECT *\n"
                 + "FROM dbo.Course\n"
-                + "WHERE [Name] LIKE ?\n"
+                + "WHERE [Name] LIKE ? AND [Status] = 1\n"
                 + "ORDER BY CouseraID\n"
                 + "OFFSET ? ROWS\n"
                 + "FETCH NEXT ? ROWS ONLY";
@@ -84,7 +81,7 @@ public class CourseDAO extends GenericDAO<Course> {
     public List<Course> findCourseByCategory(int cateId, int page) {
         String sql = "SELECT *\n"
                 + "FROM dbo.Course\n"
-                + "WHERE Category_categoryID = ? AND Feestatus > 0\n"
+                + "WHERE Category_categoryID = ? AND Feestatus > 0 AND [Status] = 1\n"
                 + "ORDER BY CouseraID\n"
                 + "OFFSET ? ROWS\n"
                 + "FETCH NEXT ? ROWS ONLY";
@@ -98,7 +95,7 @@ public class CourseDAO extends GenericDAO<Course> {
     public List<Course> findCourseByCategoryAll(int cateIdAll, int page) {
         String sql = "SELECT *\n"
                 + "FROM dbo.Course\n"
-                + "WHERE Category_categoryID = ?\n"
+                + "WHERE Category_categoryID = ? AND [Status] = 1\n"
                 + "ORDER BY CouseraID\n"
                 + "OFFSET ? ROWS\n"
                 + "FETCH NEXT ? ROWS ONLY";
@@ -125,7 +122,7 @@ public class CourseDAO extends GenericDAO<Course> {
     public int findTotalRecordByName(String searchName) {
         String sql = "SELECT COUNT(*) "
                 + "FROM dbo.Course\n"
-                + "WHERE [Name] LIKE ?";
+                + "WHERE [Name] LIKE ? AND [Status] = 1";
         parameterMap = new LinkedHashMap<>();
         parameterMap.put("name", "%" + searchName + "%");
         return findTotalRecordGenericDAO(Course.class, sql, parameterMap);
@@ -134,7 +131,7 @@ public class CourseDAO extends GenericDAO<Course> {
     public int findTotalRecordByCategory(String categoryId) {
         String sql = "SELECT COUNT(*) \n"
                 + "FROM dbo.Course\n"
-                + "WHERE Category_categoryID = ? AND Feestatus > 0";
+                + "WHERE Category_categoryID = ? AND Feestatus > 0  AND [Status] = 1";
         parameterMap = new LinkedHashMap<>();
         parameterMap.put("categoryId", categoryId);
         return findTotalRecordGenericDAO(Course.class, sql, parameterMap);
@@ -143,22 +140,22 @@ public class CourseDAO extends GenericDAO<Course> {
     public int findTotalRecordByCategoryAll(String categoryIdAll) {
         String sql = "SELECT COUNT(*) \n"
                 + "FROM dbo.Course\n"
-                + "WHERE Category_categoryID = ?";
+                + "WHERE Category_categoryID = ? AND [Status] = 1";
         parameterMap = new LinkedHashMap<>();
         parameterMap.put("categoryId", categoryIdAll);
         return findTotalRecordGenericDAO(Course.class, sql, parameterMap);
     }
 
     public int findTotalRecord() {
-        String sql = "SELECT COUNT(*) \n"
-                + "FROM dbo.Course";
+        String sql = "SELECT COUNT(*) FROM dbo.Course\n"
+                + "WHERE  [Status] = 1";
         parameterMap = new LinkedHashMap<>();
         return findTotalRecordGenericDAO(Course.class, sql, parameterMap);
     }
 
     public List<Course> findByPage(int page) {
         String sql = "SELECT *\n"
-                + "FROM dbo.Course\n"
+                + "FROM dbo.Course WHERE [Status] = 1\n"
                 + "ORDER BY CouseraID\n"
                 + "OFFSET ? ROWS\n"
                 + "FETCH NEXT ? ROWS ONLY";
@@ -171,7 +168,7 @@ public class CourseDAO extends GenericDAO<Course> {
     public int findTotalRecordByCategoryFree(String categoryIdFree) {
         String sql = "SELECT COUNT(*) \n"
                 + "FROM dbo.Course\n"
-                + "WHERE Category_categoryID = ? AND Feestatus = 0";
+                + "WHERE Category_categoryID = ? AND Feestatus = 0 AND [Status] = 1";
         parameterMap = new LinkedHashMap<>();
         parameterMap.put("categoryidfree", categoryIdFree);
         return findTotalRecordGenericDAO(Course.class, sql, parameterMap);
@@ -180,7 +177,7 @@ public class CourseDAO extends GenericDAO<Course> {
     public List<Course> findCourseByCategoryFree(int cateIdFree, int page) {
         String sql = "SELECT * \n"
                 + "FROM dbo.Course\n"
-                + "WHERE Category_categoryID = ? AND Feestatus = 0\n"
+                + "WHERE Category_categoryID = ? AND Feestatus = 0  AND [Status] = 1\n"
                 + "ORDER BY CouseraID\n"
                 + "OFFSET ? ROWS\n"
                 + "FETCH NEXT ? ROWS ONLY";
@@ -191,7 +188,7 @@ public class CourseDAO extends GenericDAO<Course> {
         return queryGenericDAO(Course.class, sql, parameterMap);
     }
 
-     Connection conn = null;
+    Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
 
@@ -356,12 +353,17 @@ public class CourseDAO extends GenericDAO<Course> {
         }
         return courses;
     }
-    
+
     public static void main(String[] args) {
         System.out.println(new CourseDAO().getCourseByStatus(1, 3));
     }
 
+    public List<Course> findAllStatus(int statusCourse) {
+        String sql = "SELECT * FROM dbo.Course\n"
+                + "WHERE  [Status] = ?";
+        parameterMap = new LinkedHashMap<>();
+        parameterMap.put("status", statusCourse);
+        return queryGenericDAO(Course.class, sql, parameterMap);
+    }
+
 }
-
-
-

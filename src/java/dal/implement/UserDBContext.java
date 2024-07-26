@@ -117,7 +117,7 @@ public class UserDBContext extends DBContext {
         }
     }
 
-  public void updateAccount(int userid, int status,int role) {
+    public void updateAccount(int userid, int status, int role) {
         try {
             String sql = "UPDATE [User] SET statusUserId=?,RoleID=? WHERE UserID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -245,32 +245,33 @@ public class UserDBContext extends DBContext {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public static void main(String[] args) {
-        
+
         System.out.println(new UserDBContext().getUserbyUserId(2));
     }
 
-     public void addUser(String email,String username,String password) {
+    public void addUser(String email, String username, String password, String fullname) {
         try {
-            String sql = "INSERT INTO [dbo].[User] (Email, Username, Password,RoleID,statusUserId) VALUES (?,?,?,3,2)";
+            String sql = "INSERT INTO [dbo].[User] (Email, Username, Password,FullName,RoleID,statusUserId) VALUES (?,?,?,?,3,2)";
             PreparedStatement stm = connection.prepareStatement(sql);
-             stm.setString(1, email);
+            stm.setString(1, email);
             stm.setString(2, username);
             stm.setString(3, password);
-            
+            stm.setString(4, fullname);
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-     public void updateUserByEmail(String email, String newpass) {
+    public void updateUserByEmail(String email, String newpass) {
         try {
             String sql = "UPDATE [User] SET Password = ? WHERE Email = ?;";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, newpass);
             stm.setString(2, email);
-            
+
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
