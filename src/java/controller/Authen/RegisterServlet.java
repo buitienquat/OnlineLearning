@@ -5,6 +5,8 @@
 package controller.Authen;
 
 import Utility.Encryption;
+import controller.Course.CourseManage;
+import dal.implement.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,6 +19,11 @@ import java.util.Random;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.User;
+
+
 
 /**
  *
@@ -29,6 +36,25 @@ public class RegisterServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String fullname = request.getParameter("fullname");
+        String error = "";
+        String btn=request.getParameter("btn");
+        User user = new User();
+        user.setEmail(email);
+          UserDAO userDAO = new UserDAO();
+        boolean isExistEmail = userDAO.checkEmailExist(user);
+        
+        if (username == null || username.length() < 6) {
+            error = "Username phải có ít nhất 6 ký tự.";
+        } else if (password == null || password.length() < 8 || !password.matches(".*[!@#$%^&*(),.?\":{}|<>].*") || !password.matches(".*[A-Z].*")) {
+            error = "Password phải có ít nhất 8 ký tự, bao gồm ít nhất 1 ký tự đặc biệt và 1 ký tự in hoa.";
+        }else if (isExistEmail) {
+            error = "Email exist !!";
+        }
+
+        if (!error.isEmpty()) {
+            request.setAttribute("error", error);
+            request.getRequestDispatcher("view/authen/register.jsp").forward(request, response);
+        }else{
         password = Encryption.toSHA1(password);
         // Tạo mã xác minh
         String verificationCode = generateVerificationCode();
@@ -44,8 +70,22 @@ public class RegisterServlet extends HttpServlet {
         request.getSession().setAttribute("verificationCode", verificationCode);
         // Chuyển hướng người dùng đến trang verify.jsp
         request.getRequestDispatcher("view/authen/verify.jsp").forward(request, response);
+         }
     }
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+      String email = request.getParameter("email");
+      String verificationCode = generateVerificationCode();
 
+        // Gửi mã xác minh đến email của người dùng
+        Send(email, verificationCode);
+
+        // Lưu thông tin đăng ký tạm thời vào session
+        request.getSession().setAttribute("email", email);
+        request.getSession().setAttribute("verificationCode", verificationCode);
+        // Chuyển hướng người dùng đến trang verify.jsp
+        request.getRequestDispatcher("view/authen/verify.jsp").forward(request, response);
+    }
     private String generateVerificationCode() {
         Random random = new Random();
         return String.format("%06d", random.nextInt(1000000));

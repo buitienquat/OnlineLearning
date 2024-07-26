@@ -9,6 +9,8 @@
             <file>file:/D:/Project/Clone%203/OnlineLearning/web/view/blog/writtenblog.jsp</file>
             <file>file:/D:/Project/Clone%203/OnlineLearning/web/view/course/coursemanage.jsp</file>
         </group>
-        <group name="PE PRJ301"/>
+        <group name="PE PRJ301">
+            <file>file:/D:/Desktop/OnlineLearning/src/java/dal/DBContext.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -82,7 +82,7 @@
                     <!-- header left menu start -->
                     <ul class="ttr-header-navigation">
                         <li>
-                            <a href="admin/AdminHomepage.jsp" class="ttr-material-button ttr-submenu-toggle">HOME</a>
+                            <a href="home" class="ttr-material-button ttr-submenu-toggle">HOME</a>
                         </li>
                     </ul>
                     <!-- header left menu end -->
@@ -164,17 +164,27 @@
                                 </div>
                             </div>
                         </li>
+                       <c:if test="${account != null}">
                         <li>
-                            <a href="updateAdmin" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="assets/assets_admin/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
-                            <div class="ttr-header-submenu">
-                                <ul>
-                                    <li><a href="adminprofile">My profile</a></li>
+                            <c:if test="${account.getFullName() != null}">
+                                <a href="#" class="ttr-material-button ttr-submenu-toggle">Xin chào, ${account.getFullName()}</a>
+                            </c:if>
 
-                                    <li><a href="mailbox.html">Messages</a></li>
-                                    <li><a href="authen?action=log-out">Logout</a></li>
-                                </ul>
-                            </div>
                         </li>
+                                      
+                    <li>                      
+                        <a href="updateAdmin" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="${account.getImage()}" width="32" height="32"></span></a>
+                        <div class="ttr-header-submenu">
+                            <ul>
+                                <li><a href="adminprofile">My profile</a></li>
+                                <li><a href="authen?action=log-out">Logout</a></li>
+                            </ul>
+                        </div>
+                        
+                        
+
+                    </li>
+                    </c:if>  
 
                     </ul>
                     <!-- header right menu end -->
@@ -216,7 +226,7 @@
                 <nav class="ttr-sidebar-navi">
                     <ul>
                         <li>
-                            <a href="dashboard" class="ttr-material-button">
+                            <a href="dashboardmanager" class="ttr-material-button">
                                 <span class="ttr-icon"><i class="ti-home"></i></span>
                                 <span class="ttr-label">Dashboard</span>
                             </a>
@@ -282,19 +292,19 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-7">
-                                                    <input class="form-control" type="text" name="email" value="${user.getEmail()}">
+                                                    <input class="form-control" type="text" name="email" value="${user.getEmail()}" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Phone</label>
                                                 <div class="col-sm-7">
-                                                    <input class="form-control" name="phone" type="text" value="${user.getPhone()}">
+                                                    <input class="form-control" name="phone" type="text" value="${user.getPhone()}" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Fullname</label>
                                                 <div class="col-sm-7">
-                                                    <input class="form-control" name="fullname" type="text" value="${user.getFullName()}">
+                                                    <input class="form-control" name="fullname" type="text" value="${user.getFullName()}" required>
                                                     <span class="help">If you want your invoices addressed to a company. Leave blank to use your full name.</span>
                                                 </div>
                                             </div>
@@ -302,7 +312,7 @@
                                                 <label class="col-sm-2 col-form-label">Image</label>
                                                 <div class="col-sm-7">
                                                     <img id="currentImage" src="${user.getImage()}" alt="User Image" width="150" height="150">
-                                                    <input type="file" name="userImage" accept="image/*" onchange="previewImage(event)">
+                                                    <input type="file" name="userImage" accept="image/*" onchange="previewImage(event)" required>
                                                 </div>
                                             </div>
 
@@ -311,7 +321,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Dob</label>
                                                 <div class="col-sm-7">
-                                                    <input class="form-control" name="dob" type="text" value="${user.getDob()}">
+                                                    <input class="form-control" name="dob" type="text" value="${user.getDob()}" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -356,13 +366,13 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">New Password</label>
                                                 <div class="col-sm-7">
-                                                    <input class="form-control" name="newpassword" type="password" value="">
+                                                    <input class="form-control" name="newpassword" type="password" value="" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Re Type Password</label>
                                                 <div class="col-sm-7">
-                                                    <input class="form-control" type="password" value="">
+                                                    <input class="form-control" type="password" value="" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -370,7 +380,7 @@
                                             <div class="col-sm-2">
                                             </div>
                                             <div class="col-sm-7">
-                                                <button type="submit" name="changepass" value="changepass" class="btn">Save changes</button>
+                                                <button type="submit" name="changein4" value="changepass" class="btn">Save changes</button>
                                                 <button type="reset" class="btn-secondry">Cancel</button>
                                             </div>
                                         </div>

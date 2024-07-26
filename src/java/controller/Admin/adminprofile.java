@@ -1,15 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller.Admin;
-
 
 import Utility.Encryption;
 import controller.constant.commonConstant;
 import dal.implement.UserDBContext;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
@@ -22,22 +21,9 @@ import java.nio.file.Paths;
 import java.util.List;
 import model.User;
 
-/**
- *
- * @author vuduc
- */
 @MultipartConfig
 public class adminprofile extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -49,76 +35,78 @@ public class adminprofile extends HttpServlet {
         request.getRequestDispatcher("view/admin/Myprofile.jsp").forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserDBContext dbContext = new UserDBContext();
         HttpSession session = request.getSession();
-         User user = (User) session.getAttribute(commonConstant.SESSION_ACCOUNT);
-        int userId = user.getUserID(); // ID người dùng cần cập nhật, bạn có thể thay đổi tùy vào trường hợp cụ thể
-        String imagePath = ""; // Đường dẫn ảnh sau khi tải lên thành công
-        String email=request.getParameter("email");
-        String phone=request.getParameter("phone");
-        String fullname=request.getParameter("fullname");
-        String dob=request.getParameter("dob");
-        String address=request.getParameter("address");
-        String newpassword=request.getParameter("newpassword");
-        String btn=request.getParameter("changepass");
-        newpassword= Encryption.toSHA1(newpassword);
+        User user = (User) session.getAttribute(commonConstant.SESSION_ACCOUNT);
+        int userId = user.getUserID();
+        String imagePath = "";
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String fullname = request.getParameter("fullname");
+        String dobStr = request.getParameter("dob");
+        String address = request.getParameter("address");
+        String newpassword = request.getParameter("newpassword");
+        String btn = request.getParameter("changein4");
 
-        // Lấy đường dẫn ảnh sau khi người dùng tải lên
-        Part filePart = request.getPart("userImage");
-        if (filePart != null && filePart.getSize() > 0) {
-            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-            String uploadDir = getServletContext().getRealPath("/uploads");
-            File uploadFile = new File(uploadDir, fileName);
-            filePart.write(uploadFile.getAbsolutePath());
-            imagePath = "uploads/" + fileName;
+        // Chuyển đổi chuỗi ngày tháng sang đối tượng Date
+         if (btn.equals("changein4")) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date dob = null;
+        try {
+            dob = sdf.parse(dobStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            // Xử lý lỗi chuyển đổi ngày tháng (nếu có)
         }
 
-        // Cập nhật đường dẫn ảnh trong cơ sở dữ liệu
-        if (!imagePath.isEmpty()) {
-            dbContext.updateUserImage(userId, imagePath,email,phone,fullname,dob,address);
+       
+            Part filePart = request.getPart("userImage");
+            if (filePart != null && filePart.getSize() > 0) {
+                String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+                String uploadDir = getServletContext().getRealPath("/uploads");
+                File uploadFile = new File(uploadDir, fileName);
+                filePart.write(uploadFile.getAbsolutePath());
+                imagePath = "uploads/" + fileName;
+            }
+
+            // Định dạng lại dob thành chuỗi
+            String formattedDob = sdf.format(dob);
+
+            // Cập nhật thông tin người dùng trong cơ sở dữ liệu
+            dbContext.updateUserImage(userId, imagePath, email, phone, fullname, formattedDob, address);
+            user.setImage(imagePath);
+            user.setEmail(email);
+            user.setPhone(phone);
+            user.setFullName(fullname);
+            user.setDob(dob);
+            user.setAddress(address);
         }
-        if(btn.equals("changepass")){
+        
+        if (btn.equals("changepass")) {
+            newpassword = Encryption.toSHA1(newpassword);
             dbContext.ChangePassword(userId, newpassword);
         }
-List<User> listUser = dbContext.getUserbyUserId(userId);
-    request.setAttribute("listUser", listUser);
+
+        // Lấy thông tin người dùng mới từ cơ sở dữ liệu và cập nhật session
+        User updatedUser = dbContext.getUserbyUserId(userId).get(0);
+        session.setAttribute(commonConstant.SESSION_ACCOUNT, updatedUser);
+
+        List<User> listUser = dbContext.getUserbyUserId(userId);
+        request.setAttribute("listUser", listUser);
         request.getRequestDispatcher("view/admin/Myprofile.jsp").forward(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

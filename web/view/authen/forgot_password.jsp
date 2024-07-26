@@ -68,7 +68,7 @@
                             <h2 class="title-head">Forget <span>Password</span></h2>
                             <p>Login Your Account <a href="http://localhost:9999/OnlineLearning/authen?action=login">Click here</a></p>
                         </div>	
-                        <form class="contact-bx" action="<%=request.getContextPath()%>/RegisterServlet" method="post">
+                        <form class="contact-bx" action="<%=request.getContextPath()%>/RegisterServlet" method="get">
                             <div class="row placeani">
                                 <div class="col-lg-12">
                                     <div class="form-group">
