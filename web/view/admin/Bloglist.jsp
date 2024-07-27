@@ -14,14 +14,14 @@ Author     : vuduc
         function showAlert2() {
             alert("Delete thành công !");
         }
-            function confirmAction(action) {
-        if (action === 'approve') {
-            return confirm("Bạn có chắc chắn muốn chấp nhận không?");
-        } else if (action === 'cancel') {
-            return confirm("Bạn có chắc chắn muốn Ban khóa học này không?");
+        function confirmAction(action) {
+            if (action === 'approve') {
+                return confirm("Bạn có chắc chắn muốn chấp nhận không?");
+            } else if (action === 'cancel') {
+                return confirm("Bạn có chắc chắn muốn Ban khóa học này không?");
+            }
+            return false;
         }
-        return false;
-    }
     </script>
     <!-- Mirrored from educhamp.themetrades.com/demo/admin/courses.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:10:19 GMT -->
     <head>
@@ -74,32 +74,32 @@ Author     : vuduc
 
     </head>
     <body class="ttr-opened-sidebar ttr-pinned-sidebar">
-<!-- Modal Popup -->
-<div id="banModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="banModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="banModalLabel">Lý do ban blog</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="banForm" action="/OnlineLearning/updateblog" method="POST">
-                <div class="modal-body">
-                    <input type="hidden" name="blogId" id="blogId" value="">
-                    <div class="form-group">
-                        <label for="banReason">Lý do:</label>
-                        <textarea class="form-control" id="banReason" name="banReason" rows="3"></textarea>
+        <!-- Modal Popup -->
+        <div id="banModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="banModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="banModalLabel">Lý do ban blog</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
+                    <form id="banForm" action="/OnlineLearning/updateblog" method="POST">
+                        <div class="modal-body">
+                            <input type="hidden" name="blogId" id="blogId" value="">
+                            <div class="form-group">
+                                <label for="banReason">Lý do:</label>
+                                <textarea class="form-control" id="banReason" name="banReason" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-danger" name="btn" value="cancel">Ban</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="submit" class="btn btn-danger" name="btn" value="cancel">Ban</button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
 
         <!-- header start -->
         <header class="ttr-header">
@@ -207,26 +207,26 @@ Author     : vuduc
                             </div>
                         </li>
                         <c:if test="${account != null}">
-                        <li>
-                            <c:if test="${account.getFullName() != null}">
-                                <a href="#" class="ttr-material-button ttr-submenu-toggle">Xin chào, ${account.getFullName()}</a>
-                            </c:if>
+                            <li>
+                                <c:if test="${account.getFullName() != null}">
+                                    <a href="#" class="ttr-material-button ttr-submenu-toggle">Xin chào, ${account.getFullName()}</a>
+                                </c:if>
 
-                        </li>
-                                      
-                    <li>                      
-                        <a href="updateAdmin" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="${account.getImage()}" width="32" height="32"></span></a>
-                        <div class="ttr-header-submenu">
-                            <ul>
-                                <li><a href="adminprofile">My profile</a></li>
-                                <li><a href="authen?action=log-out">Logout</a></li>
-                            </ul>
-                        </div>
-                        
-                        
+                            </li>
 
-                    </li>
-                    </c:if>  
+                            <li>                      
+                                <a href="updateAdmin" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="${account.getImage()}" width="32" height="32"></span></a>
+                                <div class="ttr-header-submenu">
+                                    <ul>
+                                        <li><a href="adminprofile">My profile</a></li>
+                                        <li><a href="authen?action=log-out">Logout</a></li>
+                                    </ul>
+                                </div>
+
+
+
+                            </li>
+                        </c:if>  
 
                     </ul>
                     <!-- header right menu end -->
@@ -306,13 +306,13 @@ Author     : vuduc
         <main class="ttr-wrapper">
             <div class="container-fluid">
                 <div class="db-breadcrumb">
-    <h4 class="breadcrumb-title">Blog</h4>
-    <ul class="db-breadcrumb-list">
-        <li><a href="/OnlineLearning/blogmanager?status=1">Active</a></li>
-        <li><a href="/OnlineLearning/blogmanager?status=0">Ban</a></li>
-        <li><a href="/OnlineLearning/blogmanager?status=2">Pending</a></li>
-    </ul>
-</div>
+                    <h4 class="breadcrumb-title">Blog</h4>
+                    <ul class="db-breadcrumb-list">
+                        <li><a href="/OnlineLearning/blogmanager?status=1">Active</a></li>
+                        <li><a href="/OnlineLearning/blogmanager?status=0">Ban</a></li>
+                        
+                    </ul>
+                </div>
                 <div class="row">
                     <!-- Your Profile Views Chart -->
                     <div class="col-lg-12 m-b30">
@@ -325,20 +325,35 @@ Author     : vuduc
                                 <c:forEach var="blog" items="${listBlog}">
                                     <div class="card-courses-list admin-courses">
                                         <div class="card-courses-media">
-                                            <img src="${blog.blogImage}" alt=""/>
+                                            <img src="assets/images/blog/${blog.blogImage != null && !blog.blogImage.isEmpty() ? blog.blogImage : 'default.jpg'}" alt=""/>
                                         </div>
                                         <div class="card-courses-full-dec">
                                             <div class="card-courses-title">
                                                 <a href="">${blog.blogTitle}</a>
-                                                   
+
                                             </div>
                                             <div class="card-courses-list-bx">
                                                 <ul class="card-courses-view">
-                                                
-		<li class="card-courses-categories">
-												<h5> PostDate</h5>
-                                                                                                <h5>${blog.postDate}</h5>
-											</li>
+                                                    <c:forEach var="list" items="${listUser}">
+                                                        <c:if test="${list.userID == blog.userId}">
+                                                            <li class="card-courses-user">
+
+                                                                <div class="card-courses-user-pic">
+                                                                    <img src="${list.image}" alt=""/>
+                                                                </div>
+
+                                                                <div class="card-courses-user-info">
+                                                                    <h5>Teacher</h5>
+                                                                    <h4>${list.fullName}</h4>
+                                                                </div>
+
+                                                            </li>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                    <li class="card-courses-categories">
+                                                        <h5> PostDate</h5>
+                                                        <h5>${blog.postDate}</h5>
+                                                    </li>
 
                                                     <li class="card-courses-stats">
                                                         <c:choose>
@@ -347,7 +362,7 @@ Author     : vuduc
                                                             <c:when test="${blog.blogStatus == 2}"><a href="#" class="btn button-sm blue radius-xl">Pending</a></c:when>
                                                         </c:choose>
                                                     </li>
-                                                   
+
                                                 </ul>
                                             </div>
                                             <div class="row card-courses-dec">
@@ -360,9 +375,14 @@ Author     : vuduc
                                                 <form action="/OnlineLearning/updateblog" method="POST">
                                                     <div class="col-md-12">
                                                         <input type="hidden" name="blogId" value="${blog.blogId}" />
-                                                        <button onclick="return confirmAction('approve')" type="submit" class="btn green radius-xl outline" name="btn" value="approve">Approve</button>
+                                                        <c:if test="${blog.blogStatus == 0}">
+                                                            <button onclick="return confirmAction('approve')" type="submit" class="btn green radius-xl outline" name="btn" value="approve">Unban</button>
+                                                        </c:if>
+                                                        
+                                                      <c:if test="${blog.blogStatus == 1}">
+                                                       <button type="button" class="btn red outline radius-xl" data-toggle="modal" data-target="#banModal" onclick="setCourseID(${blog.blogId})">Ban</button>
+                                                     </c:if>
                                                       
-                                                        <button type="button" class="btn red outline radius-xl" data-toggle="modal" data-target="#banModal" onclick="setCourseID(${blog.blogId})">Reject</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -370,24 +390,24 @@ Author     : vuduc
                                         </div>
                                     </div>
                                 </c:forEach>
-                                
 
-                                
+
+
                                 <div class="row text-center mt-2 mb-3">
-                                <div class="col-12">
-                                    <ul class="pagination justify-content-center mb-0 list-unstyled">
-                                       <c:if test="${currentPage > 1}">
-                                        <a href="?page=${currentPage - 1}&pageSize=${pageSize}&status=${status}" class="btn">Previous</a>
-                                    </c:if>
-                                    <c:forEach var="i" begin="1" end="${totalPages}">
-                                        <a href="?page=${i}&pageSize=${pageSize}&status=${status}" class="${i == currentPage ? 'btn active' : 'btn'}">${i}</a>
-                                    </c:forEach>
-                                    <c:if test="${currentPage < totalPages}">
-                                        <a href="?page=${currentPage + 1}&pageSize=${pageSize}&status=${status}" class="btn">Next</a>
-                                    </c:if>
-                                    </ul><!--end pagination-->
-                                </div><!--end col-->
-                            </div>
+                                    <div class="col-12">
+                                        <ul class="pagination justify-content-center mb-0 list-unstyled">
+                                            <c:if test="${currentPage > 1}">
+                                                <a href="?page=${currentPage - 1}&pageSize=${pageSize}&status=${status}" class="btn">Previous</a>
+                                            </c:if>
+                                            <c:forEach var="i" begin="1" end="${totalPages}">
+                                                <a href="?page=${i}&pageSize=${pageSize}&status=${status}" class="${i == currentPage ? 'btn active' : 'btn'}">${i}</a>
+                                            </c:forEach>
+                                            <c:if test="${currentPage < totalPages}">
+                                                <a href="?page=${currentPage + 1}&pageSize=${pageSize}&status=${status}" class="btn">Next</a>
+                                            </c:if>
+                                        </ul><!--end pagination-->
+                                    </div><!--end col-->
+                                </div>
 
                             </div>
                         </div>
@@ -416,29 +436,29 @@ Author     : vuduc
         <script src="assets/assets_admin/vendors/chart/chart.min.js"></script>
         <script src="assets/assets_admin/js/admin.js"></script>
         <script src='assets/assets_admin/vendors/switcher/switcher.js'></script>
-  <script>
-    function setCourseID(blogId) {
-        document.getElementById('blogId').value = blogId;
-    }
+        <script>
+                                                            function setCourseID(blogId) {
+                                                                document.getElementById('blogId').value = blogId;
+                                                            }
 
-    function validateBanForm() {
-        var banReason = document.getElementById('banReason').value.trim();
+                                                            function validateBanForm() {
+                                                                var banReason = document.getElementById('banReason').value.trim();
 
-        if (banReason === '') {
-            alert('Vui lòng nhập lý do ban khóa học.');
-            return false;
-        }
+                                                                if (banReason === '') {
+                                                                    alert('Vui lòng nhập lý do ban khóa học.');
+                                                                    return false;
+                                                                }
 
-        return true;
-    }
+                                                                return true;
+                                                            }
 
-    // Optional: Attach the validation function to the form submit event
-    document.getElementById('banForm').addEventListener('submit', function(event) {
-        if (!validateBanForm()) {
-            event.preventDefault(); // Prevent form submission if validation fails
-        }
-    });
-</script>
+                                                            // Optional: Attach the validation function to the form submit event
+                                                            document.getElementById('banForm').addEventListener('submit', function (event) {
+                                                                if (!validateBanForm()) {
+                                                                    event.preventDefault(); // Prevent form submission if validation fails
+                                                                }
+                                                            });
+        </script>
     </body>
 
     <!-- Mirrored from educhamp.themetrades.com/demo/admin/courses.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:11:35 GMT -->

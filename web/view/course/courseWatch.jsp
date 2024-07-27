@@ -72,7 +72,7 @@
                                     <li><a href="javascript:;"><i class="fa fa-envelope-o"></i>Support@website.com</a></li>
                                 </ul>
                             </div>
-                           <div class="topbar-right">
+                            <div class="topbar-right">
                                 <ul>
                                     <c:if test="${account != null}">
                                         <li>
@@ -128,7 +128,7 @@
                                 <span></span>
                             </button>
                             <!-- Author Nav ==== -->
-                            
+
                             <!-- Search Box ==== -->
                             <div class="nav-search-bar">
                                 <form action="#">
@@ -144,15 +144,15 @@
                                 </div>
                                 <ul class="nav navbar-nav">	
                                     <li class="active"><a href="/OnlineLearning/home">Home</a>
-                                       
+
                                     </li>
                                     <li class="add-mega-menu"><a href="/OnlineLearning/course">Our Courses</a>
-                              
+
                                     </li>
                                     <li><a href="/OnlineLearning/blogview">Blog </a>
-                                      
+
                                     </li>
-                                   
+
                                 </ul>
                                 <div class="nav-social-link">
                                     <a href="javascript:;"><i class="fa fa-facebook"></i></a>
@@ -235,7 +235,7 @@
                                             <h2 class="post-title">${autoFirstCourse.getNumberLesson()}:   ${autoFirstCourse.getTitle()}</h2>
                                         </div>  
                                         <div class="ttr-post-media media-effect">
-                                            <iframe width="847" height="508" src="${autoFirstCourse.getVideo()}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                            <iframe width="847" height="508" data-src="${autoFirstCourse.getVideo()}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                         </div>
                                         <div class="ttr-post-info">
 
@@ -244,16 +244,16 @@
                                                 <c:if test="${quiztest.getQuizId() != 1}">
                                                     <c:if test="${autoFirstCourse.getQuizId_Quiz() == quiztest.getQuizId()}">
                                                         <form action="coursequiz" method="GET">
-                                                  
-                                                                <input type="hidden" name="action" value="resetquiz">
-                                                                <button style="background-color: #4CAF50; color: #fff">
-                                                                    <a href="coursequiz?quizid=${autoFirstCourse.getQuizId_Quiz()}" onclick="return confirmQuiz('${autoFirstCourse.getQuizId_Quiz()}');">Exercise: ${quiztest.getTitle()} </a>
-                                                                </button>
-                                                            </c:if>
-                                                        </form>
-                                                
-                                                    </c:if>
-                                              
+
+                                                            <input type="hidden" name="action" value="resetquiz">
+                                                            <button style="background-color: #4CAF50; color: #fff">
+                                                                <a href="coursequiz?quizid=${autoFirstCourse.getQuizId_Quiz()}" onclick="return confirmQuiz('${autoFirstCourse.getQuizId_Quiz()}');">Exercise: ${quiztest.getTitle()} </a>
+                                                            </button>
+                                                        </c:if>
+                                                    </form>
+
+                                                </c:if>
+
 
                                                 <b style="font-size: 20px">Describe:</b>  <br>
                                                 <pre style="white-space: pre-wrap;">${autoFirstCourse.getNote()}</pre>
@@ -302,6 +302,24 @@
                                                                             return false; // Không làm gì
                                                                         }
                                                                     }
+
+
+                                                                    // Function to convert YouTube URL to embed URL
+                                                                    function convertToEmbedUrl(url) {
+                                                                        const videoId = url.split('v=')[1];
+                                                                        const ampersandPosition = videoId.indexOf('&');
+                                                                        if (ampersandPosition !== -1) {
+                                                                            return videoId.substring(0, ampersandPosition);
+                                                                        }
+                                                                        return videoId;
+                                                                    }
+
+// Lấy tất cả các iframe và cập nhật src với URL nhúng
+                                                                    document.querySelectorAll('iframe[data-src]').forEach(iframe => {
+                                                                        const youtubeUrl = iframe.getAttribute('data-src');
+                                                                        const embedUrl = "https://www.youtube.com/embed/" + convertToEmbedUrl(youtubeUrl);
+                                                                        iframe.src = embedUrl;
+                                                                    });
         </script>
     </body>
 

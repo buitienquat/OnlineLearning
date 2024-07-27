@@ -7,6 +7,7 @@ package controller.Admin;
 
 
 import dal.implement.BlogDB;
+import dal.implement.UserDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Blog;
+import model.User;
 
 /**
  *
@@ -32,6 +34,7 @@ public class BlogManager extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        UserDBContext dbContext = new UserDBContext();
         BlogDB blogdb = new BlogDB();
         List<Blog> listBlog = blogdb.getAllBlog();
         String status = request.getParameter("status");
@@ -66,11 +69,11 @@ public class BlogManager extends HttpServlet {
         int end = Math.min(start + pageSize, listBlog.size());
 
         List<Blog> pageBlog = listBlog.subList(start, end);
-     
+        List<User> listUser = dbContext.getAllUser();
         int totalPages = (int) Math.ceil((double) listBlog.size() / pageSize);
 
         request.setAttribute("listBlog", listBlog);
-        
+        request.setAttribute("listUser", listUser);
         request.setAttribute("currentPage", page);
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("pageSize", pageSize);

@@ -163,7 +163,7 @@
                                                    data-video="${lesson.getVideo()}"
                                                    data-note="${lesson.getNote()}"
                                                    data-number="${lesson.getNumberLesson()}">Edit</a>
-                                                <a href="lessonmanage?type=0&id=${lesson.getLessonID()}&courseid=${param.courseid}&coursename=${param.coursename}&page=${currentPage}" class="btn red outline radius-xl ">Delete</a>
+                                                <a href="lessonmanage?type=0&id=${lesson.getLessonID()}&courseid=${param.courseid}&coursename=${param.coursename}&page=${currentPage}" class="btn red outline radius-xl delete-button">Delete</a>
                                             </div>
 
                                         </div>

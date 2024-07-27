@@ -2,9 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="PE PRJ301">
-            <file>file:/D:/Desktop/OnlineLearning/src/java/dal/DBContext.java</file>
-        </group>
         <group>
             <file>file:/D:/Project/Final/OnlineLearning/web/assets/vendors/revolution/css/navigation.css</file>
             <file>file:/D:/Project/Final/OnlineLearning/web/assets/vendors/revolution/css/layers.css</file>
@@ -12,6 +9,27 @@
             <file>file:/D:/Project/Final/OnlineLearning/web/assets/css/shortcodes/button.css</file>
             <file>file:/D:/Project/Final/OnlineLearning/web/assets/css/shortcodes/form.css</file>
             <file>file:/D:/Project/Final/OnlineLearning/web/view/common/404.jsp</file>
+        </group>
+        <group name="PE PRJ301">
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/web/view/course/coursemanage.jsp</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/web/view/course/lessonmanage.jsp</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/web/view/course/courseWatch.jsp</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/src/java/controller/Authen/resetPasswordServlet.java</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/src/java/controller/Authen/authenControl.java</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/web/view/admin/Lesson.jsp</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/web/view/blog/blogdetail.jsp</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/web/view/authen/register.jsp</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/web/view/authen/login.jsp</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/web/view/course/courseQuiz.jsp</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/src/java/dal/implement/UserDAO.java</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/web/view/blog/writtenblog.jsp</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/src/java/controller/Admin/CourseList.java</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/web/view/admin/Bloglist.jsp</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/web/view/admin/CourseList.jsp</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/src/java/controller/Authen/VerifyServlet.java</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/src/java/controller/Admin/BlogManager.java</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/src/java/controller/Authen/RegisterServlet.java</file>
+            <file>file:/D:/Desktop/onlinelearning/OnlineLearning/web/view/course/courseQuizDetails.jsp</file>
         </group>
     </open-files>
 </project-private>

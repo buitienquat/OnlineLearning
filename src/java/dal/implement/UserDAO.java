@@ -87,7 +87,7 @@ public class UserDAO extends GenericDAO<User> {
         String sql = "SELECT * \n"
                 + "FROM dbo.[User]\n"
                 + "WHERE Username = ?\n"
-                + "AND [Password] = ?";
+                + "AND [Password] = ? AND statusUserId = 2";
         parameterMap = new LinkedHashMap<>();
         parameterMap.put("user", user.getUsername());
         parameterMap.put("pass", user.getPassword());

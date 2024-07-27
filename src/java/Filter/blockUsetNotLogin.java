@@ -114,13 +114,7 @@ public class blockUsetNotLogin implements Filter {
             //chua login
             res.sendRedirect(req.getContextPath() + "/authen?action=login");
             return;
-        }else{
-            //da dang nhap
-            // check role
-            if(user.getRoleID() != 1){
-                res.sendRedirect(req.getContextPath() + "/authen?action=login");
-                return;
-            }
+      
             
         }
         doBeforeProcessing(request, response);
