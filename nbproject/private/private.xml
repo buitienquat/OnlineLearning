@@ -2,15 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/Project/Clone%203/OnlineLearning/web/view/blog/blogview.jsp</file>
-            <file>file:/D:/Project/Clone%203/OnlineLearning/web/view/course/lessonmanage.jsp</file>
-            <file>file:/D:/Project/Clone%203/OnlineLearning/web/view/common/commonTeacher/header.jsp</file>
-            <file>file:/D:/Project/Clone%203/OnlineLearning/web/view/blog/writtenblog.jsp</file>
-            <file>file:/D:/Project/Clone%203/OnlineLearning/web/view/course/coursemanage.jsp</file>
-        </group>
         <group name="PE PRJ301">
             <file>file:/D:/Desktop/OnlineLearning/src/java/dal/DBContext.java</file>
+        </group>
+        <group>
+            <file>file:/D:/Project/Final/OnlineLearning/web/assets/vendors/revolution/css/navigation.css</file>
+            <file>file:/D:/Project/Final/OnlineLearning/web/assets/vendors/revolution/css/layers.css</file>
+            <file>file:/D:/Project/Final/OnlineLearning/src/java/dal/DBContext.java</file>
+            <file>file:/D:/Project/Final/OnlineLearning/web/assets/css/shortcodes/button.css</file>
+            <file>file:/D:/Project/Final/OnlineLearning/web/assets/css/shortcodes/form.css</file>
+            <file>file:/D:/Project/Final/OnlineLearning/web/view/common/404.jsp</file>
         </group>
     </open-files>
 </project-private>

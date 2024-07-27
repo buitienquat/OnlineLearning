@@ -39,21 +39,7 @@
     <script src="assets/js/respond.min.js"></script>
     <![endif]-->
 
-    <!-- All PLUGINS CSS ============================================= -->
-    <link rel="stylesheet" type="text/css" href="assets/assets_admin/css/assets.css">
-    <link rel="stylesheet" type="text/css" href="assets/assets_admin/vendors/calendar/fullcalendar.css">
-
-    <!-- TYPOGRAPHY ============================================= -->
-    <link rel="stylesheet" type="text/css" href="assets/assets_admin/css/typography.css">
-
-    <!-- SHORTCODES ============================================= -->
-    <link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
-
-    <!-- STYLESHEETS ============================================= -->
-
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="assets/assets_admin/css/dashboard.css">
-    <link class="skin" rel="stylesheet" type="text/css" href="assets/assets_admin/css/color/color-1.css">
+    
 
 
 </head>

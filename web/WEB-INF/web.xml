@@ -14,7 +14,11 @@
     </filter>
     <filter-mapping>
         <filter-name>teacherFilterBlock</filter-name>
-        <url-pattern></url-pattern>
+        <url-pattern>/blog</url-pattern>
+        <url-pattern>/writtenblog</url-pattern>
+        <url-pattern>/coursemanage</url-pattern>
+        <url-pattern>/lessonmanage</url-pattern>
+        
     </filter-mapping>
     <filter-mapping>
         <filter-name>adminFilterBlock</filter-name>

@@ -117,7 +117,7 @@ public class adminFilterBlock implements Filter {
             //da dang nhap
             // check role
             if(user.getRoleID() != 1){
-                res.sendRedirect(req.getContextPath() + "/authen?action=login");
+                req.getRequestDispatcher("/view/common/404.jsp").forward(request, response);
                 return;
             }
             

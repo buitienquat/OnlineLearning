@@ -118,7 +118,8 @@ public class teacherFilterBlock implements Filter {
             //da dang nhap
             // check role
             if(user.getRoleID() != 2){
-                res.sendRedirect(req.getContextPath() + "/authen?action=login");
+                req.getRequestDispatcher("/view/common/404.jsp").forward(request, response);
+              
                 return;
             }
             

@@ -59,30 +59,57 @@
     <body id="bg">
         <div class="page-wraper">
             <div id="loading-icon-bx"></div>
-           
-            <!-- Header Top ==== -->
+
             <header class="header rs-nav">
                 <div class="top-bar">
                     <div class="container">
                         <div class="row d-flex justify-content-between">
                             <div class="topbar-left">
                                 <ul>
-                                    <li><a href="faq-1.html"><i class="fa fa-question-circle"></i>Ask a Question</a></li>
-                                    <li><a href="javascript:;"><i class="fa fa-envelope-o"></i>Support@website.com</a></li>
+                                    <li><a href="assets/faq-1.html"><i class="fa fa-question-circle"></i>Ask a Question</a></li>
+                                    <li><a href="assets/javascript:;"><i class="fa fa-envelope-o"></i>Support@website.com</a></li>
                                 </ul>
                             </div>
                             <div class="topbar-right">
                                 <ul>
-                                    <li>
-                                        <select class="header-lang-bx">
-                                            <option data-icon="flag flag-uk">English UK</option>
-                                            <option data-icon="flag flag-us">English US</option>
-                                        </select>
-                                    </li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
+                                    <c:if test="${account != null}">
+                                        <li>
+                                            <c:if test="${account.getFullName() != null}">
+                                                <span>Xin chào, ${account.getFullName()}</span>
+                                            </c:if>
+
+                                        </li>
+                                        <!--  Student-->
+                                        <c:if test="${account.getRoleID()== 3}">
+                                            <li>
+                                                <a href="adminprofile">My Account</a>                              
+                                            </li>
+                                        </c:if>
+                                        <!--  Teacher-->
+                                        <c:if test="${account.getRoleID() == 2}">
+                                            <li>
+                                                <a href="blog">My Account</a>                              
+                                            </li>
+                                        </c:if>
+                                        <!--  Admin -->
+                                        <c:if test="${account.getRoleID() == 1}">
+                                            <li>
+                                                <a href="dashboardmanager">My Account</a>
+                                            </li>
+                                        </c:if>
+                                    </c:if>
+                                    <c:if test="${account == null}">
+                                        <li><a href="authen?action=login">Login</a></li>
+                                        <li><a href="authen?action=register">Register</a></li>
+                                        </c:if>
+                                        <c:if test="${account != null}">
+                                        <li>
+                                            <a href="${pageContext.request.contextPath}/authen?action=log-out">Sign Out</a>
+                                        </li>
+                                    </c:if>
                                 </ul>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -91,7 +118,7 @@
                         <div class="container clearfix">
                             <!-- Header Logo ==== -->
                             <div class="menu-logo">
-                                <a href="index.html"><img src="assets/images/logo.png" alt=""></a>
+                                <a href="/OnlineLearning/home"><img src="${pageContext.request.contextPath}/assets/images/logo.png" alt=""></a>
                             </div>
                             <!-- Mobile Nav Button ==== -->
                             <button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,17 +127,7 @@
                                 <span></span>
                             </button>
                             <!-- Author Nav ==== -->
-                            <div class="secondary-menu">
-                                <div class="secondary-inner">
-                                    <ul>
-                                        <li><a href="javascript:;" class="btn-link"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="javascript:;" class="btn-link"><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a href="javascript:;" class="btn-link"><i class="fa fa-linkedin"></i></a></li>
-                                        <!-- Search Button ==== -->
-                                        <li class="search-btn"><button id="quik-search-btn" type="button" class="btn-link"><i class="fa fa-search"></i></button></li>
-                                    </ul>
-                                </div>
-                            </div>
+
                             <!-- Search Box ==== -->
                             <div class="nav-search-bar">
                                 <form action="#">
@@ -122,20 +139,20 @@
                             <!-- Navigation Menu ==== -->
                             <div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
                                 <div class="menu-logo">
-                                    <a href="index.html"><img src="assets/images/logo.png" alt=""></a>
+                                    <a href="index.html"><img src="${pageContext.request.contextPath}/images/logo.png" alt=""></a>
                                 </div>
                                 <ul class="nav navbar-nav">	
-                                    <li class="active"><a href="/OnlineLearning/home">Home </a>
-                                       
+                                    <li class="active"><a href="/OnlineLearning/home">Home</a>
+
                                     </li>
-                                
-                                    <li class="add-mega-menu"><a href="/OnlineLearning/course">Our Courses </a>
-                                       
+
+                                    <li class="add-mega-menu"><a href="/OnlineLearning/course">Our Courses</a>
+
                                     </li>
                                     <li><a href="/OnlineLearning/blogview">Blog </a>
-                                      
+
                                     </li>
-                                  
+
                                 </ul>
                                 <div class="nav-social-link">
                                     <a href="javascript:;"><i class="fa fa-facebook"></i></a>
@@ -276,18 +293,18 @@
                                                             <ul class="media-post">
                                                                 <li><a href="#"><i class="fa fa-calendar"></i>
                                                                         <script>
-                                                            var postDate = new Date("${b.getPostDate()}");
-                                                            var day = postDate.getDate();
-                                                            var month = postDate.getMonth() + 1;
-                                                            var year = postDate.getFullYear();
-                                                            if (day < 10) {
-                                                                day = "0" + day;
-                                                            }
-                                                            if (month < 10) {
-                                                                month = "0" + month;
-                                                            }
-                                                            var formattedDate = day + "/" + month + "/" + year;
-                                                            document.write(formattedDate);
+                                                                            var postDate = new Date("${b.getPostDate()}");
+                                                                            var day = postDate.getDate();
+                                                                            var month = postDate.getMonth() + 1;
+                                                                            var year = postDate.getFullYear();
+                                                                            if (day < 10) {
+                                                                                day = "0" + day;
+                                                                            }
+                                                                            if (month < 10) {
+                                                                                month = "0" + month;
+                                                                            }
+                                                                            var formattedDate = day + "/" + month + "/" + year;
+                                                                            document.write(formattedDate);
                                                                         </script>
                                                                     </a></li>
                                                                 <li><a href="#">
